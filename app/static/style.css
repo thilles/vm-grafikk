@@ -61,6 +61,52 @@ h2 {
 .columns { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; }
 @media (max-width: 900px) { .columns { grid-template-columns: 1fr; } }
 
+/* Podium */
+.podium {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  gap: 10px;
+  margin: 6px 0 18px;
+}
+.podium-spot { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.podium-medal { font-size: 1.8rem; line-height: 1; }
+.podium-name { font-weight: 700; font-size: .9rem; margin: 4px 0 2px; }
+.podium-pts { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
+.podium-pts span { font-size: .7rem; color: var(--muted); font-weight: 600; margin-left: 1px; }
+.podium-block {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: rgba(11, 31, 18, .55);
+  border: 1px solid var(--line);
+  border-bottom: none;
+}
+.podium-spot.p1 .podium-block { height: 96px; background: linear-gradient(180deg, #fbbf24, #d99e0a); }
+.podium-spot.p2 .podium-block { height: 70px; background: linear-gradient(180deg, #e2e8f0, #aab4c4); }
+.podium-spot.p3 .podium-block { height: 52px; background: linear-gradient(180deg, #e0863a, #b8621f); }
+
+/* Kontoret stemte */
+.poll {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.poll-title { font-weight: 700; margin-bottom: 8px; }
+.poll-row { display: grid; grid-template-columns: minmax(90px, 38%) 1fr auto; align-items: center; gap: 8px; margin-bottom: 5px; }
+.poll-label { font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.poll-track { height: 14px; background: var(--panel2); border-radius: 7px; overflow: hidden; }
+.poll-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #22c55e); border-radius: 7px; min-width: 2px; transition: width .4s; }
+.poll-count { font-size: .74rem; color: var(--muted); white-space: nowrap; }
+
 /* Ledertavle */
 .lb-row {
   display: grid;

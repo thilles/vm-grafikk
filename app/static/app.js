@@ -35,6 +35,41 @@ function matchCard(m, live) {
     </div>`;
 }
 
+function renderPodium(board) {
+  // Topp 3, men tegnet i rekkefølgen 2 – 1 – 3 slik en ekte pall ser ut
+  const top = board.slice(0, 3);
+  if (top.length < 3) { $("podium").innerHTML = ""; return; }
+  const order = [top[1], top[0], top[2]];
+  const place = [2, 1, 3];
+  const medal = { 1: "🥇", 2: "🥈", 3: "🥉" };
+  $("podium").innerHTML = order.map((b, i) => {
+    const p = place[i];
+    return `
+      <div class="podium-spot p${p}">
+        <div class="podium-medal">${medal[p]}</div>
+        <div class="podium-name">${b.name}</div>
+        <div class="podium-pts">${b.total}<span>p</span></div>
+        <div class="podium-block">${p}</div>
+      </div>`;
+  }).join("");
+}
+
+function renderConsensus(polls) {
+  $("consensus").innerHTML = (polls || []).map((poll) => {
+    const bars = poll.options.map((o) => `
+      <div class="poll-row">
+        <div class="poll-label">${o.flag ? o.flag + " " : ""}${o.label}</div>
+        <div class="poll-track"><div class="poll-fill" style="width:${o.pct}%"></div></div>
+        <div class="poll-count">${o.count} · ${o.pct}%</div>
+      </div>`).join("");
+    return `
+      <div class="poll">
+        <div class="poll-title">${poll.icon} ${poll.title}</div>
+        ${bars}
+      </div>`;
+  }).join("");
+}
+
 function renderLeaderboard(board) {
   const maxTotal = Math.max(1, ...board.map((b) => b.total));
   $("leaderboard").innerHTML = board.map((b) => {
@@ -123,7 +158,9 @@ async function refresh() {
       '<p style="color:var(--muted)">Ingen spilte kamper ennå.</p>';
     $("upcoming-matches").innerHTML = s.matches.upcoming.map((m) => matchCard(m, false)).join("");
 
+    renderPodium(s.leaderboard);
     renderLeaderboard(s.leaderboard);
+    renderConsensus(s.consensus);
     renderGroups(s.groups);
     renderFacts(s.facts);
     renderScorers(s.scorers);

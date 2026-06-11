@@ -14,6 +14,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
+from .consensus import build_consensus
 from .facts import build_facts
 from .football_api import get_provider
 from .predictions import load_predictions
@@ -93,6 +94,7 @@ def rebuild_state():
                 for s in (data.get("scorers") or [])[:5]
             ],
             "facts": build_facts(matches, people, data["demo"]),
+            "consensus": build_consensus(people),
         }
     )
     log.info("State oppdatert: %d kamper, %d deltakere", len(matches), len(people))
