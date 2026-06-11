@@ -22,14 +22,14 @@ tydelig merket i appen.
 
 ## Datakilder
 
-| Hva | Kilde | Konfigurasjon |
-|---|---|---|
-| Kampresultater, tabeller, toppscorere | [football-data.org](https://www.football-data.org) (gratisnivået dekker VM) | `FOOTBALL_DATA_TOKEN` |
-| Tippesvar | Google Sheet (live) eller lokal Excel-fil | `SHEET_CSV_URL` eller `data/svar.xlsx` |
-| Manuell fasit | `data/facit.json` | se under |
+| Hva                                   | Kilde                                                                       | Konfigurasjon                          |
+| ------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
+| Kampresultater, tabeller, toppscorere | [football-data.org](https://www.football-data.org) (gratisnivået dekker VM) | `FOOTBALL_DATA_TOKEN`                  |
+| Tippesvar                             | Google Sheet (live) eller lokal Excel-fil                                   | `SHEET_CSV_URL` eller `data/svar.xlsx` |
+| Manuell fasit                         | `data/fasit.json`                                                           | se under                               |
 
-**Live-kobling mot Google Sheet:** I regnearket: *Fil → Del → Publiser på
-nettet → velg arket → CSV*, og sett lenken som `SHEET_CSV_URL` i miljøet
+**Live-kobling mot Google Sheet:** I regnearket: _Fil → Del → Publiser på
+nettet → velg arket → CSV_, og sett lenken som `SHEET_CSV_URL` i miljøet
 (f.eks. i en `.env`-fil ved siden av `docker-compose.yml`). Da plukkes nye/
 endrede svar opp automatisk. Uten denne brukes `data/svar.xlsx`.
 
@@ -43,23 +43,23 @@ Automatisk fasit utledes fra kampdataene etter hvert som turneringen skrider
 frem (gruppetabeller, sluttspillsoppsett, finale, toppscorerliste osv.).
 Poengverdier følger skjemaet:
 
-| Spørsmål | Poeng | Avgjøres |
-|---|---|---|
-| Rekkefølge per gruppe (A–L) | 4 (1 per riktig plassering*) | gruppespillet ferdig |
-| Jevneste gruppe | 4 | gruppespillet ferdig |
-| Hvor ryker Norge ut | 5 | når Norge er ute / verdensmester |
-| Scorer Haiti mål | 3 | første Haiti-mål, ellers når Haiti er ute |
-| Toppscorer | 5 | foreløpig underveis, endelig etter finalen |
-| Første hattrick | 5 | manuelt (`facit.json`) |
-| VM-vinner | 20 | etter finalen |
-| Taper av finalen | 15 | etter finalen |
-| Semifinalister | 4 per riktig lag | når semifinalene er satt opp |
-| 4 navngitte kampresultater | 4 per kamp (eksakt resultat*) | etter hver kamp |
-| Sverige til 8-delsfinale | 4 | når R16 er satt opp / Sverige ute |
-| Afrikansk lag i kvartfinale | 4 | når kvartfinalene er satt opp |
-| Mål totalt i kvartfinalene | 4 | etter kvartfinalene |
-| Gule kort Ryerson | 4 | manuelt (`facit.json`) |
-| Selvmål i semifinalene | 4 | manuelt (`facit.json`) |
+| Spørsmål                    | Poeng                          | Avgjøres                                   |
+| --------------------------- | ------------------------------ | ------------------------------------------ |
+| Rekkefølge per gruppe (A–L) | 4 (1 per riktig plassering\*)  | gruppespillet ferdig                       |
+| Jevneste gruppe             | 4                              | gruppespillet ferdig                       |
+| Hvor ryker Norge ut         | 5                              | når Norge er ute / verdensmester           |
+| Scorer Haiti mål            | 3                              | første Haiti-mål, ellers når Haiti er ute  |
+| Toppscorer                  | 5                              | foreløpig underveis, endelig etter finalen |
+| Første hattrick             | 5                              | manuelt (`fasit.json`)                     |
+| VM-vinner                   | 20                             | etter finalen                              |
+| Taper av finalen            | 15                             | etter finalen                              |
+| Semifinalister              | 4 per riktig lag               | når semifinalene er satt opp               |
+| 4 navngitte kampresultater  | 4 per kamp (eksakt resultat\*) | etter hver kamp                            |
+| Sverige til 8-delsfinale    | 4                              | når R16 er satt opp / Sverige ute          |
+| Afrikansk lag i kvartfinale | 4                              | når kvartfinalene er satt opp              |
+| Mål totalt i kvartfinalene  | 4                              | etter kvartfinalene                        |
+| Gule kort Ryerson           | 4                              | manuelt (`fasit.json`)                     |
+| Selvmål i semifinalene      | 4                              | manuelt (`fasit.json`)                     |
 
 \* Antakelse – skjemaet sier bare totalpoeng. Reglene ligger samlet i
 `app/scoring.py` og er enkle å justere (f.eks. «4 poeng kun ved helt riktig
@@ -68,7 +68,7 @@ gruppe» eller delpoeng for riktig utfall i kampresultat).
 Foreløpige poeng (f.eks. toppscorer underveis) merkes med `*` i appen;
 «sikre poeng» teller bare endelig avgjorte spørsmål.
 
-### Manuell fasit – `data/facit.json`
+### Manuell fasit – `data/fasit.json`
 
 Tre spørsmål kan ikke hentes pålitelig fra gratis-API-et og settes manuelt av
 arrangøren. Filen kan også overstyre alt annet ved behov:
@@ -81,7 +81,7 @@ arrangøren. Filen kan også overstyre alt annet ved behov:
 }
 ```
 
-Se `data/facit.example.json`. Endringer plukkes opp ved neste oppdatering.
+Se `data/fasit.example.json`. Endringer plukkes opp ved neste oppdatering.
 
 ## Drift uten docker compose
 

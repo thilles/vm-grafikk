@@ -1,5 +1,5 @@
 .env
 data/svar.xlsx
-data/facit.json
+data/fasit.example.json
 __pycache__/
 .DS_Store
