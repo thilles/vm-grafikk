@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "vm-scoreboard",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": ["run", "--rm", "--name", "vm-scoreboard-preview", "-p", "8010:8000", "--env-file", "/Users/thomas/Utvikling/vm-grafikk/.env", "-v", "/Users/thomas/Utvikling/vm-grafikk/data:/data", "vm-scoreboard"],
+      "port": 8010,
+      "autoPort": false
+    }
+  ]
+}

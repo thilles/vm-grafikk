@@ -1,0 +1,138 @@
+/* Frontend for tippekonkurranse-scoreboardet. Leser alt fra /api/state. */
+
+const $ = (id) => document.getElementById(id);
+
+function fmtDate(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  return d.toLocaleString("no-NO", {
+    weekday: "short", day: "numeric", month: "short",
+    hour: "2-digit", minute: "2-digit",
+  });
+}
+
+const STAGE_LABEL = {
+  GROUP: "Gruppe", R32: "16-delsfinale", R16: "8-delsfinale",
+  QF: "Kvartfinale", SF: "Semifinale", THIRD: "Bronsefinale", FINAL: "FINALE",
+};
+
+function stageBadge(m) {
+  if (m.stage === "GROUP") return m.group ? `Gruppe ${m.group}` : "Gruppespill";
+  return STAGE_LABEL[m.stage] || m.stage;
+}
+
+function matchCard(m, live) {
+  const played = m.goals_home !== null && m.goals_home !== undefined;
+  const score = played
+    ? `${m.goals_home}–${m.goals_away}`
+    : new Date(m.date).toLocaleTimeString("no-NO", { hour: "2-digit", minute: "2-digit" });
+  return `
+    <div class="match ${live ? "live" : ""}">
+      <div class="team"><span>${m.home_flag}</span><span class="name">${m.home}</span></div>
+      <div class="score">${score}</div>
+      <div class="team away"><span class="name">${m.away}</span><span>${m.away_flag}</span></div>
+      <div class="when">${fmtDate(m.date)} · ${stageBadge(m)}${m.pens ? " · " + m.pens : ""}${live ? " · PÅGÅR" : ""}</div>
+    </div>`;
+}
+
+function renderLeaderboard(board) {
+  const maxTotal = Math.max(1, ...board.map((b) => b.total));
+  $("leaderboard").innerHTML = board.map((b) => {
+    const medal = b.rank === 1 ? "🥇" : b.rank === 2 ? "🥈" : b.rank === 3 ? "🥉" : b.rank + ".";
+    const rows = b.breakdown
+      .filter((i) => i.status !== "pending" || i.points > 0)
+      .map((i) => {
+        const cls = i.status === "provisional" ? "prov" : i.points > 0 ? "got" : "";
+        const star = i.status === "provisional" ? " *" : "";
+        return `<tr><td>${i.label}</td><td class="pts ${cls}">${i.points}/${i.max}${star}</td></tr>`;
+      }).join("");
+    return `
+      <div class="lb-row" onclick="this.classList.toggle('open')">
+        <div class="lb-rank r${b.rank}">${medal}</div>
+        <div>
+          <div class="lb-name">${b.name}</div>
+          <div class="lb-sub">${b.secure} sikre poeng · tippet 🏆 ${b.vinner ?? "?"}</div>
+        </div>
+        <div class="lb-points">${b.total}</div>
+        <div class="lb-bar"><div style="width:${(100 * b.total) / maxTotal}%"></div></div>
+        <div class="lb-details">
+          <table>${rows || "<tr><td>Ingen avgjorte spørsmål ennå</td></tr>"}</table>
+          <p style="color:var(--muted)">* = foreløpig fasit · klikk for å lukke</p>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function renderGroups(groups) {
+  $("groups").innerHTML = Object.keys(groups).sort().map((letter) => {
+    const rows = groups[letter].map((r) => `
+      <tr class="${r.pos <= 2 ? "q" : ""}">
+        <td class="team-cell">${r.flag} ${r.team}</td>
+        <td>${r.played}</td><td>${r.gd > 0 ? "+" + r.gd : r.gd}</td><td class="pts">${r.pts}</td>
+      </tr>`).join("");
+    return `
+      <div class="group-card">
+        <h3>Gruppe ${letter}</h3>
+        <table>
+          <tr><th>Lag</th><th>K</th><th>+/-</th><th>P</th></tr>
+          ${rows}
+        </table>
+      </div>`;
+  }).join("");
+}
+
+function renderFacts(facts) {
+  $("facts").innerHTML = facts.map((f) => `
+    <div class="fact">
+      <div class="fact-title">${f.icon} ${f.title}</div>
+      <div class="fact-text">${f.text}</div>
+    </div>`).join("");
+}
+
+function renderScorers(scorers) {
+  const withGoals = (scorers || []).filter((s) => s.goals > 0);
+  $("scorers-heading").hidden = withGoals.length === 0;
+  $("scorers").innerHTML = withGoals.map((s) => `
+    <div class="scorer-row">
+      <span>${s.flag} ${s.player} <span class="badge">${s.team}</span></span>
+      <span class="goals">${s.goals}</span>
+    </div>`).join("");
+}
+
+async function refresh() {
+  try {
+    const res = await fetch("/api/state");
+    const s = await res.json();
+    if (!s.ready) {
+      $("loading").textContent = s.error
+        ? "Klarte ikke hente data: " + s.error
+        : "Laster scoreboard …";
+      return;
+    }
+    $("loading").hidden = true;
+    $("content").hidden = false;
+
+    $("meta").innerHTML =
+      `Oppdatert ${fmtDate(s.updated)}<br>Kilde: ${s.source}` +
+      (s.demo ? ' · <b style="color:var(--gold)">DEMODATA</b>' : "");
+
+    $("live-section").hidden = s.matches.live.length === 0;
+    $("live-matches").innerHTML = s.matches.live.map((m) => matchCard(m, true)).join("");
+    $("finished-matches").innerHTML =
+      s.matches.finished.map((m) => matchCard(m, false)).join("") ||
+      '<p style="color:var(--muted)">Ingen spilte kamper ennå.</p>';
+    $("upcoming-matches").innerHTML = s.matches.upcoming.map((m) => matchCard(m, false)).join("");
+
+    renderLeaderboard(s.leaderboard);
+    renderGroups(s.groups);
+    renderFacts(s.facts);
+    renderScorers(s.scorers);
+    $("footer-source").textContent =
+      `Tippesvar: ${s.predictions_source} · Kampdata: ${s.source} · Oppdateres automatisk`;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+refresh();
+setInterval(refresh, 60_000);

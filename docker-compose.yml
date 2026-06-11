@@ -1,0 +1,15 @@
+services:
+  vm-scoreboard:
+    build: .
+    container_name: vm-scoreboard
+    ports:
+      - "8000:8000"
+    environment:
+      # Gratis API-nøkkel fra https://www.football-data.org/client/register
+      - FOOTBALL_DATA_TOKEN=${FOOTBALL_DATA_TOKEN:-}
+      # Valgfritt: publisert CSV-lenke til Google Sheet (Fil -> Del -> Publiser på nettet -> CSV)
+      - SHEET_CSV_URL=${SHEET_CSV_URL:-}
+      - REFRESH_MINUTES=${REFRESH_MINUTES:-10}
+    volumes:
+      - ./data:/data
+    restart: unless-stopped

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D&amp;I Tippekonkurranse VM 2026</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+</head>
+<body>
+<header>
+  <div class="title">
+    <span class="ball">⚽</span>
+    <div>
+      <h1>D&amp;I Tippekonkurranse</h1>
+      <p class="subtitle">VM 2026 · Canada · Mexico · USA</p>
+    </div>
+  </div>
+  <div class="meta" id="meta"></div>
+</header>
+
+<main>
+  <div id="loading" class="loading">Laster scoreboard …</div>
+  <div id="content" hidden>
+
+    <section id="live-section" hidden>
+      <h2>🔴 Pågår nå</h2>
+      <div class="match-grid" id="live-matches"></div>
+    </section>
+
+    <div class="columns">
+      <section class="col-left">
+        <h2>🏆 Ledertavle</h2>
+        <p class="hint">Poengsummen inkluderer foreløpige poeng (*) beregnet fra gjeldende
+        gruppeplasseringer og toppscorerliste – de oppdateres etter hver kamp. «Sikre poeng»
+        er kun endelig avgjorte spørsmål.</p>
+        <div id="leaderboard"></div>
+
+        <h2>💡 Fakta &amp; kuriositeter</h2>
+        <div id="facts"></div>
+      </section>
+
+      <section class="col-right">
+        <h2>📋 Siste resultater</h2>
+        <div class="match-grid" id="finished-matches"></div>
+
+        <h2>📅 Kommende kamper</h2>
+        <div class="match-grid" id="upcoming-matches"></div>
+
+        <h2 id="scorers-heading" hidden>👟 Toppscorere</h2>
+        <div id="scorers"></div>
+      </section>
+    </div>
+
+    <section>
+      <h2>🗂️ Gruppespillet</h2>
+      <div class="group-grid" id="groups"></div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <span id="footer-source"></span>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+.env
+data/svar.xlsx
+data/facit.json
+__pycache__/
+.DS_Store
