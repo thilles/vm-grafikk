@@ -142,4 +142,16 @@ h2 {
 .scorer-row { display: flex; justify-content: space-between; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; margin-bottom: 6px; font-size: .9rem; }
 .scorer-row .goals { font-weight: 800; color: var(--accent); }
 
+/* Poengregler */
+.rules { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.rules summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+.rules summary:hover { text-decoration: underline; }
+.rules-table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: 12px; }
+.rules-table th { text-align: left; color: var(--muted); font-weight: 600; font-size: .72rem; text-transform: uppercase; padding: 6px 8px; border-bottom: 2px solid var(--line); }
+.rules-table td { padding: 7px 8px; border-top: 1px solid var(--line); vertical-align: top; }
+.rules-table td:nth-child(2) { white-space: nowrap; color: var(--accent); font-weight: 600; }
+.rules-table td:nth-child(3) { color: var(--muted); }
+.rules p { font-size: .85rem; color: var(--muted); line-height: 1.5; margin: 12px 4px 4px; }
+@media (max-width: 700px) { .rules-table td:nth-child(2) { white-space: normal; } }
+
 footer { text-align: center; color: var(--muted); font-size: .75rem; padding: 18px; }
