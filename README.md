@@ -4,6 +4,11 @@ Webapp som etter hver kamp henter resultater fra internett, regner ut poeng for
 alle deltakerne i tippekonkurransen og viser et grafisk scoreboard med
 ledertavle, kampresultater, gruppetabeller og fakta/kuriositeter.
 
+**🔴 Live:** <https://vm26-scores.onrender.com/>
+
+(Gratis Render-instans – har den stått ubrukt en stund, tar første visning
+~30–60 sekunder mens tjenesten våkner og henter ferske data.)
+
 ## Kom i gang
 
 ```bash
@@ -82,6 +87,40 @@ arrangøren. Filen kan også overstyre alt annet ved behov:
 ```
 
 Se `data/fasit.example.json`. Endringer plukkes opp ved neste oppdatering.
+
+## Gratis hosting på Render
+
+Slik gjenskaper du oppsettet bak <https://vm26-scores.onrender.com/>:
+
+1. **Fork/push dette repoet til GitHub** (privat repo fungerer fint).
+   `.gitignore` holder `.env` (API-nøkkelen) og `data/svar.xlsx` utenfor.
+2. Lag konto på [render.com](https://render.com) og velg
+   **New → Web Service → Connect repository** og pek på repoet.
+   Render oppdager `Dockerfile` automatisk – ingen build-innstillinger trengs
+   (appen lytter på porten Render tildeler via `PORT`).
+3. Velg **Free**-planen.
+4. Under **Environment** legger du inn:
+   | Variabel | Verdi |
+   |---|---|
+   | `FOOTBALL_DATA_TOKEN` | API-nøkkelen din fra football-data.org |
+   | `SHEET_CSV_URL` | publisert CSV-lenke til Google Sheetet med svarene |
+
+   `SHEET_CSV_URL` er i praksis påkrevd i skyen: der finnes ingen lokal
+   `data/svar.xlsx` å falle tilbake på.
+5. **Deploy.** Hver push til repoet utløser automatisk ny deploy.
+
+Verdt å vite på gratisplanen:
+
+- **Tjenesten sovner etter ~15 min uten trafikk** og bruker 30–60 sekunder på
+  å våkne. Sett opp en gratis overvåker (f.eks. [uptimerobot.com](https://uptimerobot.com)
+  eller [cron-job.org](https://cron-job.org)) som pinger `/api/state` hvert
+  10. minutt, så holder den seg våken under turneringen.
+- **Ingen vedvarende disk.** Manuell fasit kan derfor ikke legges i et volum –
+  legg heller `data/fasit.json` inn i repoet (fjern linjen fra `.gitignore`)
+  og push; `Dockerfile` kopierer `data/` inn i imaget, og hver push
+  redeployer med oppdatert fasit.
+- Siden blir offentlig tilgjengelig for alle som har URL-en (deltakernavn og
+  tippesvar inkludert) – greit for en intern konkurranse, men verdt å vite.
 
 ## Drift uten docker compose
 

@@ -40,7 +40,7 @@ SCORER_OPTIONS = [
 
 
 def load_fasit():
-    path = os.environ.get("fasit_JSON", "/data/fasit.json")
+    path = os.environ.get("FASIT_JSON", "/data/fasit.json")
     if os.path.exists(path):
         try:
             with open(path) as f:
