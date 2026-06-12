@@ -146,7 +146,32 @@ class DemoProvider:
         scorers = [
             {"player": "Kylian Mbappé", "team": "France", "goals": 0},
         ]
-        return {"matches": matches, "scorers": scorers, "source": "demodata", "demo": True}
+        # Demo-høydepunkter (mål/kort) keyet som highlights.match_key: "dato|lagA|lagB"
+        highlights = {
+            "2026-06-11|Mexico|South Africa": {
+                "goals": [
+                    {"team": "Mexico", "player": "S. Giménez", "minute": "12", "type": "normal"},
+                    {"team": "South Africa", "player": "L. Mokoena", "minute": "34", "type": "penalty"},
+                    {"team": "Mexico", "player": "H. Lozano", "minute": "78", "type": "normal"},
+                ],
+                "cards": [
+                    {"team": "South Africa", "player": "T. Mbatha", "minute": "55", "card": "YELLOW"},
+                    {"team": "Mexico", "player": "E. Álvarez", "minute": "90+3", "card": "RED"},
+                ],
+            },
+            "2026-06-12|Brazil|Morocco": {
+                "goals": [
+                    {"team": "Morocco", "player": "Y. En-Nesyri", "minute": "23", "type": "normal"},
+                    {"team": "Brazil", "player": "Vinícius Jr.", "minute": "61", "type": "normal"},
+                    {"team": "Brazil", "player": "Rodrygo", "minute": "88", "type": "normal"},
+                ],
+                "cards": [
+                    {"team": "Morocco", "player": "S. Amrabat", "minute": "70", "card": "YELLOW"},
+                ],
+            },
+        }
+        return {"matches": matches, "scorers": scorers, "source": "demodata",
+                "demo": True, "highlights": highlights}
 
 
 def get_provider():

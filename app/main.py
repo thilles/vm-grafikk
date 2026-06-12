@@ -17,6 +17,8 @@ from fastapi.staticfiles import StaticFiles
 from .consensus import build_consensus
 from .facts import build_facts
 from .football_api import get_provider
+from .highlights import build_highlights, match_key
+from .highlights import view as highlights_view
 from .predictions import load_predictions
 from .scoring import (
     compute_group_tables,
@@ -36,7 +38,7 @@ REFRESH_MINUTES = int(os.environ.get("REFRESH_MINUTES", "10"))
 STATE = {"ready": False, "error": None}
 
 
-def _match_view(m):
+def _match_view(m, highlights=None):
     return {
         "date": m["utc_date"],
         "status": m["status"],
@@ -51,6 +53,7 @@ def _match_view(m):
         "pens": f"{m['pens_home']}–{m['pens_away']} på straffer"
         if m.get("pens_home") is not None
         else None,
+        "highlights": highlights_view((highlights or {}).get(match_key(m))),
     }
 
 
@@ -68,6 +71,9 @@ def rebuild_state():
     live = [m for m in matches if m["status"] in ("IN_PLAY", "PAUSED")]
     upcoming = [m for m in matches if m["status"] in ("SCHEDULED", "TIMED")][:8]
 
+    # Mål/kort pr ferdig kamp (api-sports). Demo-data har dem ferdig påsatt.
+    highlights = data.get("highlights") or build_highlights(matches)
+
     STATE.update(
         {
             "ready": True,
@@ -79,7 +85,7 @@ def rebuild_state():
             "leaderboard": leaderboard,
             "matches": {
                 "live": [_match_view(m) for m in live],
-                "finished": [_match_view(m) for m in finished[-12:]][::-1],
+                "finished": [_match_view(m, highlights) for m in finished[-12:]][::-1],
                 "upcoming": [_match_view(m) for m in upcoming],
             },
             "groups": {

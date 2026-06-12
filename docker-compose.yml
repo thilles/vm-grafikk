@@ -9,6 +9,8 @@ services:
       - FOOTBALL_DATA_TOKEN=${FOOTBALL_DATA_TOKEN:-}
       # Valgfritt: publisert CSV-lenke til Google Sheet (Fil -> Del -> Publiser på nettet -> CSV)
       - SHEET_CSV_URL=${SHEET_CSV_URL:-}
+      # Valgfritt: api-sports-nøkkel for mål/kort pr ferdig kamp (https://www.api-football.com)
+      - APISPORTS_KEY=${APISPORTS_KEY:-}
       - REFRESH_MINUTES=${REFRESH_MINUTES:-10}
     volumes:
       - ./data:/data

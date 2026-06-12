@@ -18,18 +18,23 @@ cp "Svar tippekonkurranse.xlsx" data/svar.xlsx
 # 2. Skaff gratis API-nøkkel: https://www.football-data.org/client/register
 export FOOTBALL_DATA_TOKEN=din-nøkkel
 
-# 3. Bygg og start
+# 3. (Valgfritt) Mål/kort pr kamp: gratis nøkkel fra https://www.api-football.com
+export APISPORTS_KEY=din-api-football-nøkkel
+
+# 4. Bygg og start
 docker compose up --build -d
 ```
 
-Åpne <http://localhost:8000>. Uten API-nøkkel kjører appen med demodata,
-tydelig merket i appen.
+Åpne <http://localhost:8000>. Uten `FOOTBALL_DATA_TOKEN` kjører appen med
+demodata, tydelig merket i appen. `APISPORTS_KEY` er helt valgfri – settes den
+ikke, fungerer alt som før, bare uten kamphøydepunkter (se under).
 
 ## Datakilder
 
 | Hva                                   | Kilde                                                                       | Konfigurasjon                          |
 | ------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------- |
 | Kampresultater, tabeller, toppscorere | [football-data.org](https://www.football-data.org) (gratisnivået dekker VM) | `FOOTBALL_DATA_TOKEN`                  |
+| Mål/kort pr ferdig kamp (høydepunkter) | [api-sports](https://www.api-football.com) (gratisnivået dekker VM via `?date=`) | `APISPORTS_KEY`                   |
 | Tippesvar                             | Google Sheet (live) eller lokal Excel-fil                                   | `SHEET_CSV_URL` eller `data/svar.xlsx` |
 | Manuell fasit                         | `data/fasit.json`                                                           | se under                               |
 
@@ -41,6 +46,21 @@ endrede svar opp automatisk. Uten denne brukes `data/svar.xlsx`.
 Appen oppdaterer seg selv hvert `REFRESH_MINUTES` minutt (standard 10), og
 frontend laster på nytt hvert minutt. `POST /api/refresh` tvinger en
 oppdatering umiddelbart.
+
+**Kamphøydepunkter (mål/kort) – krever api-football:** Funksjonen er avhengig av
+en gratis nøkkel fra [api-football / api-sports](https://www.api-football.com),
+satt som `APISPORTS_KEY`. Da blir spilte kamper klikkbare i «Siste resultater»
+og viser målscorere og gule/røde kort. Dataene hentes fra api-sports
+(gratis: 100 kall/døgn) – fordi gratisplanen ikke gir tilgang via
+`?league=&season=2026`, hentes fixture-id via `?date=` og hendelser via `?id=`.
+Hendelser for ferdigspilte kamper er uforanderlige, så de hentes én gang pr kamp
+og caches (`HIGHLIGHTS_CACHE`, standard `/data/highlights_cache.json`) – forbruket
+blir noen få kall i døgnet.
+
+> **Uten `APISPORTS_KEY`:** høydepunkt-funksjonen er helt deaktivert – kampene
+> blir ikke klikkbare og ingen mål/kort vises. Det gjøres ingen api-sports-kall,
+> og resten av appen (resultater, ledertavle, tabeller, fakta) fungerer akkurat
+> som før. Nøkkelen er altså valgfri.
 
 ## Poengberegning
 
@@ -136,6 +156,7 @@ docker run -d -p 8000:8000 -v "$PWD/data:/data" \
 app/
   main.py          FastAPI-app + bakgrunnsjobb
   football_api.py  football-data.org-klient + demodata
+  highlights.py    api-sports-klient: mål/kort pr kamp + cache
   predictions.py   parser Google Forms-svarene (CSV/XLSX)
   scoring.py       fasit-utledning og poengberegning
   facts.py         fakta, kuriositeter og highlights
