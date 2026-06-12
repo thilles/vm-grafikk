@@ -127,10 +127,16 @@ h2 {
 .lb-rank.r2 { color: var(--silver); }
 .lb-rank.r3 { color: var(--bronze); }
 .lb-name { font-weight: 600; }
+.lb-delta { font-size: .72rem; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+.lb-delta.up { color: var(--accent); }
+.lb-delta.down { color: #f87171; }
+.lb-delta.same { color: var(--muted); font-weight: 400; }
 .lb-sub { font-size: .75rem; color: var(--muted); margin-top: 2px; }
 .lb-points { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
-.lb-bar { grid-column: 1 / -1; height: 6px; background: var(--panel2); border-radius: 3px; overflow: hidden; }
-.lb-bar > div { height: 100%; background: linear-gradient(90deg, var(--accent), #22c55e); }
+.lb-bar { grid-column: 1 / -1; height: 6px; background: var(--panel2); border-radius: 3px; overflow: hidden; display: flex; }
+.lb-bar > div { height: 100%; transition: width .4s; }
+.lb-bar-secure { background: linear-gradient(90deg, var(--accent), #22c55e); }
+.lb-bar-prov { background: rgba(74, 222, 128, .28); }
 
 .lb-details { grid-column: 1 / -1; font-size: .8rem; display: none; }
 .lb-row.open .lb-details { display: block; }
@@ -158,6 +164,14 @@ h2 {
 .match .score { font-size: 1.25rem; font-weight: 800; white-space: nowrap; padding: 2px 10px; background: var(--panel2); border-radius: 8px; }
 .match .when { grid-column: 1 / -1; font-size: .72rem; color: var(--muted); text-align: center; }
 .match.live { border-color: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, .35); }
+.match.clickable { cursor: pointer; }
+.match.clickable:hover { border-color: var(--accent); }
+.match-details { grid-column: 1 / -1; display: none; gap: 24px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+.match.open .match-details { display: flex; flex-wrap: wrap; }
+.match-details .hl-col { min-width: 120px; }
+.match-details h4 { margin: 0 0 4px; font-size: .7rem; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.match-details ul { margin: 0; padding: 0; list-style: none; }
+.match-details li { font-size: .82rem; padding: 1px 0; }
 .badge { font-size: .65rem; background: var(--panel2); color: var(--muted); border-radius: 4px; padding: 1px 6px; margin-left: 6px; }
 
 /* Fakta */
