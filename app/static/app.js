@@ -76,6 +76,76 @@ function matchCard(m, live) {
     </div>`;
 }
 
+/* ── Tidslinje: vei gjennom mesterskapet ─────────────────────────────────── */
+// Stage-starter for VM 2026 (faste datoer). Brukes til progresjons-indikatoren.
+const STAGES_TL = [
+  { key: "GROUP", label: "Gruppespill",   start: "2026-06-11" },
+  { key: "R32",   label: "16-delsfinale", start: "2026-06-28" },
+  { key: "R16",   label: "8-delsfinale",  start: "2026-07-04" },
+  { key: "QF",    label: "Kvartfinale",   start: "2026-07-09" },
+  { key: "SF",    label: "Semifinale",    start: "2026-07-14" },
+  { key: "FINAL", label: "Finale",        start: "2026-07-19" },
+];
+// Tidsaksen går fra første kamp til finalen. Stage-prikkene plasseres
+// proporsjonalt med antall dager inn i perioden, slik at det lange gruppespillet
+// får mer plass enn de tette sluttrundene. Marker-prikken («vi er her») står på
+// samme datoskala, så avstanden den har flyttet seg speiler faktisk forløp.
+function stageStarts() {
+  return STAGES_TL.map((s) => new Date(s.start + "T00:00:00Z"));
+}
+
+function tournamentProgress(now) {
+  const starts = stageStarts();
+  const span = starts[starts.length - 1] - starts[0]; // første kamp → finale
+  let idx = 0;
+  for (let i = 0; i < starts.length; i++) if (now >= starts[i]) idx = i;
+  const pct = Math.min(100, Math.max(0, ((now - starts[0]) / span) * 100));
+  return { idx, pct };
+}
+
+function renderStageProgress(now) {
+  const { idx, pct } = tournamentProgress(now);
+  const starts = stageStarts();
+  const span = starts[starts.length - 1] - starts[0];
+  const stages = STAGES_TL.map((s, i) => {
+    const state = i < idx ? "done" : i === idx ? "active" : "future";
+    const left = ((starts[i] - starts[0]) / span) * 100;
+    // Etikettene veksler over/under linja så de tette sluttrundene ikke kolliderer.
+    const side = i % 2 === 0 ? "down" : "up";
+    return `<div class="sp-stage ${state} ${side}" style="left:${left}%">
+        <span class="sp-dot"></span><span class="sp-name">${s.label}</span>
+      </div>`;
+  }).join("");
+  $("stage-progress").innerHTML = `
+    <div class="sp">
+      <div class="sp-line"></div>
+      <div class="sp-line-fill" style="width:${pct}%"></div>
+      <div class="sp-now" style="left:${pct}%" title="Vi er her"></div>
+      ${stages}
+    </div>`;
+}
+
+function renderTimelineStrip(matches) {
+  // Siste resultater + pågående + neste kamper, samlet og sortert kronologisk,
+  // med en «NÅ»-skillelinje mellom det som er spilt og det som kommer.
+  const past = [...matches.finished, ...matches.live];
+  const next = [...matches.upcoming];
+  const byDate = (a, b) => new Date(a.date) - new Date(b.date);
+  past.sort(byDate);
+  next.sort(byDate);
+  const liveSet = new Set(matches.live);
+  const chips = [
+    ...past.map((m) => matchCard(m, liveSet.has(m))),
+    past.length && next.length ? '<div class="tl-now">Nå</div>' : "",
+    ...next.map((m) => matchCard(m, false)),
+  ].join("");
+  const strip = $("timeline-strip");
+  strip.innerHTML = chips || '<p style="color:var(--muted)">Ingen kamper å vise ennå.</p>';
+  // Rull stripa slik at «Nå»-skillet er synlig (grensen mellom spilt og kommende).
+  const nowEl = strip.querySelector(".tl-now");
+  if (nowEl) strip.scrollLeft = Math.max(0, nowEl.offsetLeft - strip.clientWidth / 2);
+}
+
 function renderPodium(board) {
   // Topp 3, men tegnet i rekkefølgen 2 – 1 – 3 slik en ekte pall ser ut
   const top = board.slice(0, 3);
@@ -207,12 +277,18 @@ function renderNews(news) {
   if (link && news && news.url) link.href = news.url;
   const items = (news && news.items) || [];
   $("news").innerHTML = items.length
-    ? items.map((n) => `
-        <article class="news-item">
+    ? items.map((n) => {
+        const hasSummary = !!n.summary;
+        const caret = hasSummary ? '<span class="news-caret">▾</span>' : "";
+        const cls = hasSummary ? "news-item has-summary" : "news-item";
+        const toggle = hasSummary ? ' onclick="this.classList.toggle(\'open\')"' : "";
+        return `
+        <article class="${cls}"${toggle}>
           <div class="news-time">${fmtDate(n.published)}</div>
-          <div class="news-title">${esc(n.title)}</div>
-          ${n.summary ? `<div class="news-summary">${esc(n.summary)}</div>` : ""}
-        </article>`).join("")
+          <div class="news-title"><span>${esc(n.title)}</span>${caret}</div>
+          ${hasSummary ? `<div class="news-summary">${esc(n.summary)}</div>` : ""}
+        </article>`;
+      }).join("")
     : '<p style="color:var(--muted)">Ingen nyheter akkurat nå.</p>';
 }
 
@@ -235,10 +311,14 @@ async function refresh() {
 
     $("live-section").hidden = s.matches.live.length === 0;
     $("live-matches").innerHTML = s.matches.live.map((m) => matchCard(m, true)).join("");
-    $("finished-matches").innerHTML =
-      s.matches.finished.map((m) => matchCard(m, false)).join("") ||
-      '<p style="color:var(--muted)">Ingen spilte kamper ennå.</p>';
-    $("upcoming-matches").innerHTML = s.matches.upcoming.map((m) => matchCard(m, false)).join("");
+
+    const anyMatches =
+      s.matches.live.length + s.matches.finished.length + s.matches.upcoming.length > 0;
+    $("timeline-section").hidden = !anyMatches;
+    if (anyMatches) {
+      renderStageProgress(new Date());
+      renderTimelineStrip(s.matches);
+    }
 
     renderNews(s.news);
     renderPodium(s.leaderboard);

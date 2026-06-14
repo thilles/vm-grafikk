@@ -31,6 +31,12 @@
       <div class="match-grid" id="live-matches"></div>
     </section>
 
+    <section id="timeline-section" hidden>
+      <h2>📍 Veien gjennom mesterskapet</h2>
+      <div id="stage-progress"></div>
+      <div class="timeline-strip" id="timeline-strip"></div>
+    </section>
+
     <div class="columns">
       <section class="col-left">
         <h2>🏆 Ledertavle</h2>
@@ -40,30 +46,34 @@
         er kun endelig avgjorte spørsmål. I søylen vises sikre poeng <b>heltrukket grønt</b> og
         foreløpige i <b>svakere grønt</b>. ▲/▼ viser endring i plassering siden forrige besøk.</p>
         <div id="leaderboard"></div>
-
-        <h2>🗳️ Kontoret stemte</h2>
-        <div id="consensus"></div>
-
-        <h2>💡 Fakta &amp; kuriositeter</h2>
-        <div id="facts"></div>
       </section>
 
       <section class="col-right">
+        <div class="trophy-hero">
+          <img class="hero-logo" src="/static/fifa-world-cup-2026--white_700x700.png"
+               alt="FIFA World Cup-trofeet 2026">
+          <img class="hero-mascots" src="/static/mascots_transparent.png"
+               alt="VM-maskotene 2026">
+        </div>
         <h2>📰 Siste nytt
           <a id="news-link" class="news-src" target="_blank" rel="noopener">fra NRK ↗</a>
         </h2>
         <div id="news"></div>
 
-        <h2>📋 Siste resultater</h2>
-        <div class="match-grid" id="finished-matches"></div>
-
-        <h2>📅 Kommende kamper</h2>
-        <div class="match-grid" id="upcoming-matches"></div>
-
         <h2 id="scorers-heading" hidden>👟 Toppscorere</h2>
         <div id="scorers"></div>
       </section>
     </div>
+
+    <section>
+      <h2>🗳️ Kontoret stemte</h2>
+      <div id="consensus" class="poll-grid"></div>
+    </section>
+
+    <section>
+      <h2>💡 Fakta &amp; kuriositeter</h2>
+      <div id="facts" class="fact-grid"></div>
+    </section>
 
     <section>
       <h2>🗂️ Gruppespillet</h2>
