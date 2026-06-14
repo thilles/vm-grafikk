@@ -226,11 +226,11 @@ def api_kg_teams():
 
 
 @app.get("/api/kg/graph")
-def api_kg_graph(team: str = "Norway"):
+def api_kg_graph(team: str = "Norway", view: str = "team"):
     if not kg.available():
         return JSONResponse({"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503)
     try:
-        return JSONResponse(kg.subgraph(team))
+        return JSONResponse(kg.full_graph() if view == "all" else kg.subgraph(team))
     except ValueError as e:
         return JSONResponse({"error": str(e)}, status_code=404)
     except Exception as e:  # noqa: BLE001

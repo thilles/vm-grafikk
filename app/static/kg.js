@@ -12,15 +12,6 @@ const PREFIXES = {
 
 const EXAMPLES = [
   {
-    label: "Spillere per gruppe",
-    q: `PREFIX wc: <http://example.org/wc2026/ontology#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-SELECT ?gruppe (COUNT(?spiller) AS ?antall) WHERE {
-  ?lag wc:inGroup ?g ; wc:calledUp ?spiller .
-  ?g rdfs:label ?gruppe .
-} GROUP BY ?gruppe ORDER BY ?gruppe`,
-  },
-  {
     label: "Klubber med flest spillere",
     q: `PREFIX wc: <http://example.org/wc2026/ontology#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>

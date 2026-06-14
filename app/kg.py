@@ -212,6 +212,30 @@ _PREFIXES = """
 """
 
 
+def _num(term):
+    """rdflib-tall (xsd:decimal/integer) → int, ellers None."""
+    try:
+        return int(float(term))
+    except (TypeError, ValueError):
+        return None
+
+
+def _apply_group_values(g, nodes):
+    """Sett gruppe-nodenes value = sum av totalMarketValueEUR for lagene i gruppen
+    (uavhengig av hvilke lag som er med i grafen)."""
+    q = _PREFIXES + """
+    SELECT ?group (SUM(?tv) AS ?total) WHERE {
+      ?t a wc:NationalTeam ; wc:inGroup ?group ; wc:totalMarketValueEUR ?tv .
+    } GROUP BY ?group
+    """
+    with _lock:
+        rows = list(g.query(q))
+    gv = {str(r.group): _num(r.total) for r in rows}
+    for n in nodes.values():
+        if n["type"] == "group" and gv.get(n["id"]) is not None:
+            n["value"] = gv[n["id"]]
+
+
 def _pack(nodes, links):
     return {
         "nodes": list(nodes.values()),
@@ -228,31 +252,80 @@ def subgraph(team_label="Norway"):
     from rdflib import Literal
     g = _load()
     q = _PREFIXES + """
-    SELECT ?team ?teamLabel ?group ?groupLabel ?player ?playerName WHERE {
+    SELECT ?team ?teamLabel ?teamValue ?group ?groupLabel
+           ?player ?playerName ?playerValue WHERE {
       ?team a wc:NationalTeam ; rdfs:label ?tname ; rdfs:label ?teamLabel .
+      OPTIONAL { ?team wc:totalMarketValueEUR ?teamValue }
       OPTIONAL { ?team wc:inGroup ?group . ?group rdfs:label ?groupLabel }
-      OPTIONAL { ?team wc:calledUp ?player . ?player foaf:name ?playerName }
+      OPTIONAL {
+        ?team wc:calledUp ?player . ?player foaf:name ?playerName .
+        OPTIONAL { ?player wc:marketValueEUR ?playerValue }
+      }
     }
     """
     with _lock:
         rows = list(g.query(q, initBindings={"tname": Literal(team_label, lang="en")}))
     nodes, links = {}, set()
 
-    def add(uri, label, kind):
+    def add(uri, label, kind, value=None):
         if uri and uri not in nodes:
-            nodes[uri] = {"id": uri, "label": label, "type": kind}
+            node = {"id": uri, "label": label, "type": kind}
+            if value is not None:
+                node["value"] = _num(value)
+            nodes[uri] = node
 
     for r in rows:
         team_uri = str(r.team)
-        add(team_uri, str(r.teamLabel), "team")
+        add(team_uri, str(r.teamLabel), "team", r.teamValue)
         if r.group:
             add(str(r.group), str(r.groupLabel), "group")
             links.add((team_uri, str(r.group), "inGroup"))
         if r.player:
             pl = str(r.player)
-            add(pl, str(r.playerName), "player")
+            add(pl, str(r.playerName), "player", r.playerValue)
             links.add((team_uri, pl, "calledUp"))
 
     if not nodes:
         raise ValueError(f"Ukjent landslag: {team_label}")
+    _apply_group_values(g, nodes)
     return {"team": team_label, **_pack(nodes, links)}
+
+
+def full_graph():
+    """Hele turneringen i én graf: alle landslag, grupper og spillere."""
+    g = _load()
+    q = _PREFIXES + """
+    SELECT ?team ?teamLabel ?teamValue ?group ?groupLabel
+           ?player ?playerName ?playerValue WHERE {
+      ?team a wc:NationalTeam ; rdfs:label ?teamLabel .
+      OPTIONAL { ?team wc:totalMarketValueEUR ?teamValue }
+      OPTIONAL { ?team wc:inGroup ?group . ?group rdfs:label ?groupLabel }
+      OPTIONAL {
+        ?team wc:calledUp ?player . ?player foaf:name ?playerName .
+        OPTIONAL { ?player wc:marketValueEUR ?playerValue }
+      }
+    }
+    """
+    with _lock:
+        rows = list(g.query(q))
+    nodes, links = {}, set()
+
+    def add(uri, label, kind, value=None):
+        if uri and uri not in nodes:
+            node = {"id": uri, "label": label, "type": kind}
+            if value is not None:
+                node["value"] = _num(value)
+            nodes[uri] = node
+
+    for r in rows:
+        te = str(r.team)
+        add(te, str(r.teamLabel), "team", r.teamValue)
+        if r.group:
+            add(str(r.group), str(r.groupLabel), "group")
+            links.add((te, str(r.group), "inGroup"))
+        if r.player:
+            pl = str(r.player)
+            add(pl, str(r.playerName), "player", r.playerValue)
+            links.add((te, pl, "calledUp"))
+    _apply_group_values(g, nodes)
+    return {"view": "all", **_pack(nodes, links)}
