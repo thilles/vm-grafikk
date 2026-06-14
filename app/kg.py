@@ -169,3 +169,75 @@ def run_query(query, limit=DEFAULT_LIMIT):
                        "results": {"bindings": bindings}})
     return {"content_type": "application/sparql-results+json",
             "body": body, "truncated": truncated}
+
+
+def team_labels():
+    """Sorterte landslagsnavn (engelske rdfs:label) til nedtrekksmenyen."""
+    g = _load()
+    q = ("PREFIX wc: <%s> "
+         "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+         "SELECT ?l WHERE { ?t a wc:NationalTeam ; rdfs:label ?l } ORDER BY ?l" % WC)
+    return [str(r[0]) for r in g.query(q)]
+
+
+def subgraph(team_label):
+    """Bygg en nodegraf for ett landslag: lag→gruppe og spiller→klubb→liga.
+
+    Inkluderer klassene NationalTeam, Group, Player, Club og League. Lagnavnet
+    bindes som parameter (initBindings) – ingen streng-interpolering, så ingen
+    SPARQL-injeksjon. Hever ValueError for ukjent lag.
+    """
+    from rdflib import Literal
+    g = _load()
+    q = """
+    PREFIX wc: <http://example.org/wc2026/ontology#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+    SELECT ?team ?teamLabel ?group ?groupLabel ?player ?playerName
+           ?club ?clubLabel ?league ?leagueLabel WHERE {
+      ?team a wc:NationalTeam ; rdfs:label ?tname ; rdfs:label ?teamLabel .
+      OPTIONAL { ?team wc:inGroup ?group . ?group rdfs:label ?groupLabel }
+      OPTIONAL {
+        ?team wc:calledUp ?player . ?player foaf:name ?playerName .
+        OPTIONAL {
+          ?player wc:playsAtClub ?club . ?club rdfs:label ?clubLabel .
+          OPTIONAL { ?club wc:clubInLeague ?league . ?league rdfs:label ?leagueLabel }
+        }
+      }
+    }
+    """
+    rows = list(g.query(q, initBindings={"tname": Literal(team_label, lang="en")}))
+    nodes, links = {}, set()
+
+    def add(uri, label, kind):
+        if uri and uri not in nodes:
+            nodes[uri] = {"id": uri, "label": label, "type": kind}
+
+    team_uri = None
+    for r in rows:
+        team_uri = str(r.team)
+        add(team_uri, str(r.teamLabel), "team")
+        if r.group:
+            add(str(r.group), str(r.groupLabel), "group")
+            links.add((team_uri, str(r.group), "inGroup"))
+        if r.player:
+            pl = str(r.player)
+            add(pl, str(r.playerName), "player")
+            links.add((team_uri, pl, "calledUp"))
+            if r.club:
+                cl = str(r.club)
+                add(cl, str(r.clubLabel), "club")
+                links.add((pl, cl, "playsAtClub"))
+                if r.league:
+                    lg = str(r.league)
+                    add(lg, str(r.leagueLabel), "league")
+                    links.add((cl, lg, "clubInLeague"))
+
+    if not nodes:
+        raise ValueError(f"Ukjent landslag: {team_label}")
+    return {
+        "team": team_label,
+        "nodes": list(nodes.values()),
+        "links": [{"source": s, "target": t, "rel": rel}
+                  for (s, t, rel) in sorted(links)],
+    }

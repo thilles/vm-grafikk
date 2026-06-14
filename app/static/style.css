@@ -291,3 +291,16 @@ code {
   background: var(--panel2); padding: 1px 6px; border-radius: 4px;
   font-size: .82em; color: var(--accent);
 }
+
+.kg-graph-controls { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0 12px; }
+.kg-graph-controls select {
+  background: var(--panel); color: var(--text); border: 1px solid var(--line);
+  border-radius: 6px; padding: 6px 10px; font-size: .85rem; margin-left: 6px;
+}
+.kg-legend { display: flex; flex-wrap: wrap; gap: 12px; }
+.kg-leg { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: .78rem; }
+.kg-leg i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.kg-canvas {
+  width: 100%; display: block; background: #0a1810;
+  border: 1px solid var(--line); border-radius: 12px; touch-action: none;
+}

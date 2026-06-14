@@ -23,6 +23,21 @@
   <p class="hint" id="kg-meta">Laster grafen …</p>
 
   <section>
+    <h2>🕸️ Nodegraf</h2>
+    <p class="hint">Velg et landslag for å se troppen som en graf: laget knyttes til
+      <b>gruppen</b>, og hver <b>spiller</b> til sin <b>klubb</b> og videre til <b>ligaen</b>.
+      Dra i nodene, hold over en node for navn.</p>
+    <div class="kg-graph-controls">
+      <label class="kg-limit">Landslag
+        <select id="kg-team"></select>
+      </label>
+      <span class="kg-legend" id="kg-legend"></span>
+      <span class="hint" id="kg-graph-status"></span>
+    </div>
+    <canvas id="kg-canvas" class="kg-canvas"></canvas>
+  </section>
+
+  <section>
     <h2>🔎 SPARQL-spørring</h2>
     <p class="hint">Skriv en read-only SPARQL-spørring (SELECT, ASK, CONSTRUCT eller DESCRIBE) og
       trykk <b>Kjør</b>. Prefiksene <code>wc:</code>, <code>wcr:</code>, <code>foaf:</code>,
@@ -50,6 +65,7 @@
   <span>Data: «2026 FIFA World Cup squads» (Wikipedia) + Wikidata · modellert som RDF/Turtle.</span>
 </footer>
 
+<script src="/static/kg-graph.js"></script>
 <script src="/static/kg.js"></script>
 </body>
 </html>

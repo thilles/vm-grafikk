@@ -210,6 +210,25 @@ async def _run_kg_query(request: Request):
                     headers=headers)
 
 
+@app.get("/api/kg/teams")
+def api_kg_teams():
+    if not kg.available():
+        return JSONResponse({"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503)
+    return JSONResponse({"teams": kg.team_labels()})
+
+
+@app.get("/api/kg/graph")
+def api_kg_graph(team: str = "Norway"):
+    if not kg.available():
+        return JSONResponse({"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503)
+    try:
+        return JSONResponse(kg.subgraph(team))
+    except ValueError as e:
+        return JSONResponse({"error": str(e)}, status_code=404)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/kg/sparql")
 async def api_kg_sparql_get(request: Request):
     return await _run_kg_query(request)
