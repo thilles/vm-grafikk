@@ -28,12 +28,20 @@
       <b>gruppen</b>, og hver <b>spiller</b> til sin <b>klubb</b> og videre til <b>ligaen</b>.
       Dra i nodene, hold over en node for navn.</p>
     <div class="kg-graph-controls">
-      <label class="kg-limit">Landslag
+      <label class="kg-limit">Visning
+        <select id="kg-view">
+          <option value="team" selected>Ett landslag</option>
+          <option value="groups">Hele turneringen – grupper</option>
+          <option value="confed">Hele turneringen – landslag</option>
+        </select>
+      </label>
+      <label class="kg-limit" id="kg-team-wrap">Landslag
         <select id="kg-team"></select>
       </label>
       <span class="kg-legend" id="kg-legend"></span>
       <span class="hint" id="kg-graph-status"></span>
     </div>
+    <p class="hint" id="kg-graph-hint">Tips: trykk på en node for å lage en SPARQL-spørring om den nedenfor.</p>
     <canvas id="kg-canvas" class="kg-canvas"></canvas>
   </section>
 
