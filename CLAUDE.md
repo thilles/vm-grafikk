@@ -51,6 +51,9 @@ With no `FOOTBALL_DATA_TOKEN` set, the app runs on built-in demo data
 - `REFRESH_MINUTES` — background refresh interval (default 10).
 - `COMPETITION_CODE` — football-data competition, default `WC`.
 - `PORT` — cloud platforms set this; Dockerfile honors it (local default 8000).
+- `KG_TTL` — path to the squads knowledge-graph Turtle file, default
+  `wc2026-kg/wc2026.ttl` (baked into the image). `KG_QUERY_TIMEOUT` (default 12s)
+  caps each `/api/kg/sparql` query. See "Knowledge graph" below.
 
 ## Architecture
 
@@ -136,6 +139,47 @@ event) onto finished matches in `_match_view`.
 tables, scorers, facts, and the "Kontoret stemte" consensus polls. No build step;
 edit the files directly.
 
+## Knowledge graph: WC-2026 squads explorer
+
+A second, **independent** subsystem (added on top of the betting app). `wc2026-kg/`
+is a standalone Python pipeline that builds an RDF/Turtle knowledge graph of all
+48 World Cup squads (~1248 players) from Wikipedia + Wikidata; the FastAPI app
+then serves a read-only SPARQL explorer over the resulting Turtle at `/graf`.
+This subsystem shares no state with the betting app's `STATE`/refresh loop — it is
+loaded lazily and read-only.
+
+- **Build pipeline** (`wc2026-kg/build.py`, has its own venv + `requirements.txt`
+  + `README.md`): acquire (MediaWiki API + BeautifulSoup, club→league/country from
+  Wikidata) → custom OWL ontology (`ontology.py`, the TBox) + ABox (`graph.py`) →
+  emits `ontology.ttl`, `data.ttl`, and combined `wc2026.ttl`. Idempotent; all raw
+  responses cached to `wc2026-kg/cache/` (gitignored). `uris.py` builds
+  deterministic URIs (slug only in the local part; full diacritics kept in
+  literals); `lookups.py` is the 48-nation fallback (FIFA codes, confederations).
+  Run: `python -m venv wc2026-kg/.venv && wc2026-kg/.venv/bin/pip install -r
+  wc2026-kg/requirements.txt && wc2026-kg/.venv/bin/python wc2026-kg/build.py`.
+- **Market values** are scraped per nation from Transfermarkt
+  (`wc2026-kg/scrape_transfermarkt.py`, via the `land_id` filter → `market_values.json`,
+  keyed by `slug(name)-yearOfBirth`) and baked into the graph by `build.py`. Real
+  but static (not live); ~1136/1248 players covered.
+- **Runtime** (`app/kg.py`): lazy-loads `KG_TTL` into an in-memory rdflib `Graph`.
+  Endpoints in `main.py`: `GET /graf` (page = `app/static/kg.html` + `kg-graph.js`
+  + `kg.js`), `GET /api/kg/info`, `GET /api/kg/teams`, `GET /api/kg/graph?view=
+  team|groups|confed`, and `GET|POST /api/kg/sparql`.
+- **SPARQL is read-only**: queries run through rdflib `Graph.query()`, which only
+  executes SELECT/ASK/CONSTRUCT/DESCRIBE — UPDATE/INSERT raise and return 400.
+  Results are capped by row count, query length, and a timeout.
+- `rdflib` and `pyparsing` are **pinned together** in the top-level
+  `requirements.txt`; the Docker base image is `python:3.12-slim`.
+- **Concurrency gotcha:** pyparsing's SPARQL parser is *not thread-safe on its
+  first parse* (its arity detection mutates shared state). FastAPI runs the sync
+  `/api/kg/*` endpoints in a threadpool and the frontend fires several at once, so
+  `kg.py` serializes graph load + every `g.query()` behind a lock and pre-warms
+  the parser at startup (`lifespan` → `kg._load`). Removing that lock reintroduces
+  intermittent `Param.postParse2() missing ... 'tokenList'` 500s under load.
+- **To change what production shows**: re-run the `wc2026-kg` build, commit the
+  regenerated `wc2026-kg/wc2026.ttl` (the app reads *that file*, not the cache or
+  the json), and push. The Dockerfile copies `wc2026-kg/wc2026.ttl` into the image.
+
 ## Deployment
 
 Dockerized; deployed on Render's free tier (auto-deploys on push to the repo).
@@ -143,4 +187,5 @@ The free tier has **no persistent disk**, so `data/fasit.json` is baked into the
 image (`Dockerfile` copies `data/` to `/data`) — to update manual answers in
 production, commit `fasit.json` and push. Locally, `./data` is mounted over that.
 `.env` and `data/svar.xlsx` are gitignored (they hold the API key and
-participants' answers).
+participants' answers). The squads knowledge graph (`wc2026-kg/wc2026.ttl`) is
+likewise baked into the image (see "Knowledge graph").

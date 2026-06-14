@@ -8,6 +8,7 @@ egen update()-metode som aldri kalles her, så grafen kan ikke endres utenfra.
 I tillegg er antall rader og spørringslengde begrenset.
 """
 import os
+import threading
 
 # wc2026-kg/wc2026.ttl ligger ved siden av app/ i repoet og kopieres til
 # /srv/wc2026-kg/ i Docker-imaget (se Dockerfile).
@@ -23,6 +24,11 @@ MAX_LIMIT = 5000
 WC = "http://example.org/wc2026/ontology#"
 
 _graph = None  # lazy-lastet rdflib.Graph
+# pyparsing (rdflib sin SPARQL-parser) er IKKE trådsikker ved første parsing –
+# arity-deteksjonen deler mutbar tilstand. FastAPI kjører sync-endepunktene i en
+# trådpool, så samtidige spørringer må serialiseres. Denne låsen vokter både
+# innlasting og all g.query()-bruk.
+_lock = threading.RLock()
 
 
 def versions():
@@ -41,21 +47,37 @@ def versions():
     return out
 
 
+_WARMUP = (
+    "ASK { ?s ?p ?o }",
+    "SELECT ?s (COUNT(?o) AS ?n) WHERE { ?s ?p ?o } GROUP BY ?s LIMIT 1",
+    "CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o } LIMIT 1",
+)
+
+
 def _load():
     global _graph
-    if _graph is None:
-        import logging
-        from rdflib import Graph
-        logging.getLogger("vm.kg").info("laster kunnskapsgraf (%s)", versions())
-        g = Graph()
-        g.parse(KG_TTL, format="turtle")
-        # sørg for at vanlige prefikser er bundet, slik at spørringer slipper å
-        # deklarere dem (rdflib bruker grafens prefikser i SPARQL)
-        g.bind("wc", WC)
-        g.bind("wcr", "http://example.org/wc2026/resource/")
-        g.bind("foaf", "http://xmlns.com/foaf/0.1/")
-        g.bind("schema", "https://schema.org/")
-        _graph = g
+    if _graph is not None:
+        return _graph
+    with _lock:  # dobbeltsjekket låsing: parse grafen kun én gang
+        if _graph is None:
+            import logging
+            from rdflib import Graph
+            logging.getLogger("vm.kg").info("laster kunnskapsgraf (%s)", versions())
+            g = Graph()
+            g.parse(KG_TTL, format="turtle")
+            # bind vanlige prefikser så spørringer slipper å deklarere dem
+            g.bind("wc", WC)
+            g.bind("wcr", "http://example.org/wc2026/resource/")
+            g.bind("foaf", "http://xmlns.com/foaf/0.1/")
+            g.bind("schema", "https://schema.org/")
+            # varm opp SPARQL-parseren enkelt-trådet (løser pyparsing sin arity-
+            # deteksjon én gang) før samtidige forespørsler treffer den
+            for wq in _WARMUP:
+                try:
+                    list(g.query(wq))
+                except Exception:  # noqa: BLE001
+                    pass
+            _graph = g
     return _graph
 
 
@@ -91,8 +113,9 @@ def info():
         "  ?s a ?cls . } GROUP BY ?cls ORDER BY DESC(?n)" % WC
     )
     try:
-        for row in g.query(q):
-            result["classes"][str(row[0]).split("#")[-1]] = int(row[1])
+        with _lock:
+            for row in g.query(q):
+                result["classes"][str(row[0]).split("#")[-1]] = int(row[1])
     except Exception as exc:  # noqa: BLE001 – ikke skjul versjonsinfoen
         result["query_error"] = str(exc)
     return result
@@ -129,42 +152,43 @@ def run_query(query, limit=DEFAULT_LIMIT):
     except (TypeError, ValueError):
         limit = DEFAULT_LIMIT
 
-    g = _load()
-    try:
-        result = g.query(query)  # kaster ved UPDATE/ugyldig SPARQL
-    except Exception as exc:  # noqa: BLE001
-        raise ValueError(f"Ugyldig eller ikke-tillatt spørring: {exc}") from exc
-
-    rtype = result.type  # 'SELECT' | 'ASK' | 'CONSTRUCT' | 'DESCRIBE'
-
-    if rtype == "ASK":
-        import json
-        body = json.dumps({"head": {}, "boolean": bool(result.askAnswer)})
-        return {"content_type": "application/sparql-results+json",
-                "body": body, "truncated": False}
-
-    if rtype in ("CONSTRUCT", "DESCRIBE"):
-        turtle = result.serialize(format="turtle")
-        if isinstance(turtle, bytes):
-            turtle = turtle.decode("utf-8")
-        return {"content_type": "text/turtle; charset=utf-8",
-                "body": turtle, "truncated": False}
-
-    # SELECT: bygg standard SPARQL Results JSON, kappet ved `limit`
     import json
     import itertools
-    vars_ = [str(v) for v in (result.vars or [])]
-    rows = list(itertools.islice(iter(result), limit + 1))
-    truncated = len(rows) > limit
-    rows = rows[:limit]
-    bindings = []
-    for row in rows:
-        b = {}
-        for v in (result.vars or []):
-            val = row[v]
-            if val is not None:
-                b[str(v)] = _term_to_json(val)
-        bindings.append(b)
+    g = _load()
+    # Hele parse + evaluering under låsen (pyparsing-parsingen er ikke trådsikker).
+    with _lock:
+        try:
+            result = g.query(query)  # kaster ved UPDATE/ugyldig SPARQL
+        except Exception as exc:  # noqa: BLE001
+            raise ValueError(f"Ugyldig eller ikke-tillatt spørring: {exc}") from exc
+
+        rtype = result.type  # 'SELECT' | 'ASK' | 'CONSTRUCT' | 'DESCRIBE'
+
+        if rtype == "ASK":
+            body = json.dumps({"head": {}, "boolean": bool(result.askAnswer)})
+            return {"content_type": "application/sparql-results+json",
+                    "body": body, "truncated": False}
+
+        if rtype in ("CONSTRUCT", "DESCRIBE"):
+            turtle = result.serialize(format="turtle")
+            if isinstance(turtle, bytes):
+                turtle = turtle.decode("utf-8")
+            return {"content_type": "text/turtle; charset=utf-8",
+                    "body": turtle, "truncated": False}
+
+        # SELECT: bygg standard SPARQL Results JSON, kappet ved `limit`
+        vars_ = [str(v) for v in (result.vars or [])]
+        rows = list(itertools.islice(iter(result), limit + 1))
+        truncated = len(rows) > limit
+        rows = rows[:limit]
+        bindings = []
+        for row in rows:
+            b = {}
+            for v in (result.vars or []):
+                val = row[v]
+                if val is not None:
+                    b[str(v)] = _term_to_json(val)
+            bindings.append(b)
     body = json.dumps({"head": {"vars": vars_},
                        "results": {"bindings": bindings}})
     return {"content_type": "application/sparql-results+json",
@@ -177,7 +201,8 @@ def team_labels():
     q = ("PREFIX wc: <%s> "
          "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
          "SELECT ?l WHERE { ?t a wc:NationalTeam ; rdfs:label ?l } ORDER BY ?l" % WC)
-    return [str(r[0]) for r in g.query(q)]
+    with _lock:
+        return [str(r[0]) for r in g.query(q)]
 
 
 _PREFIXES = """
@@ -227,7 +252,8 @@ def _team_graph(team_label):
       }
     }
     """
-    rows = list(g.query(q, initBindings={"tname": Literal(team_label, lang="en")}))
+    with _lock:
+        rows = list(g.query(q, initBindings={"tname": Literal(team_label, lang="en")}))
     nodes, links = {}, set()
 
     def add(uri, label, kind):
@@ -264,7 +290,9 @@ def _groups_graph():
     }
     """
     nodes, links = {}, set()
-    for r in g.query(q):
+    with _lock:
+        rows = list(g.query(q))
+    for r in rows:
         gr, te = str(r.group), str(r.team)
         nodes.setdefault(gr, {"id": gr, "label": str(r.groupLabel), "type": "group"})
         nodes.setdefault(te, {"id": te, "label": str(r.teamLabel), "type": "team"})
@@ -282,7 +310,9 @@ def _confed_graph():
     }
     """
     nodes, links = {}, set()
-    for r in g.query(q):
+    with _lock:
+        rows = list(g.query(q))
+    for r in rows:
         co, te = str(r.conf), str(r.team)
         nodes.setdefault(co, {"id": co, "label": str(r.confLabel), "type": "confederation"})
         nodes.setdefault(te, {"id": te, "label": str(r.teamLabel), "type": "team"})

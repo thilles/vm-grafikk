@@ -129,6 +129,14 @@ async def refresher():
 @asynccontextmanager
 async def lifespan(app):
     task = asyncio.create_task(refresher())
+    # Forhåndslast kunnskapsgrafen enkelt-trådet, så SPARQL-parseren er varm før
+    # samtidige forespørsler treffer den (pyparsing er ikke trådsikker ved
+    # første parsing). Blokkerer ikke oppstart om noe feiler.
+    if kg.available():
+        try:
+            await asyncio.get_event_loop().run_in_executor(None, kg._load)
+        except Exception as e:  # noqa: BLE001
+            log.warning("Forhåndslasting av kunnskapsgraf feilet: %s", e)
     yield
     task.cancel()
 
