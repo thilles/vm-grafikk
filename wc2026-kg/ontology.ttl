@@ -1,0 +1,172 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wc: <http://example.org/wc2026/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/wc2026/ontology> a owl:Ontology ;
+    rdfs:label "2026 FIFA World Cup squads ontology"@en ;
+    rdfs:comment "A custom, standards-aligned ontology describing the squads of the 2026 FIFA World Cup: tournaments, national teams, players, clubs, leagues, groups, confederations, countries and playing positions."@en .
+
+wc:affiliatedTo a owl:ObjectProperty ;
+    rdfs:label "affiliatedTo"@en ;
+    rdfs:comment "The confederation a national team is affiliated to."@en ;
+    rdfs:domain wc:NationalTeam ;
+    rdfs:range wc:Confederation .
+
+wc:caps a owl:DatatypeProperty ;
+    rdfs:label "caps"@en ;
+    rdfs:comment "International caps for the national team."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range xsd:integer .
+
+wc:clubInCountry a owl:ObjectProperty ;
+    rdfs:label "clubInCountry"@en ;
+    rdfs:comment "The country a club is based in."@en ;
+    rdfs:domain wc:Club ;
+    rdfs:range wc:Country .
+
+wc:clubInLeague a owl:ObjectProperty ;
+    rdfs:label "clubInLeague"@en ;
+    rdfs:comment "The league a club competes in."@en ;
+    rdfs:domain wc:Club ;
+    rdfs:range wc:League .
+
+wc:dateOfBirth a owl:DatatypeProperty ;
+    rdfs:label "dateOfBirth"@en ;
+    rdfs:comment "Player date of birth."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range xsd:date .
+
+wc:fifaCode a owl:DatatypeProperty ;
+    rdfs:label "fifaCode"@en ;
+    rdfs:comment "Three-letter FIFA country code."@en ;
+    rdfs:domain wc:NationalTeam ;
+    rdfs:range xsd:string .
+
+wc:goalsForCountry a owl:DatatypeProperty ;
+    rdfs:label "goalsForCountry"@en ;
+    rdfs:comment "International goals for the national team."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range xsd:integer .
+
+wc:hasNationality a owl:ObjectProperty ;
+    rdfs:label "hasNationality"@en ;
+    rdfs:comment "The player's nationality."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range wc:Country .
+
+wc:hasParticipant a owl:ObjectProperty ;
+    rdfs:label "hasParticipant"@en ;
+    rdfs:comment "Links a tournament to a participating national team."@en ;
+    rdfs:domain wc:Tournament ;
+    rdfs:range wc:NationalTeam .
+
+wc:hasPosition a owl:ObjectProperty ;
+    rdfs:label "hasPosition"@en ;
+    rdfs:comment "The player's playing position."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range wc:Position .
+
+wc:heightCm a owl:DatatypeProperty ;
+    rdfs:label "heightCm"@en ;
+    rdfs:comment "Height in centimetres (optional)."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range xsd:integer .
+
+wc:inGroup a owl:ObjectProperty ;
+    rdfs:label "inGroup"@en ;
+    rdfs:comment "The group a national team is drawn into."@en ;
+    rdfs:domain wc:NationalTeam ;
+    rdfs:range wc:Group .
+
+wc:leagueInCountry a owl:ObjectProperty ;
+    rdfs:label "leagueInCountry"@en ;
+    rdfs:comment "The country a league is run in."@en ;
+    rdfs:domain wc:League ;
+    rdfs:range wc:Country .
+
+wc:marketValueEUR a owl:DatatypeProperty ;
+    rdfs:label "marketValueEUR"@en ;
+    rdfs:comment "Estimated market value in EUR (optional)."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range xsd:decimal .
+
+wc:playsAtClub a owl:ObjectProperty ;
+    rdfs:label "playsAtClub"@en ;
+    rdfs:comment "The club a player plays at."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range wc:Club .
+
+wc:preferredFoot a owl:DatatypeProperty ;
+    rdfs:label "preferredFoot"@en ;
+    rdfs:comment "Preferred foot (optional)."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range xsd:string .
+
+wc:representsCountry a owl:ObjectProperty ;
+    rdfs:label "representsCountry"@en ;
+    rdfs:comment "The country a national team represents."@en ;
+    rdfs:domain wc:NationalTeam ;
+    rdfs:range wc:Country .
+
+wc:shirtNumber a owl:DatatypeProperty ;
+    rdfs:label "shirtNumber"@en ;
+    rdfs:comment "Squad shirt number."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range xsd:integer .
+
+wc:squadSize a owl:DatatypeProperty ;
+    rdfs:label "squadSize"@en ;
+    rdfs:comment "Number of players in the squad."@en ;
+    rdfs:domain wc:NationalTeam ;
+    rdfs:range xsd:integer .
+
+wc:totalMarketValueEUR a owl:DatatypeProperty ;
+    rdfs:label "totalMarketValueEUR"@en ;
+    rdfs:comment "Sum of squad market values in EUR (optional)."@en ;
+    rdfs:domain wc:NationalTeam ;
+    rdfs:range xsd:decimal .
+
+wc:Confederation a owl:Class ;
+    rdfs:label "Confederation"@en .
+
+wc:Group a owl:Class ;
+    rdfs:label "Group"@en .
+
+wc:Position a owl:Class ;
+    rdfs:label "Playing position"@en .
+
+wc:Tournament a owl:Class ;
+    rdfs:label "Tournament"@en .
+
+wc:calledUp a owl:ObjectProperty ;
+    rdfs:label "calledUp"@en ;
+    rdfs:comment "A player called up to this national team's squad."@en ;
+    rdfs:domain wc:NationalTeam ;
+    rdfs:range wc:Player ;
+    owl:inverseOf wc:playsForNationalTeam .
+
+wc:playsForNationalTeam a owl:ObjectProperty ;
+    rdfs:label "playsForNationalTeam"@en ;
+    rdfs:comment "The national team a player was called up to."@en ;
+    rdfs:domain wc:Player ;
+    rdfs:range wc:NationalTeam ;
+    owl:inverseOf wc:calledUp .
+
+wc:League a owl:Class ;
+    rdfs:label "League"@en .
+
+wc:Club a owl:Class ;
+    rdfs:label "Club"@en .
+
+wc:Country a owl:Class ;
+    rdfs:label "Country"@en .
+
+wc:NationalTeam a owl:Class ;
+    rdfs:label "National team"@en .
+
+wc:Player a owl:Class ;
+    rdfs:label "Player"@en ;
+    rdfs:subClassOf foaf:Person .
+

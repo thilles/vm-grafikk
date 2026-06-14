@@ -1,0 +1,305 @@
+# WC2026-KG — a knowledge graph of the 2026 FIFA World Cup squads
+
+A SPARQL-queryable RDF/Turtle knowledge graph of all **48 squads** (≈**1248
+players**) at the 2026 FIFA World Cup, built from Wikipedia with a custom but
+standards-aligned OWL ontology.
+
+The pipeline scrapes the article *"2026 FIFA World Cup squads"* via the MediaWiki
+API, enriches club→league/country links from Wikidata, and emits three Turtle
+files: the ontology (TBox), the data (ABox), and a combined graph.
+
+```
+ontology.ttl   the ontology / TBox      (~134 triples)
+data.ttl       the instance data / ABox (~18.1k triples)
+wc2026.ttl     ontology + data combined (~18.3k triples)
+```
+
+## How to run
+
+```bash
+cd wc2026-kg
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python build.py
+```
+
+`build.py` runs the whole pipeline: acquire → parse → enrich → emit → validate →
+demo queries. The first run hits the network (Wikipedia + Wikidata) and writes
+raw responses to `./cache/`. **Every subsequent run is fully offline and produces
+byte-identical output** (the build is idempotent). Delete `./cache/` to refresh
+from the live sources.
+
+No API keys are required.
+
+### Market-value enrichment
+
+There are two enrichment sources, merged at build time (live data overrides the
+static snapshot for overlapping fields):
+
+1. **Static snapshot — `market_values.json` (default, offline).** A curated set
+   of approximate early-2026 market values (EUR), with at least one player per
+   nation so the "most valuable player per team" query (#4) covers all 48 teams.
+   It is loaded automatically if present; no network or Docker required. The
+   file is keyed by the canonical player id (`slug(name)-yearOfBirth`) so it maps
+   straight onto the graph's player nodes. Regenerate it from the curated table
+   with:
+
+   ```bash
+   python make_market_values.py     # matches curated names to the parsed squads
+   ```
+
+2. **Live Transfermarkt API (optional).** Adds market value *and* height *and*
+   preferred foot. Transfermarkt is Cloudflare-protected, so this prefers a
+   locally hosted
+   [felipeall/transfermarkt-api](https://github.com/felipeall/transfermarkt-api):
+
+   ```bash
+   docker run -p 8010:8000 felipeall/transfermarkt-api:latest
+   export TRANSFERMARKT_API_URL=http://localhost:8010   # default
+   python build.py
+   ```
+
+Enrichment is **entirely best-effort**: if a source is unreachable, or any single
+lookup fails, that data is silently skipped and the build still succeeds. Demo
+query #4 runs whenever any market-value triples exist (i.e. by default, from the
+static snapshot). Set `ENABLE_TRANSFERMARKT=0` to disable the live API path; delete
+`market_values.json` to drop the static one.
+
+## The ontology
+
+Namespaces:
+
+| prefix | IRI |
+|--------|-----|
+| `wc:`  | `http://example.org/wc2026/ontology#` (terms / TBox) |
+| `wcr:` | `http://example.org/wc2026/resource/` (instances / ABox) |
+| plus `rdf:` `rdfs:` `owl:` `xsd:` `foaf:` `schema:` |
+
+**Classes:** `wc:Tournament`, `wc:NationalTeam`, `wc:Player`
+(`rdfs:subClassOf foaf:Person`), `wc:Club`, `wc:League`, `wc:Group`,
+`wc:Confederation`, `wc:Country`, `wc:Position`.
+
+**Object properties** (with `rdfs:domain`/`rdfs:range`, and `owl:inverseOf` where
+natural):
+
+| property | domain → range |
+|----------|----------------|
+| `wc:hasParticipant` | Tournament → NationalTeam |
+| `wc:inGroup` | NationalTeam → Group |
+| `wc:affiliatedTo` | NationalTeam → Confederation |
+| `wc:representsCountry` | NationalTeam → Country |
+| `wc:calledUp` ⇄ `wc:playsForNationalTeam` | NationalTeam → Player (inverse) |
+| `wc:playsAtClub` | Player → Club |
+| `wc:hasPosition` | Player → Position |
+| `wc:hasNationality` | Player → Country |
+| `wc:clubInLeague` | Club → League |
+| `wc:clubInCountry` | Club → Country |
+| `wc:leagueInCountry` | League → Country |
+
+**Datatype properties:**
+
+- Player: `wc:shirtNumber` (xsd:integer), `wc:dateOfBirth` (xsd:date),
+  `wc:caps` (xsd:integer), `wc:goalsForCountry` (xsd:integer),
+  `wc:marketValueEUR` (xsd:decimal, optional), `wc:heightCm` (xsd:integer,
+  optional), `wc:preferredFoot` (xsd:string, optional); plus `foaf:name` +
+  `rdfs:label` for the name.
+- NationalTeam: `rdfs:label`, `wc:fifaCode` (xsd:string), `wc:squadSize`
+  (xsd:integer), `wc:totalMarketValueEUR` (xsd:decimal, optional).
+- Group: `rdfs:label` ("Group A" …).
+
+**Position** is a controlled vocabulary of four instances:
+`wcr:position/{GK|DF|MF|FW}`.
+
+## URI scheme
+
+Deterministic, idempotent and UTF-8 safe. Slugification (lowercase, diacritics
+stripped, hyphenated) is applied **only to the URI local part** — the full name
+**with** diacritics (ø, å, ü, é, …) is always preserved in the `foaf:name`
+literal.
+
+| entity | URI pattern | example |
+|--------|-------------|---------|
+| player | `wcr:player/{slug(name)}-{yearOfBirth}` | `wcr:player/erling-haaland-2000` |
+| team | `wcr:team/{slug(country)}` | `wcr:team/norway` |
+| club | `wcr:club/{slug(name)}` | `wcr:club/manchester-city` |
+| league | `wcr:league/{slug(name)}` | `wcr:league/premier-league` |
+| country | `wcr:country/{code}` | `wcr:country/nor` |
+| group | `wcr:group/{letter}` | `wcr:group/I` |
+| confederation | `wcr:confederation/{conf}` | `wcr:confederation/UEFA` |
+| position | `wcr:position/{code}` | `wcr:position/FW` |
+
+The country `{code}` is the 3-letter FIFA code for the 48 participating nations
+(a stable, unique key; FIFA codes are used where they differ from ISO-3166
+alpha-3, e.g. GER, NED, SUI, RSA, POR, CRO) and a name slug for any other
+country that only appears as a club's location (the "iso3 or slug" rule).
+
+Shared clubs, leagues and countries are de-duplicated, so every distinct entity
+is exactly one node (e.g. all Premier League clubs point at the single
+`wcr:league/premier-league`).
+
+## Data provenance & caveats
+
+- **Squads:** Wikipedia, *"2026 FIFA World Cup squads"*, via the MediaWiki
+  `action=parse` API. Final 26-man squads were locked **1 June 2026**; the graph
+  reflects the article as published. Shirt number, position, name, date of birth,
+  caps, goals and club come straight from the per-nation squad tables.
+- **Group letter** is read from the article's section structure (Group A–L). The
+  parser verifies the invariants 48 teams / 12 groups / ≤26 players per squad
+  and aborts if they don't hold.
+- **Confederation and FIFA code** are not reliable in the squad tables, so they
+  come from a small hardcoded lookup (`lookups.py`) — the documented fallback.
+- **Club country** is derived from the flag in each club cell (the club's
+  national-association flag filename).
+- **Club → league / league country** come from **Wikidata** (`P118` league,
+  `P17` country), which resolves leagues that Wikipedia infoboxes hide behind
+  `{{… football updater}}` templates (Premier League, La Liga, …). Wikipedia
+  infobox wikitext is used as a fallback. ~421 of 452 clubs get a league; the
+  rest (lower-league / national-team-only entries) are simply left without one.
+- **Market value** is an *optional* enrichment. By default it comes from the
+  static, manually-curated `market_values.json` snapshot (approximate early-2026
+  values, ~one player per nation — **not** live data). A live Transfermarkt API,
+  if configured, supersedes it and additionally supplies **height** and
+  **preferred foot** (absent otherwise).
+- All raw HTTP responses are cached under `./cache/` with a descriptive
+  User-Agent and rate limiting, so reruns are offline and polite.
+- Parsing primary path is the MediaWiki API + BeautifulSoup; `pandas.read_html`
+  is the documented fallback for the squad tables.
+
+## Validation & demo queries
+
+`build.py` re-loads `wc2026.ttl` with rdflib (asserting it parses), prints the
+triple count and per-class instance counts, then runs four SPARQL queries.
+Representative output:
+
+```
+Player 1248 · Club 452 · League 92 · Country 84 · NationalTeam 48
+Group 12 · Confederation 6 · Position 4 · Tournament 1   (≈18,374 triples)
+```
+
+**1. Player count per group** → 104 per group (26 × 4), all twelve groups.
+
+**2. Top 10 clubs by players sent**
+
+```
+19  Manchester City        12  Atlético Madrid
+17  Bayern Munich          12  Crystal Palace
+16  Paris Saint-Germain    12  Manchester United
+15  Arsenal                11  Borussia Dortmund
+14  Barcelona
+12  Al-Hilal
+```
+
+**3. All forwards (FW) for Brazil, with shirt number and club**
+
+```
+#7  Vinícius Júnior  Real Madrid     #21 Luiz Henrique      Zenit Saint Petersburg
+#9  Matheus Cunha    Man United      #22 Gabriel Martinelli Arsenal
+#10 Neymar           Santos          #25 Igor Thiago        Brentford
+#11 Raphinha         Barcelona       #26 Rayan              Bournemouth
+#19 Endrick          Lyon
+```
+
+**4. Most valuable player per team** — runs by default off the static
+`market_values.json` snapshot (top of the list):
+
+```
+Spain     Lamine Yamal     €200,000,000    Germany   Florian Wirtz    €140,000,000
+Brazil    Vinícius Júnior  €200,000,000    Uruguay   Fede Valverde    €130,000,000
+England   Jude Bellingham  €180,000,000    Sweden    Alexander Isak   €120,000,000
+Norway    Erling Haaland   €180,000,000    Portugal  Rafael Leão       €90,000,000
+France    Kylian Mbappé    €180,000,000    Ecuador   Moisés Caicedo    €90,000,000
+```
+
+The four queries, copy-pasteable:
+
+```sparql
+# 1. Player count per group
+PREFIX wc: <http://example.org/wc2026/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?group (COUNT(?player) AS ?players) WHERE {
+  ?team wc:inGroup ?g ; wc:calledUp ?player .
+  ?g rdfs:label ?group .
+} GROUP BY ?group ORDER BY ?group
+
+# 2. Top 10 clubs by players sent
+PREFIX wc: <http://example.org/wc2026/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?club (COUNT(?player) AS ?n) WHERE {
+  ?player wc:playsAtClub ?c . ?c rdfs:label ?club .
+} GROUP BY ?club ORDER BY DESC(?n) ?club LIMIT 10
+
+# 3. All forwards for a nation (Brazil) with shirt number and club
+PREFIX wc: <http://example.org/wc2026/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?shirt ?name ?club WHERE {
+  ?team rdfs:label "Brazil"@en ; wc:calledUp ?p .
+  ?p wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+     foaf:name ?name .
+  OPTIONAL { ?p wc:shirtNumber ?shirt }
+  OPTIONAL { ?p wc:playsAtClub ?cl . ?cl rdfs:label ?club }
+} ORDER BY ?shirt
+
+# 4. Most valuable player per team (needs enrichment)
+PREFIX wc: <http://example.org/wc2026/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?team ?name ?value WHERE {
+  { SELECT ?t (MAX(?v) AS ?value) WHERE {
+      ?t wc:calledUp ?pp . ?pp wc:marketValueEUR ?v .
+    } GROUP BY ?t }
+  ?t rdfs:label ?team ; wc:calledUp ?p .
+  ?p wc:marketValueEUR ?value ; foaf:name ?name .
+} ORDER BY DESC(?value)
+```
+
+## One fully-modeled player
+
+```turtle
+@prefix wc:   <http://example.org/wc2026/ontology#> .
+@prefix wcr:  <http://example.org/wc2026/resource/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+wcr:player/erling-haaland-2000 a wc:Player ;
+    rdfs:label "Erling Haaland"@en ;
+    foaf:name "Erling Haaland" ;
+    wc:shirtNumber 9 ;
+    wc:dateOfBirth "2000-07-21"^^xsd:date ;
+    wc:caps 50 ;
+    wc:goalsForCountry 55 ;
+    wc:hasPosition wcr:position/FW ;
+    wc:hasNationality wcr:country/nor ;
+    wc:playsAtClub wcr:club/manchester-city ;
+    wc:playsForNationalTeam wcr:team/norway .
+
+wcr:team/norway a wc:NationalTeam ;
+    rdfs:label "Norway"@en ;
+    wc:fifaCode "NOR" ;
+    wc:squadSize 26 ;
+    wc:inGroup wcr:group/I ;
+    wc:affiliatedTo wcr:confederation/UEFA ;
+    wc:representsCountry wcr:country/nor ;
+    wc:calledUp wcr:player/erling-haaland-2000 .
+
+wcr:club/manchester-city a wc:Club ;
+    rdfs:label "Manchester City"@en ;
+    wc:clubInCountry wcr:country/eng ;     # England is a WC nation → FIFA code
+    wc:clubInLeague wcr:league/premier-league .
+```
+
+## Project layout
+
+```
+build.py        orchestrator: run the whole pipeline
+acquire.py      MediaWiki + Wikidata acquisition, caching, HTML parsing
+lookups.py      48-nation fallback: FIFA codes, confederations, positions
+ontology.py     the TBox (OWL ontology) builder
+graph.py        the ABox builder (data → RDF, de-duplicated)
+enrich.py       enrichment: static market_values.json + optional Transfermarkt
+make_market_values.py  regenerate the static market-value snapshot
+market_values.json     curated offline market-value snapshot (committed)
+uris.py         deterministic URI construction
+cache/          raw cached HTTP responses (gitignored)
+```
