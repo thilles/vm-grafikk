@@ -1,218 +1,4657 @@
 {
-  "abbosbek-fayzullaev-2003": {
-    "name": "Abbosbek Fayzullaev",
-    "marketValueEUR": 12000000
+  "aaron-hickey-2002": {
+    "name": "Aaron Hickey",
+    "marketValueEUR": 16000000,
+    "source": "transfermarkt"
+  },
+  "aaron-wan-bissaka-1997": {
+    "name": "Aaron Wan-Bissaka",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "abdallah-al-fakhouri-2000": {
+    "name": "Abdallah Al-Fakhouri",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "abdallah-nasib-1994": {
+    "name": "Abdallah Nasib",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "abdoulaye-seck-1992": {
+    "name": "Abdoulaye Seck",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "abdukodir-khusanov-2004": {
+    "name": "Abdukodir Khusanov",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "abdul-fatawu-2004": {
+    "name": "Abdul Fatawu",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "abdul-mumin-1998": {
+    "name": "Abdul Mumin",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "abdul-rahman-baba-1994": {
+    "name": "Abdul Rahman Baba",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "abdulelah-al-amri-1997": {
+    "name": "Abdulelah Al-Amri",
+    "marketValueEUR": 1400000,
+    "source": "transfermarkt"
+  },
+  "abdulla-abdullaev-1997": {
+    "name": "Abdulla Abdullaev",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "abdullah-al-hamdan-1999": {
+    "name": "Abdullah Al-Hamdan",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "abdullah-al-khaibari-1996": {
+    "name": "Abdullah Al-Khaibari",
+    "marketValueEUR": 750000,
+    "source": "transfermarkt"
   },
   "achraf-hakimi-1998": {
     "name": "Achraf Hakimi",
-    "marketValueEUR": 65000000
+    "marketValueEUR": 80000000,
+    "source": "transfermarkt"
   },
-  "akram-afif-1996": {
-    "name": "Akram Afif",
-    "marketValueEUR": 8000000
+  "achref-abada-1999": {
+    "name": "Achref Abada",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "adam-hlozek-2002": {
+    "name": "Adam Hložek",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "adrien-rabiot-1995": {
+    "name": "Adrien Rabiot",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "agustin-canobbio-1998": {
+    "name": "Agustín Canobbio",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "ahmed-al-kassar-1991": {
+    "name": "Ahmed Al-Kassar",
+    "marketValueEUR": 175000,
+    "source": "transfermarkt"
+  },
+  "ahmed-maknzi-2001": {
+    "name": "Ahmed Maknzi",
+    "marketValueEUR": 450000,
+    "source": "transfermarkt"
+  },
+  "ahmed-qasem-2003": {
+    "name": "Ahmed Qasem",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "ahmed-reda-tagnaouti-1996": {
+    "name": "Ahmed Reda Tagnaouti",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "aiden-o-neill-1998": {
+    "name": "Aiden O'Neill",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "aimar-sher-2002": {
+    "name": "Aimar Sher",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "aissa-mandi-1991": {
+    "name": "Aïssa Mandi",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "ajdin-hrustic-1996": {
+    "name": "Ajdin Hrustic",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "alan-franco-1998": {
+    "name": "Alan Franco",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "alan-minda-2003": {
+    "name": "Alan Minda",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "alban-lafont-1999": {
+    "name": "Alban Lafont",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "aleksandar-pavlovic-2004": {
+    "name": "Aleksandar Pavlović",
+    "marketValueEUR": 90000000,
+    "source": "transfermarkt"
+  },
+  "alessandro-circati-2003": {
+    "name": "Alessandro Circati",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "alessandro-schopf-1994": {
+    "name": "Alessandro Schöpf",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "alex-baena-2001": {
+    "name": "Álex Baena",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "alex-freeman-2004": {
+    "name": "Alex Freeman",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "alex-paulsen-2002": {
+    "name": "Alex Paulsen",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "alex-rufer-1996": {
+    "name": "Alex Rufer",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "alex-sandro-1991": {
+    "name": "Alex Sandro",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "alexander-bernhardsson-1998": {
+    "name": "Alexander Bernhardsson",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
   },
   "alexander-isak-1999": {
     "name": "Alexander Isak",
-    "marketValueEUR": 120000000
+    "marketValueEUR": 85000000,
+    "source": "transfermarkt"
+  },
+  "alexander-nubel-1996": {
+    "name": "Alexander Nübel",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "alexander-prass-2001": {
+    "name": "Alexander Prass",
+    "marketValueEUR": 9000000,
+    "source": "transfermarkt"
+  },
+  "alexander-schlager-1996": {
+    "name": "Alexander Schlager",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "alexander-sorloth-1995": {
+    "name": "Alexander Sørloth",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "alexandre-pierre-2001": {
+    "name": "Alexandre Pierre",
+    "marketValueEUR": 700000,
+    "source": "transfermarkt"
+  },
+  "alexis-mac-allister-1998": {
+    "name": "Alexis Mac Allister",
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "alexis-saelemaekers-1999": {
+    "name": "Alexis Saelemaekers",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "alfie-jones-1997": {
+    "name": "Alfie Jones",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "ali-abdi-1993": {
+    "name": "Ali Abdi",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "ali-ahmed-2000": {
+    "name": "Ali Ahmed",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "ali-azaizeh-2004": {
+    "name": "Ali Azaizeh",
+    "marketValueEUR": 325000,
+    "source": "transfermarkt"
+  },
+  "ali-jasim-2004": {
+    "name": "Ali Jasim",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "ali-lajami-1996": {
+    "name": "Ali Lajami",
+    "marketValueEUR": 750000,
+    "source": "transfermarkt"
+  },
+  "ali-majrashi-1999": {
+    "name": "Ali Majrashi",
+    "marketValueEUR": 1400000,
+    "source": "transfermarkt"
+  },
+  "ali-yousif-1996": {
+    "name": "Ali Yousif",
+    "marketValueEUR": 200000,
+    "source": "transfermarkt"
+  },
+  "alidu-seidu-2000": {
+    "name": "Alidu Seidu",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "alireza-jahanbakhsh-1993": {
+    "name": "Alireza Jahanbakhsh",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "alisson-1992": {
+    "name": "Alisson",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
   },
   "alphonso-davies-2000": {
     "name": "Alphonso Davies",
-    "marketValueEUR": 50000000
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "altay-bayindir-1998": {
+    "name": "Altay Bayındır",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "alvaro-fidalgo-1997": {
+    "name": "Álvaro Fidalgo",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
   },
   "amad-diallo-2002": {
     "name": "Amad Diallo",
-    "marketValueEUR": 45000000
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "amadou-onana-2001": {
+    "name": "Amadou Onana",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
   },
   "amar-dedic-2002": {
     "name": "Amar Dedić",
-    "marketValueEUR": 22000000
+    "marketValueEUR": 16000000,
+    "source": "transfermarkt"
+  },
+  "amer-jamous-2002": {
+    "name": "Amer Jamous",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
   },
   "amine-gouiri-2000": {
     "name": "Amine Gouiri",
-    "marketValueEUR": 30000000
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "amine-sbai-2000": {
+    "name": "Amine Sbaï",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "amir-al-ammari-1997": {
+    "name": "Amir Al-Ammari",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "amir-hadziahmetovic-1997": {
+    "name": "Amir Hadžiahmetović",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "anas-badawi-1997": {
+    "name": "Anas Badawi",
+    "marketValueEUR": 200000,
+    "source": "transfermarkt"
+  },
+  "anass-salah-eddine-2002": {
+    "name": "Anass Salah-Eddine",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "andreas-schjelderup-2004": {
+    "name": "Andreas Schjelderup",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "andrej-kramaric-1991": {
+    "name": "Andrej Kramarić",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "andres-andrade-1998": {
+    "name": "Andrés Andrade",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "andres-cubas-1996": {
+    "name": "Andrés Cubas",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "andres-gomez-2002": {
+    "name": "Andrés Gómez",
+    "marketValueEUR": 11000000,
+    "source": "transfermarkt"
+  },
+  "ange-yoan-bonny-2003": {
+    "name": "Ange-Yoan Bonny",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "angelo-preciado-1998": {
+    "name": "Ángelo Preciado",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "angelo-stiller-2001": {
+    "name": "Angelo Stiller",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "angus-gunn-1996": {
+    "name": "Angus Gunn",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "anibal-godoy-1990": {
+    "name": "Aníbal Godoy",
+    "marketValueEUR": 100000,
+    "source": "transfermarkt"
+  },
+  "anis-ben-slimane-2001": {
+    "name": "Anis Ben Slimane",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "anis-hadj-moussa-2002": {
+    "name": "Anis Hadj Moussa",
+    "marketValueEUR": 23000000,
+    "source": "transfermarkt"
+  },
+  "ante-budimir-1991": {
+    "name": "Ante Budimir",
+    "marketValueEUR": 2800000,
+    "source": "transfermarkt"
+  },
+  "anthony-elanga-2002": {
+    "name": "Anthony Elanga",
+    "marketValueEUR": 32000000,
+    "source": "transfermarkt"
+  },
+  "anthony-gordon-2001": {
+    "name": "Anthony Gordon",
+    "marketValueEUR": 65000000,
+    "source": "transfermarkt"
+  },
+  "anthony-valencia-2003": {
+    "name": "Anthony Valencia",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "antoine-mendy-2004": {
+    "name": "Antoine Mendy",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
   },
   "antoine-semenyo-2000": {
     "name": "Antoine Semenyo",
-    "marketValueEUR": 50000000
+    "marketValueEUR": 80000000,
+    "source": "transfermarkt"
+  },
+  "antonee-robinson-1997": {
+    "name": "Antonee Robinson",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "antonio-nusa-2005": {
+    "name": "Antonio Nusa",
+    "marketValueEUR": 32000000,
+    "source": "transfermarkt"
+  },
+  "antonio-rudiger-1993": {
+    "name": "Antonio Rüdiger",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "antonio-sanabria-1996": {
+    "name": "Antonio Sanabria",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "ao-tanaka-1998": {
+    "name": "Ao Tanaka",
+    "marketValueEUR": 13000000,
+    "source": "transfermarkt"
+  },
+  "arda-guler-2005": {
+    "name": "Arda Güler",
+    "marketValueEUR": 90000000,
+    "source": "transfermarkt"
+  },
+  "ardon-jashari-2002": {
+    "name": "Ardon Jashari",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "arjan-malic-2005": {
+    "name": "Arjan Malić",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "armando-obispo-1999": {
+    "name": "Armando Obispo",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "armin-gigovic-2002": {
+    "name": "Armin Gigović",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "arthur-masuaku-1993": {
+    "name": "Arthur Masuaku",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "arthur-theate-2000": {
+    "name": "Arthur Theate",
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "assan-ouedraogo-2006": {
+    "name": "Assan Ouédraogo",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "assane-diao-2005": {
+    "name": "Assane Diao",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "aubrey-modiba-1995": {
+    "name": "Aubrey Modiba",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "augustine-boakye-2000": {
+    "name": "Augustine Boakye",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "aurele-amenda-2003": {
+    "name": "Aurèle Amenda",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "aurelien-tchouameni-2000": {
+    "name": "Aurélien Tchouaméni",
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "awer-mabil-1995": {
+    "name": "Awer Mabil",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "axel-tuanzebe-1997": {
+    "name": "Axel Tuanzebe",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "axel-witsel-1989": {
+    "name": "Axel Witsel",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "ayase-ueda-1998": {
+    "name": "Ayase Ueda",
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "ayman-yahya-2001": {
+    "name": "Ayman Yahya",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "aymen-dahmen-1997": {
+    "name": "Aymen Dahmen",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
   },
   "aymen-hussein-1996": {
     "name": "Aymen Hussein",
-    "marketValueEUR": 1500000
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "aymeric-laporte-1994": {
+    "name": "Aymeric Laporte",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "ayoub-el-kaabi-1993": {
+    "name": "Ayoub El Kaabi",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "ayumu-seko-2000": {
+    "name": "Ayumu Seko",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "ayyoub-bouaddi-2007": {
+    "name": "Ayyoub Bouaddi",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "azarias-londono-2001": {
+    "name": "Azarias Londoño",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "aziz-behich-1990": {
+    "name": "Aziz Behich",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "azzedine-ounahi-2000": {
+    "name": "Azzedine Ounahi",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "bamba-dieng-2000": {
+    "name": "Bamba Dieng",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "bara-sapoko-ndiaye-2007": {
+    "name": "Bara Sapoko Ndiaye",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "bart-verbruggen-2002": {
+    "name": "Bart Verbruggen",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "bazoumana-toure-2006": {
+    "name": "Bazoumana Touré",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "ben-gannon-doak-2005": {
+    "name": "Ben Gannon-Doak",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "ben-old-2002": {
+    "name": "Ben Old",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "benjamin-asare-1992": {
+    "name": "Benjamin Asare",
+    "marketValueEUR": 100000,
+    "source": "transfermarkt"
+  },
+  "benjamin-tahirovic-2003": {
+    "name": "Benjamin Tahirović",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "bernardo-silva-1994": {
+    "name": "Bernardo Silva",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "besfort-zeneli-2002": {
+    "name": "Besfort Zeneli",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "bilal-el-khannouss-2004": {
+    "name": "Bilal El Khannouss",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "borja-iglesias-1993": {
+    "name": "Borja Iglesias",
+    "marketValueEUR": 2800000,
+    "source": "transfermarkt"
+  },
+  "bradley-barcola-2002": {
+    "name": "Bradley Barcola",
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "bradley-cross-2001": {
+    "name": "Bradley Cross",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "brahim-diaz-1999": {
+    "name": "Brahim Díaz",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "braian-ojeda-2000": {
+    "name": "Braian Ojeda",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "brandley-kuwas-1992": {
+    "name": "Brandley Kuwas",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "brandon-mechele-1993": {
+    "name": "Brandon Mechele",
+    "marketValueEUR": 2800000,
+    "source": "transfermarkt"
+  },
+  "brandon-thomas-asante-1998": {
+    "name": "Brandon Thomas-Asante",
+    "marketValueEUR": 16000000,
+    "source": "transfermarkt"
+  },
+  "breel-embolo-1997": {
+    "name": "Breel Embolo",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "bremer-1997": {
+    "name": "Bremer",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "brenden-aaronson-2000": {
+    "name": "Brenden Aaronson",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "brian-brobbey-2002": {
+    "name": "Brian Brobbey",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "brian-cipenga-1998": {
+    "name": "Brian Cipenga",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "brice-samba-1994": {
+    "name": "Brice Samba",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "bruno-fernandes-1994": {
+    "name": "Bruno Fernandes",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "bruno-guimaraes-1997": {
+    "name": "Bruno Guimarães",
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
   },
   "bukayo-saka-2001": {
     "name": "Bukayo Saka",
-    "marketValueEUR": 140000000
+    "marketValueEUR": 110000000,
+    "source": "transfermarkt"
+  },
+  "caleb-yirenkyi-2006": {
+    "name": "Caleb Yirenkyi",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "callan-elliot-1999": {
+    "name": "Callan Elliot",
+    "marketValueEUR": 450000,
+    "source": "transfermarkt"
+  },
+  "callum-mccowatt-1999": {
+    "name": "Callum McCowatt",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "cameron-burgess-1995": {
+    "name": "Cameron Burgess",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "can-uzun-2005": {
+    "name": "Can Uzun",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "carl-starfelt-1995": {
+    "name": "Carl Starfelt",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "carlens-arcus-1996": {
+    "name": "Carlens Arcus",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "carlos-harvey-2000": {
+    "name": "Carlos Harvey",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "carney-chukwuemeka-2003": {
+    "name": "Carney Chukwuemeka",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "casemiro-1992": {
+    "name": "Casemiro",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "cecilio-waterman-1991": {
+    "name": "Cecilio Waterman",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "cedric-bakambu-1991": {
+    "name": "Cédric Bakambu",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "cedric-itten-1996": {
+    "name": "Cedric Itten",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "cesar-huerta-2000": {
+    "name": "César Huerta",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "cesar-montes-1997": {
+    "name": "César Montes",
+    "marketValueEUR": 7500000,
+    "source": "transfermarkt"
+  },
+  "cesar-samudio-1994": {
+    "name": "César Samudio",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "cesar-yanis-1996": {
+    "name": "César Yanis",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "chadi-riad-2003": {
+    "name": "Chadi Riad",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "chancel-mbemba-1994": {
+    "name": "Chancel Mbemba",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "charles-de-ketelaere-2001": {
+    "name": "Charles De Ketelaere",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "charles-pickel-1997": {
+    "name": "Charles Pickel",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "che-adams-1996": {
+    "name": "Ché Adams",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "chemsdine-talbi-2005": {
+    "name": "Chemsdine Talbi",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "chris-brady-2004": {
+    "name": "Chris Brady",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "chris-richards-2000": {
+    "name": "Chris Richards",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
   },
   "chris-wood-1991": {
     "name": "Chris Wood",
-    "marketValueEUR": 5000000
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "christian-fassnacht-1993": {
+    "name": "Christian Fassnacht",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
   },
   "christian-pulisic-1998": {
     "name": "Christian Pulisic",
-    "marketValueEUR": 60000000
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "christopher-bonsu-baah-2004": {
+    "name": "Christopher Bonsu Baah",
+    "marketValueEUR": 14000000,
+    "source": "transfermarkt"
+  },
+  "cj-dos-santos-2000": {
+    "name": "CJ dos Santos",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "cody-gakpo-1999": {
+    "name": "Cody Gakpo",
+    "marketValueEUR": 60000000,
+    "source": "transfermarkt"
   },
   "connor-metcalfe-1999": {
     "name": "Connor Metcalfe",
-    "marketValueEUR": 8000000
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
   },
-  "duckens-nazon-1994": {
-    "name": "Duckens Nazon",
-    "marketValueEUR": 1000000
+  "craig-gordon-1982": {
+    "name": "Craig Gordon",
+    "marketValueEUR": 50000,
+    "source": "transfermarkt"
+  },
+  "cristian-martinez-1997": {
+    "name": "Cristian Martínez",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "cristian-roldan-1995": {
+    "name": "Cristian Roldan",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "cristian-romero-1998": {
+    "name": "Cristian Romero",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "cristian-volpato-2003": {
+    "name": "Cristian Volpato",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "cristiano-ronaldo-1985": {
+    "name": "Cristiano Ronaldo",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "crysencio-summerville-2001": {
+    "name": "Crysencio Summerville",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "cucho-hernandez-1999": {
+    "name": "Cucho Hernández",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "cyle-larin-1995": {
+    "name": "Cyle Larin",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "daichi-kamada-1996": {
+    "name": "Daichi Kamada",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "dailon-livramento-2001": {
+    "name": "Dailon Livramento",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "damian-bobadilla-2001": {
+    "name": "Damián Bobadilla",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "dan-burn-1992": {
+    "name": "Dan Burn",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "dan-ndoye-2000": {
+    "name": "Dan Ndoye",
+    "marketValueEUR": 32000000,
+    "source": "transfermarkt"
+  },
+  "dani-olmo-1998": {
+    "name": "Dani Olmo",
+    "marketValueEUR": 60000000,
+    "source": "transfermarkt"
+  },
+  "daniel-munoz-1996": {
+    "name": "Daniel Muñoz",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "daniel-svensson-2002": {
+    "name": "Daniel Svensson",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "danley-jean-jacques-2000": {
+    "name": "Danley Jean Jacques",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "darwin-nunez-1999": {
+    "name": "Darwin Núñez",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "david-affengruber-2001": {
+    "name": "David Affengruber",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "david-alaba-1992": {
+    "name": "David Alaba",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "david-moller-wolfe-2002": {
+    "name": "David Møller Wolfe",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "david-ospina-1988": {
+    "name": "David Ospina",
+    "marketValueEUR": 100000,
+    "source": "transfermarkt"
+  },
+  "david-raum-1998": {
+    "name": "David Raum",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "david-raya-1995": {
+    "name": "David Raya",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "dayne-st-clair-1997": {
+    "name": "Dayne St. Clair",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "dayot-upamecano-1998": {
+    "name": "Dayot Upamecano",
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "dean-henderson-1997": {
+    "name": "Dean Henderson",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "declan-rice-1999": {
+    "name": "Declan Rice",
+    "marketValueEUR": 120000000,
+    "source": "transfermarkt"
+  },
+  "deiver-machado-1993": {
+    "name": "Deiver Machado",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "dejan-ljubicic-1997": {
+    "name": "Dejan Ljubičić",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "denil-castillo-2004": {
+    "name": "Denil Castillo",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "denis-zakaria-1996": {
+    "name": "Denis Zakaria",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "deniz-gul-2004": {
+    "name": "Deniz Gül",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "deniz-undav-1996": {
+    "name": "Deniz Undav",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "dennis-hadzikadunic-1998": {
+    "name": "Dennis Hadžikadunić",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "denzel-dumfries-1996": {
+    "name": "Denzel Dumfries",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "derrick-etienne-jr-1996": {
+    "name": "Derrick Etienne Jr.",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "derrick-luckassen-1995": {
+    "name": "Derrick Luckassen",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "desire-doue-2005": {
+    "name": "Désiré Doué",
+    "marketValueEUR": 120000000,
+    "source": "transfermarkt"
+  },
+  "deveron-fonville-2003": {
+    "name": "Deveron Fonville",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "diego-gomez-2003": {
+    "name": "Diego Gómez",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "diego-moreira-2004": {
+    "name": "Diego Moreira",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "diogo-costa-1999": {
+    "name": "Diogo Costa",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "diogo-dalot-1999": {
+    "name": "Diogo Dalot",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "djed-spence-2000": {
+    "name": "Djed Spence",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "djibril-sow-1997": {
+    "name": "Djibril Sow",
+    "marketValueEUR": 7500000,
+    "source": "transfermarkt"
+  },
+  "dodi-lukebakio-1997": {
+    "name": "Dodi Lukébakio",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "dominic-hyam-1995": {
+    "name": "Dominic Hyam",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "dominik-kotarski-2000": {
+    "name": "Dominik Kotarski",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "dominik-livakovic-1995": {
+    "name": "Dominik Livaković",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "donyell-malen-1999": {
+    "name": "Donyell Malen",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "douglas-santos-1994": {
+    "name": "Douglas Santos",
+    "marketValueEUR": 7500000,
+    "source": "transfermarkt"
+  },
+  "duje-caleta-car-1996": {
+    "name": "Duje Ćaleta-Car",
+    "marketValueEUR": 2800000,
+    "source": "transfermarkt"
+  },
+  "dylan-batubinsika-1996": {
+    "name": "Dylan Batubinsika",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "dylan-bronn-1995": {
+    "name": "Dylan Bronn",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "dzenis-burnic-1998": {
+    "name": "Dženis Burnić",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "eberechi-eze-1998": {
+    "name": "Eberechi Eze",
+    "marketValueEUR": 65000000,
+    "source": "transfermarkt"
+  },
+  "edin-dzeko-1986": {
+    "name": "Edin Džeko",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "edo-kayembe-1998": {
+    "name": "Edo Kayembe",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "edouard-mendy-1992": {
+    "name": "Édouard Mendy",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "egil-selvik-1997": {
+    "name": "Egil Selvik",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "el-hadji-malick-diouf-2004": {
+    "name": "El Hadji Malick Diouf",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "elias-achouri-1999": {
+    "name": "Elias Achouri",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "elias-saad-1999": {
+    "name": "Elias Saad",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "elisha-owusu-1997": {
+    "name": "Elisha Owusu",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "elliot-anderson-2002": {
+    "name": "Elliot Anderson",
+    "marketValueEUR": 75000000,
+    "source": "transfermarkt"
+  },
+  "elliot-stroud-2002": {
+    "name": "Elliot Stroud",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "ellyes-skhiri-1995": {
+    "name": "Ellyes Skhiri",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "elye-wahi-2003": {
+    "name": "Elye Wahi",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "emiliano-martinez-1992": {
+    "name": "Emiliano Martínez",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "emiliano-martinez-1999": {
+    "name": "Emiliano Martínez",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "endrick-2006": {
+    "name": "Endrick",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "enzo-fernandez-2001": {
+    "name": "Enzo Fernández",
+    "marketValueEUR": 90000000,
+    "source": "transfermarkt"
+  },
+  "eray-comert-1998": {
+    "name": "Eray Cömert",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "eric-garcia-2001": {
+    "name": "Eric García",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "eric-smith-1997": {
+    "name": "Eric Smith",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
   },
   "erling-haaland-2000": {
     "name": "Erling Haaland",
-    "marketValueEUR": 180000000
+    "marketValueEUR": 200000000,
+    "source": "transfermarkt"
+  },
+  "ermedin-demirovic-1998": {
+    "name": "Ermedin Demirović",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "ernest-nuamah-2003": {
+    "name": "Ernest Nuamah",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "esmir-bajraktarevic-2005": {
+    "name": "Esmir Bajraktarević",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "evan-ndicka-1999": {
+    "name": "Evan Ndicka",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "evann-guessand-2001": {
+    "name": "Evann Guessand",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "evidence-makgopa-2000": {
+    "name": "Evidence Makgopa",
+    "marketValueEUR": 1400000,
+    "source": "transfermarkt"
+  },
+  "exequiel-palacios-1998": {
+    "name": "Exequiel Palacios",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "ezri-konsa-1997": {
+    "name": "Ezri Konsa",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "fabian-balbuena-1991": {
+    "name": "Fabián Balbuena",
+    "marketValueEUR": 900000,
+    "source": "transfermarkt"
+  },
+  "fabian-rieder-2002": {
+    "name": "Fabian Rieder",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "fabian-ruiz-1996": {
+    "name": "Fabián Ruiz",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "fabinho-1993": {
+    "name": "Fabinho",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "facundo-medina-1999": {
+    "name": "Facundo Medina",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "facundo-pellistri-2001": {
+    "name": "Facundo Pellistri",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "fahad-talib-1994": {
+    "name": "Fahad Talib",
+    "marketValueEUR": 375000,
+    "source": "transfermarkt"
+  },
+  "fares-chaibi-2002": {
+    "name": "Farès Chaïbi",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "fares-ghedjemis-2002": {
+    "name": "Farès Ghedjemis",
+    "marketValueEUR": 7500000,
+    "source": "transfermarkt"
   },
   "federico-valverde-1998": {
     "name": "Federico Valverde",
-    "marketValueEUR": 130000000
+    "marketValueEUR": 90000000,
+    "source": "transfermarkt"
+  },
+  "federico-vinas-1998": {
+    "name": "Federico Viñas",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "felix-nmecha-2000": {
+    "name": "Felix Nmecha",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "felix-torres-1997": {
+    "name": "Félix Torres",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "ferdi-kadioglu-1999": {
+    "name": "Ferdi Kadıoğlu",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "ferran-torres-2000": {
+    "name": "Ferran Torres",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "fidel-escobar-1995": {
+    "name": "Fidel Escobar",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "finn-surman-2003": {
+    "name": "Finn Surman",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "firas-al-buraikan-2000": {
+    "name": "Firas Al-Buraikan",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "firas-chaouat-1996": {
+    "name": "Firas Chaouat",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "florian-grillitsch-1995": {
+    "name": "Florian Grillitsch",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
   },
   "florian-wirtz-2003": {
     "name": "Florian Wirtz",
-    "marketValueEUR": 140000000
+    "marketValueEUR": 100000000,
+    "source": "transfermarkt"
+  },
+  "folarin-balogun-2001": {
+    "name": "Folarin Balogun",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "francis-de-vries-1994": {
+    "name": "Francis de Vries",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "francisco-conceicao-2002": {
+    "name": "Francisco Conceição",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "francisco-trincao-1999": {
+    "name": "Francisco Trincão",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "franck-kessie-1996": {
+    "name": "Franck Kessié",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "frans-putros-1993": {
+    "name": "Frans Putros",
+    "marketValueEUR": 325000,
+    "source": "transfermarkt"
+  },
+  "fredrik-aursnes-1995": {
+    "name": "Fredrik Aursnes",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
   },
   "frenkie-de-jong-1997": {
     "name": "Frenkie de Jong",
-    "marketValueEUR": 70000000
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
   },
-  "hannibal-mejbri-2003": {
-    "name": "Hannibal Mejbri",
-    "marketValueEUR": 10000000
+  "gabriel-gudmundsson-1999": {
+    "name": "Gabriel Gudmundsson",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "gabriel-martinelli-2001": {
+    "name": "Gabriel Martinelli",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "gael-kakuta-1991": {
+    "name": "Gaël Kakuta",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "garry-rodrigues-1990": {
+    "name": "Garry Rodrigues",
+    "marketValueEUR": 300000,
+    "source": "transfermarkt"
+  },
+  "gavi-2004": {
+    "name": "Gavi",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "gedeon-kalulu-1997": {
+    "name": "Gédéon Kalulu",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "george-hirst-1999": {
+    "name": "George Hirst",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "geronimo-rulli-1992": {
+    "name": "Gerónimo Rulli",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "gervane-kastaneer-1996": {
+    "name": "Gervane Kastaneer",
+    "marketValueEUR": 225000,
+    "source": "transfermarkt"
+  },
+  "gessime-yassine-2005": {
+    "name": "Gessime Yassine",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "ghislain-konan-1995": {
+    "name": "Ghislain Konan",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "gideon-mensah-1998": {
+    "name": "Gideon Mensah",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "giorgian-de-arrascaeta-1994": {
+    "name": "Giorgian de Arrascaeta",
+    "marketValueEUR": 14000000,
+    "source": "transfermarkt"
+  },
+  "giovani-lo-celso-1996": {
+    "name": "Giovani Lo Celso",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "giovanni-reyna-2002": {
+    "name": "Giovanni Reyna",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "giuliano-simeone-2002": {
+    "name": "Giuliano Simeone",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "goncalo-guedes-1996": {
+    "name": "Gonçalo Guedes",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "goncalo-inacio-2001": {
+    "name": "Gonçalo Inácio",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "goncalo-ramos-2001": {
+    "name": "Gonçalo Ramos",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "gonzalo-plata-2000": {
+    "name": "Gonzalo Plata",
+    "marketValueEUR": 9000000,
+    "source": "transfermarkt"
+  },
+  "gonzalo-valle-1996": {
+    "name": "Gonzalo Valle",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "granit-xhaka-1992": {
+    "name": "Granit Xhaka",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "gregor-kobel-1997": {
+    "name": "Gregor Kobel",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "guela-doue-2002": {
+    "name": "Guéla Doué",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "guillermo-ochoa-1985": {
+    "name": "Guillermo Ochoa",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "guillermo-varela-1993": {
+    "name": "Guillermo Varela",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "gustaf-lagerbielke-2000": {
+    "name": "Gustaf Lagerbielke",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "gustaf-nilsson-1997": {
+    "name": "Gustaf Nilsson",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "gustavo-caballero-2001": {
+    "name": "Gustavo Caballero",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "gustavo-gomez-1993": {
+    "name": "Gustavo Gómez",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "gustavo-puerta-2003": {
+    "name": "Gustavo Puerta",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "guus-til-1997": {
+    "name": "Guus Til",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "habib-diarra-2004": {
+    "name": "Habib Diarra",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "haissem-hassan-2002": {
+    "name": "Haissem Hassan",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "haji-wright-1998": {
+    "name": "Haji Wright",
+    "marketValueEUR": 16000000,
+    "source": "transfermarkt"
+  },
+  "hakan-calhanoglu-1994": {
+    "name": "Hakan Çalhanoğlu",
+    "marketValueEUR": 16000000,
+    "source": "transfermarkt"
+  },
+  "hamza-abdelkarim-2008": {
+    "name": "Hamza Abdelkarim",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "hannes-delcroix-1999": {
+    "name": "Hannes Delcroix",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "hans-vanaken-1992": {
+    "name": "Hans Vanaken",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "haris-tabakovic-1994": {
+    "name": "Haris Tabaković",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "harry-kane-1993": {
+    "name": "Harry Kane",
+    "marketValueEUR": 60000000,
+    "source": "transfermarkt"
+  },
+  "harry-souttar-1998": {
+    "name": "Harry Souttar",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "hassan-kadesh-1992": {
+    "name": "Hassan Kadesh",
+    "marketValueEUR": 275000,
+    "source": "transfermarkt"
+  },
+  "hazem-mastouri-1997": {
+    "name": "Hazem Mastouri",
+    "marketValueEUR": 900000,
+    "source": "transfermarkt"
+  },
+  "helio-varela-2002": {
+    "name": "Hélio Varela",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "henrik-falchener-2003": {
+    "name": "Henrik Falchener",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "herman-johansson-1997": {
+    "name": "Herman Johansson",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "hicham-boudaoui-1999": {
+    "name": "Hicham Boudaoui",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "hiroki-ito-1999": {
+    "name": "Hiroki Itō",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "hjalmar-ekdal-1998": {
+    "name": "Hjalmar Ekdal",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "houssem-aouar-1998": {
+    "name": "Houssem Aouar",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "husam-abu-dahab-2000": {
+    "name": "Husam Abu Dahab",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "hussein-ali-2002": {
+    "name": "Hussein Ali",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "ibrahim-adel-2001": {
+    "name": "Ibrahim Adel",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "ibrahim-maza-2005": {
+    "name": "Ibrahim Maza",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "ibrahim-mbaye-2008": {
+    "name": "Ibrahim Mbaye",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "ibrahim-sangare-1997": {
+    "name": "Ibrahim Sangaré",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "ibrahima-konate-1999": {
+    "name": "Ibrahima Konaté",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "idrissa-gueye-1989": {
+    "name": "Idrissa Gueye",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "igor-matanovic-2003": {
+    "name": "Igor Matanović",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "igor-thiago-2001": {
+    "name": "Igor Thiago",
+    "marketValueEUR": 65000000,
+    "source": "transfermarkt"
+  },
+  "iliman-ndiaye-2000": {
+    "name": "Iliman Ndiaye",
+    "marketValueEUR": 55000000,
+    "source": "transfermarkt"
+  },
+  "ime-okon-2004": {
+    "name": "Ime Okon",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "inaki-williams-1994": {
+    "name": "Iñaki Williams",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "iqraam-rayners-1995": {
+    "name": "Iqraam Rayners",
+    "marketValueEUR": 2800000,
+    "source": "transfermarkt"
+  },
+  "isak-hien-1999": {
+    "name": "Isak Hien",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "isidro-pitta-1999": {
+    "name": "Isidro Pitta",
+    "marketValueEUR": 7500000,
+    "source": "transfermarkt"
+  },
+  "ismael-gharbi-2004": {
+    "name": "Ismaël Gharbi",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "ismael-kone-2002": {
+    "name": "Ismaël Koné",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "ismael-saibari-2001": {
+    "name": "Ismael Saibari",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "ismaila-sarr-1998": {
+    "name": "Ismaïla Sarr",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "issa-diop-1997": {
+    "name": "Issa Diop",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "ivan-basic-2002": {
+    "name": "Ivan Bašić",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "ivan-perisic-1989": {
+    "name": "Ivan Perišić",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "ivan-sunjic-1996": {
+    "name": "Ivan Šunjić",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "ivan-toney-1996": {
+    "name": "Ivan Toney",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "ivor-pandur-2000": {
+    "name": "Ivor Pandur",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "jack-hendry-1995": {
+    "name": "Jack Hendry",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "jackson-irvine-1993": {
+    "name": "Jackson Irvine",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "jacob-italiano-2001": {
+    "name": "Jacob Italiano",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "jacob-shaffelburg-1999": {
+    "name": "Jacob Shaffelburg",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "jacob-widell-zetterstrom-1998": {
+    "name": "Jacob Widell Zetterström",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "jalal-hassan-1991": {
+    "name": "Jalal Hassan",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "jamal-musiala-2003": {
+    "name": "Jamal Musiala",
+    "marketValueEUR": 100000000,
+    "source": "transfermarkt"
+  },
+  "james-rodriguez-1991": {
+    "name": "James Rodríguez",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "james-trafford-2002": {
+    "name": "James Trafford",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "jamie-leweling-2001": {
+    "name": "Jamie Leweling",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "jaminton-campaz-2000": {
+    "name": "Jaminton Campaz",
+    "marketValueEUR": 5500000,
+    "source": "transfermarkt"
+  },
+  "jamiro-monteiro-1993": {
+    "name": "Jamiro Monteiro",
+    "marketValueEUR": 650000,
+    "source": "transfermarkt"
+  },
+  "jan-paul-van-hecke-2000": {
+    "name": "Jan Paul van Hecke",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "jaouen-hadjam-2003": {
+    "name": "Jaouen Hadjam",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "jarell-quansah-2003": {
+    "name": "Jarell Quansah",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "jason-geria-1993": {
+    "name": "Jason Geria",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "jayden-adams-2001": {
+    "name": "Jayden Adams",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "jayden-nelson-2002": {
+    "name": "Jayden Nelson",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "jean-kevin-duverne-1997": {
+    "name": "Jean-Kévin Duverne",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "jean-michael-seri-1991": {
+    "name": "Jean Michaël Seri",
+    "marketValueEUR": 100000,
+    "source": "transfermarkt"
+  },
+  "jean-philippe-mateta-1997": {
+    "name": "Jean-Philippe Mateta",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "jean-ricner-bellegarde-1998": {
+    "name": "Jean-Ricner Bellegarde",
+    "marketValueEUR": 16000000,
+    "source": "transfermarkt"
+  },
+  "jefferson-lerma-1994": {
+    "name": "Jefferson Lerma",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "jehad-thakri-2001": {
+    "name": "Jehad Thakri",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "jens-castrop-2003": {
+    "name": "Jens Castrop",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "jens-petter-hauge-1999": {
+    "name": "Jens Petter Hauge",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "jeremy-antonisse-2002": {
+    "name": "Jeremy Antonisse",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "jeremy-arevalo-2005": {
+    "name": "Jeremy Arévalo",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
   },
   "jeremy-doku-2002": {
     "name": "Jérémy Doku",
-    "marketValueEUR": 60000000
+    "marketValueEUR": 75000000,
+    "source": "transfermarkt"
+  },
+  "jesper-karlstrom-1995": {
+    "name": "Jesper Karlström",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "jesse-randall-2002": {
+    "name": "Jesse Randall",
+    "marketValueEUR": 900000,
+    "source": "transfermarkt"
+  },
+  "jhon-arias-1997": {
+    "name": "Jhon Arias",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "jhon-cordoba-1993": {
+    "name": "Jhon Córdoba",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "jhon-lucumi-1998": {
+    "name": "Jhon Lucumí",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "jiovany-ramos-1997": {
+    "name": "Jiovany Ramos",
+    "marketValueEUR": 450000,
+    "source": "transfermarkt"
+  },
+  "joan-garcia-2001": {
+    "name": "Joan Garcia",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "joao-cancelo-1994": {
+    "name": "João Cancelo",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "joao-felix-1999": {
+    "name": "João Félix",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "joao-neves-2004": {
+    "name": "João Neves",
+    "marketValueEUR": 140000000,
+    "source": "transfermarkt"
+  },
+  "joao-paulo-1998": {
+    "name": "João Paulo",
+    "marketValueEUR": 900000,
+    "source": "transfermarkt"
+  },
+  "joaquin-piquerez-1998": {
+    "name": "Joaquín Piquerez",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "joaquin-seys-2005": {
+    "name": "Joaquin Seys",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "joe-bell-1999": {
+    "name": "Joe Bell",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "joe-scally-2002": {
+    "name": "Joe Scally",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "joel-ordonez-2004": {
+    "name": "Joel Ordóñez",
+    "marketValueEUR": 33000000,
+    "source": "transfermarkt"
+  },
+  "joel-waterman-1996": {
+    "name": "Joel Waterman",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "johan-manzambi-2005": {
+    "name": "Johan Manzambi",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "johan-mojica-1992": {
+    "name": "Johan Mojica",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "johan-vasquez-1998": {
+    "name": "Johan Vásquez",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "john-mcginn-1994": {
+    "name": "John McGinn",
+    "marketValueEUR": 13000000,
+    "source": "transfermarkt"
+  },
+  "john-stones-1994": {
+    "name": "John Stones",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "john-yeboah-2000": {
+    "name": "John Yeboah",
+    "marketValueEUR": 5500000,
+    "source": "transfermarkt"
+  },
+  "johny-placide-1988": {
+    "name": "Johny Placide",
+    "marketValueEUR": 150000,
+    "source": "transfermarkt"
+  },
+  "jonas-adjetey-2003": {
+    "name": "Jonas Adjetey",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "jonathan-david-2000": {
+    "name": "Jonathan David",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "jonathan-osorio-1992": {
+    "name": "Jonathan Osorio",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "jonathan-tah-1996": {
+    "name": "Jonathan Tah",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "jordan-ayew-1991": {
+    "name": "Jordan Ayew",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "jordan-bos-2002": {
+    "name": "Jordan Bos",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "jordan-henderson-1990": {
+    "name": "Jordan Henderson",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "jordan-pickford-1994": {
+    "name": "Jordan Pickford",
+    "marketValueEUR": 13000000,
+    "source": "transfermarkt"
+  },
+  "jordy-alcivar-1999": {
+    "name": "Jordy Alcívar",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "jorge-carrascal-1998": {
+    "name": "Jorge Carrascal",
+    "marketValueEUR": 13000000,
+    "source": "transfermarkt"
+  },
+  "jorge-gutierrez-1998": {
+    "name": "Jorge Gutiérrez",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "jorge-sanchez-1997": {
+    "name": "Jorge Sánchez",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "jorgen-strand-larsen-2000": {
+    "name": "Jørgen Strand Larsen",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "joris-kayembe-1994": {
+    "name": "Joris Kayembe",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "jose-cordoba-2001": {
+    "name": "José Córdoba",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
   },
   "jose-fajardo-1993": {
     "name": "José Fajardo",
-    "marketValueEUR": 1500000
+    "marketValueEUR": 550000,
+    "source": "transfermarkt"
+  },
+  "jose-manuel-lopez-2000": {
+    "name": "José Manuel López",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "jose-maria-gimenez-1995": {
+    "name": "José María Giménez",
+    "marketValueEUR": 9000000,
+    "source": "transfermarkt"
+  },
+  "jose-sa-1993": {
+    "name": "José Sá",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "joseph-anang-2000": {
+    "name": "Joseph Anang",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "joshua-kimmich-1995": {
+    "name": "Joshua Kimmich",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "josip-stanisic-2000": {
+    "name": "Josip Stanišić",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "josip-sutalo-2000": {
+    "name": "Josip Šutalo",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
   },
   "josko-gvardiol-2002": {
     "name": "Joško Gvardiol",
-    "marketValueEUR": 75000000
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "josue-casimir-2001": {
+    "name": "Josué Casimir",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "josue-duverger-2000": {
+    "name": "Josué Duverger",
+    "marketValueEUR": 50000,
+    "source": "transfermarkt"
+  },
+  "jovane-cabral-1998": {
+    "name": "Jovane Cabral",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "jovo-lukic-1998": {
+    "name": "Jovo Lukić",
+    "marketValueEUR": 2200000,
+    "source": "transfermarkt"
+  },
+  "juan-jose-caceres-2000": {
+    "name": "Juan José Cáceres",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "juan-manuel-sanabria-2000": {
+    "name": "Juan Manuel Sanabria",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "juan-musso-1994": {
+    "name": "Juan Musso",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "juan-portilla-1998": {
+    "name": "Juan Portilla",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
   },
   "jude-bellingham-2003": {
     "name": "Jude Bellingham",
-    "marketValueEUR": 180000000
+    "marketValueEUR": 130000000,
+    "source": "transfermarkt"
+  },
+  "jules-kounde-1998": {
+    "name": "Jules Koundé",
+    "marketValueEUR": 60000000,
+    "source": "transfermarkt"
   },
   "julian-alvarez-2000": {
     "name": "Julián Alvarez",
-    "marketValueEUR": 90000000
+    "marketValueEUR": 100000000,
+    "source": "transfermarkt"
+  },
+  "julian-quinones-1997": {
+    "name": "Julián Quiñones",
+    "marketValueEUR": 14000000,
+    "source": "transfermarkt"
+  },
+  "julian-ryerson-1997": {
+    "name": "Julian Ryerson",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
   },
   "julio-enciso-2004": {
     "name": "Julio Enciso",
-    "marketValueEUR": 20000000
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "juninho-bacuna-1997": {
+    "name": "Juninho Bacuna",
+    "marketValueEUR": 1700000,
+    "source": "transfermarkt"
+  },
+  "junior-alonso-1993": {
+    "name": "Júnior Alonso",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "junnosuke-suzuki-2003": {
+    "name": "Junnosuke Suzuki",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "junya-ito-1993": {
+    "name": "Junya Itō",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "jurien-gaari-1993": {
+    "name": "Juriën Gaari",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "justin-kluivert-1999": {
+    "name": "Justin Kluivert",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "kai-havertz-1999": {
+    "name": "Kai Havertz",
+    "marketValueEUR": 55000000,
+    "source": "transfermarkt"
+  },
+  "kaishu-sano-2000": {
+    "name": "Kaishū Sano",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "kaku-1995": {
+    "name": "Kaku",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "kalidou-koulibaly-1991": {
+    "name": "Kalidou Koulibaly",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "kamaldeen-sulemana-2002": {
+    "name": "Kamaldeen Sulemana",
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "kamogelo-sebelebele-2002": {
+    "name": "Kamogelo Sebelebele",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "keeto-thermoncy-2006": {
+    "name": "Keeto Thermoncy",
+    "marketValueEUR": 100000,
+    "source": "transfermarkt"
+  },
+  "keisuke-goto-2005": {
+    "name": "Keisuke Gotō",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "keisuke-osako-1999": {
+    "name": "Keisuke Ōsako",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "keito-nakamura-2000": {
+    "name": "Keito Nakamura",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "kelvin-pires-2000": {
+    "name": "Kelvin Pires",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "ken-sema-1993": {
+    "name": "Ken Sema",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
   },
   "kenan-yildiz-2005": {
     "name": "Kenan Yıldız",
-    "marketValueEUR": 75000000
+    "marketValueEUR": 75000000,
+    "source": "transfermarkt"
   },
-  "kim-min-jae-1996": {
-    "name": "Kim Min-jae",
-    "marketValueEUR": 45000000
+  "kendry-paez-2007": {
+    "name": "Kendry Páez",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "kenji-gorre-1994": {
+    "name": "Kenji Gorré",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "kenny-mclean-1992": {
+    "name": "Kenny McLean",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "kento-shiogai-2005": {
+    "name": "Kento Shiogai",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "kerim-alajbegovic-2007": {
+    "name": "Kerim Alajbegović",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "kevin-danso-1998": {
+    "name": "Kevin Danso",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "kevin-de-bruyne-1991": {
+    "name": "Kevin De Bruyne",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "kevin-rodriguez-2000": {
+    "name": "Kevin Rodríguez",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "kevin-yakob-2000": {
+    "name": "Kevin Yakob",
+    "marketValueEUR": 850000,
+    "source": "transfermarkt"
+  },
+  "khalid-al-ghannam-2000": {
+    "name": "Khalid Al-Ghannam",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "khalil-ayari-2005": {
+    "name": "Khalil Ayari",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "khuliso-mudau-1995": {
+    "name": "Khuliso Mudau",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "khulumani-ndamane-2004": {
+    "name": "Khulumani Ndamane",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "ko-itakura-1997": {
+    "name": "Kō Itakura",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "kobbie-mainoo-2005": {
+    "name": "Kobbie Mainoo",
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "kojo-peprah-oppong-2004": {
+    "name": "Kojo Peprah Oppong",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "koki-ogawa-1997": {
+    "name": "Kōki Ogawa",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "koni-de-winter-2002": {
+    "name": "Koni De Winter",
+    "marketValueEUR": 23000000,
+    "source": "transfermarkt"
   },
   "konrad-laimer-1997": {
     "name": "Konrad Laimer",
-    "marketValueEUR": 25000000
+    "marketValueEUR": 32000000,
+    "source": "transfermarkt"
+  },
+  "kosta-barbarouses-1990": {
+    "name": "Kosta Barbarouses",
+    "marketValueEUR": 300000,
+    "source": "transfermarkt"
+  },
+  "krepin-diatta-1999": {
+    "name": "Krépin Diatta",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "kristian-thorstvedt-1999": {
+    "name": "Kristian Thorstvedt",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "kristijan-jakic-1997": {
+    "name": "Kristijan Jakić",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "kristoffer-ajer-1998": {
+    "name": "Kristoffer Ajer",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "kristoffer-nordfeldt-1989": {
+    "name": "Kristoffer Nordfeldt",
+    "marketValueEUR": 175000,
+    "source": "transfermarkt"
+  },
+  "kwasi-sibo-1998": {
+    "name": "Kwasi Sibo",
+    "marketValueEUR": 1400000,
+    "source": "transfermarkt"
   },
   "kylian-mbappe-1998": {
     "name": "Kylian Mbappé",
-    "marketValueEUR": 180000000
+    "marketValueEUR": 180000000,
+    "source": "transfermarkt"
+  },
+  "lachlan-bayliss-2002": {
+    "name": "Lachlan Bayliss",
+    "marketValueEUR": 550000,
+    "source": "transfermarkt"
+  },
+  "ladislav-krejci-1999": {
+    "name": "Ladislav Krejčí",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "lamine-camara-2004": {
+    "name": "Lamine Camara",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
   },
   "lamine-yamal-2007": {
     "name": "Lamine Yamal",
-    "marketValueEUR": 200000000
+    "marketValueEUR": 200000000,
+    "source": "transfermarkt"
   },
   "lautaro-martinez-1997": {
     "name": "Lautaro Martínez",
-    "marketValueEUR": 90000000
+    "marketValueEUR": 85000000,
+    "source": "transfermarkt"
+  },
+  "lawrence-ati-zigi-1996": {
+    "name": "Lawrence Ati-Zigi",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
   },
   "leandro-bacuna-1991": {
     "name": "Leandro Bacuna",
-    "marketValueEUR": 1500000
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "leandro-trossard-1994": {
+    "name": "Leandro Trossard",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "leo-ostigard-1999": {
+    "name": "Leo Østigård",
+    "marketValueEUR": 13000000,
+    "source": "transfermarkt"
+  },
+  "leo-pereira-1996": {
+    "name": "Léo Pereira",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "leon-goretzka-1995": {
+    "name": "Leon Goretzka",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "lewis-ferguson-1999": {
+    "name": "Lewis Ferguson",
+    "marketValueEUR": 14000000,
+    "source": "transfermarkt"
+  },
+  "liam-millar-1999": {
+    "name": "Liam Millar",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "liberato-cacace-2000": {
+    "name": "Liberato Cacace",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "lionel-messi-1987": {
+    "name": "Lionel Messi",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "lisandro-martinez-1998": {
+    "name": "Lisandro Martínez",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "livano-comenencia-2004": {
+    "name": "Livano Comenencia",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "logan-costa-2001": {
+    "name": "Logan Costa",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "louicius-deedson-2001": {
+    "name": "Louicius Deedson",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "luc-de-fougerolles-2005": {
+    "name": "Luc de Fougerolles",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "luca-jaquez-2003": {
+    "name": "Luca Jaquez",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "luca-zidane-1998": {
+    "name": "Luca Zidane",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "lucas-bergvall-2006": {
+    "name": "Lucas Bergvall",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "lucas-digne-1993": {
+    "name": "Lucas Digne",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "lucas-hernandez-1996": {
+    "name": "Lucas Hernandez",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "lucas-herrington-2007": {
+    "name": "Lucas Herrington",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "lucas-paqueta-1997": {
+    "name": "Lucas Paquetá",
+    "marketValueEUR": 32000000,
+    "source": "transfermarkt"
+  },
+  "luis-chavez-1996": {
+    "name": "Luis Chávez",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
   },
   "luis-diaz-1997": {
     "name": "Luis Díaz",
-    "marketValueEUR": 80000000
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "luis-mejia-1991": {
+    "name": "Luis Mejía",
+    "marketValueEUR": 150000,
+    "source": "transfermarkt"
+  },
+  "luis-suarez-1997": {
+    "name": "Luis Suárez",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "luiz-henrique-2001": {
+    "name": "Luiz Henrique",
+    "marketValueEUR": 24000000,
+    "source": "transfermarkt"
+  },
+  "luka-modric-1985": {
+    "name": "Luka Modrić",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "luka-sucic-2002": {
+    "name": "Luka Sučić",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "luka-vuskovic-2007": {
+    "name": "Luka Vušković",
+    "marketValueEUR": 60000000,
+    "source": "transfermarkt"
+  },
+  "lukas-hornicek-2002": {
+    "name": "Lukáš Horníček",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "lutsharel-geertruida-2000": {
+    "name": "Lutsharel Geertruida",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
   },
   "lyle-foster-2000": {
     "name": "Lyle Foster",
-    "marketValueEUR": 12000000
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "lyndon-dykes-1995": {
+    "name": "Lyndon Dykes",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "maghnes-akliouche-2002": {
+    "name": "Maghnes Akliouche",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "mahmoud-al-mardi-1993": {
+    "name": "Mahmoud Al-Mardi",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "malick-thiaw-2001": {
+    "name": "Malick Thiaw",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "malik-tillman-2002": {
+    "name": "Malik Tillman",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "malo-gusto-2003": {
+    "name": "Malo Gusto",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "mamadou-sarr-2005": {
+    "name": "Mamadou Sarr",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "manaf-younis-1996": {
+    "name": "Manaf Younis",
+    "marketValueEUR": 300000,
+    "source": "transfermarkt"
+  },
+  "manu-kone-2001": {
+    "name": "Manu Koné",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
   },
   "manuel-akanji-1995": {
     "name": "Manuel Akanji",
-    "marketValueEUR": 42000000
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "manuel-neuer-1986": {
+    "name": "Manuel Neuer",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "manuel-ugarte-2001": {
+    "name": "Manuel Ugarte",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "marc-cucurella-1998": {
+    "name": "Marc Cucurella",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "marc-guehi-2000": {
+    "name": "Marc Guéhi",
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "marcel-sabitzer-1994": {
+    "name": "Marcel Sabitzer",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "marco-friedl-1998": {
+    "name": "Marco Friedl",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "marco-pasalic-2000": {
+    "name": "Marco Pašalić",
+    "marketValueEUR": 6500000,
+    "source": "transfermarkt"
+  },
+  "marcos-llorente-1995": {
+    "name": "Marcos Llorente",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "marcos-senesi-1997": {
+    "name": "Marcos Senesi",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "marcus-rashford-1997": {
+    "name": "Marcus Rashford",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "marcus-thuram-1997": {
+    "name": "Marcus Thuram",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "marin-pongracic-1997": {
+    "name": "Marin Pongračić",
+    "marketValueEUR": 6500000,
+    "source": "transfermarkt"
+  },
+  "mario-pasalic-1995": {
+    "name": "Mario Pašalić",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "mark-flekken-1993": {
+    "name": "Mark Flekken",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "mark-mckenzie-1999": {
+    "name": "Mark McKenzie",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "marko-arnautovic-1989": {
+    "name": "Marko Arnautović",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "marko-farji-2004": {
+    "name": "Marko Farji",
+    "marketValueEUR": 1700000,
+    "source": "transfermarkt"
+  },
+  "marko-stamenic-2002": {
+    "name": "Marko Stamenić",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "marquinhos-1994": {
+    "name": "Marquinhos",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "marten-de-roon-1991": {
+    "name": "Marten de Roon",
+    "marketValueEUR": 3200000,
+    "source": "transfermarkt"
+  },
+  "martin-baturina-2003": {
+    "name": "Martin Baturina",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "martin-erlic-1998": {
+    "name": "Martin Erlić",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "martin-experience-1999": {
+    "name": "Martin Expérience",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
   },
   "martin-odegaard-1998": {
     "name": "Martin Ødegaard",
-    "marketValueEUR": 90000000
+    "marketValueEUR": 65000000,
+    "source": "transfermarkt"
+  },
+  "martin-zlomislic-1998": {
+    "name": "Martin Zlomislić",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "martin-zubimendi-1999": {
+    "name": "Martín Zubimendi",
+    "marketValueEUR": 75000000,
+    "source": "transfermarkt"
+  },
+  "marvin-keller-2002": {
+    "name": "Marvin Keller",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "marvin-senaya-2001": {
+    "name": "Marvin Senaya",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "marwane-saadane-1992": {
+    "name": "Marwane Saâdane",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "matej-kovar-2000": {
+    "name": "Matěj Kovář",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "mateo-chavez-2004": {
+    "name": "Mateo Chávez",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "mateo-kovacic-1994": {
+    "name": "Mateo Kovačić",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "matheus-cunha-1999": {
+    "name": "Matheus Cunha",
+    "marketValueEUR": 75000000,
+    "source": "transfermarkt"
+  },
+  "matheus-nunes-1998": {
+    "name": "Matheus Nunes",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "mathew-leckie-1991": {
+    "name": "Mathew Leckie",
+    "marketValueEUR": 300000,
+    "source": "transfermarkt"
+  },
+  "mathew-ryan-1992": {
+    "name": "Mathew Ryan",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "mathias-olivera-1997": {
+    "name": "Mathías Olivera",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "mathieu-choiniere-1999": {
+    "name": "Mathieu Choinière",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "matias-fernandez-pardo-2005": {
+    "name": "Matias Fernandez-Pardo",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "matias-galarza-2002": {
+    "name": "Matías Galarza",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "mats-wieffer-1999": {
+    "name": "Mats Wieffer",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "matt-freese-1998": {
+    "name": "Matt Freese",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "matt-turner-1994": {
+    "name": "Matt Turner",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "matthieu-epolo-2005": {
+    "name": "Matthieu Epolo",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "mattias-svanberg-1999": {
+    "name": "Mattias Svanberg",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "mauricio-2001": {
+    "name": "Maurício",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "max-arfsten-2001": {
+    "name": "Max Arfsten",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "max-crocombe-1993": {
+    "name": "Max Crocombe",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "maxence-lacroix-2000": {
+    "name": "Maxence Lacroix",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "maxim-de-cuyper-2000": {
+    "name": "Maxim De Cuyper",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "maxime-crepeau-1994": {
+    "name": "Maxime Crépeau",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "maximilian-beier-2002": {
+    "name": "Maximilian Beier",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "mbekezeli-mbokazi-2005": {
+    "name": "Mbekezeli Mbokazi",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "mehdi-ghayedi-1998": {
+    "name": "Mehdi Ghayedi",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
   },
   "mehdi-taremi-1992": {
     "name": "Mehdi Taremi",
-    "marketValueEUR": 12000000
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "melvin-mastil-2000": {
+    "name": "Melvin Mastil",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "memphis-depay-1994": {
+    "name": "Memphis Depay",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "merih-demiral-1998": {
+    "name": "Merih Demiral",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "michael-boxall-1988": {
+    "name": "Michael Boxall",
+    "marketValueEUR": 150000,
+    "source": "transfermarkt"
+  },
+  "michael-gregoritsch-1994": {
+    "name": "Michael Gregoritsch",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "michael-olise-2001": {
+    "name": "Michael Olise",
+    "marketValueEUR": 150000000,
+    "source": "transfermarkt"
+  },
+  "michael-svoboda-1998": {
+    "name": "Michael Svoboda",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "michael-woud-1999": {
+    "name": "Michael Woud",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "michel-aebischer-1997": {
+    "name": "Michel Aebischer",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "micky-van-de-ven-2001": {
+    "name": "Micky van de Ven",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "miguel-almiron-1994": {
+    "name": "Miguel Almirón",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "mike-maignan-1995": {
+    "name": "Mike Maignan",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "mike-penders-2005": {
+    "name": "Mike Penders",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "mikel-merino-1996": {
+    "name": "Mikel Merino",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "mikel-oyarzabal-1997": {
+    "name": "Mikel Oyarzabal",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "miles-robinson-1997": {
+    "name": "Miles Robinson",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "milos-degenek-1994": {
+    "name": "Miloš Degenek",
+    "marketValueEUR": 450000,
+    "source": "transfermarkt"
+  },
+  "miro-muheim-1998": {
+    "name": "Miro Muheim",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "mladen-jurkas-2007": {
+    "name": "Mladen Jurkas",
+    "marketValueEUR": 700000,
+    "source": "transfermarkt"
+  },
+  "mohamed-abdelmonem-1999": {
+    "name": "Mohamed Abdelmonem",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "mohamed-amine-ben-hamida-1995": {
+    "name": "Mohamed Amine Ben Hamida",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "mohamed-amine-tougai-2000": {
+    "name": "Mohamed Amine Tougai",
+    "marketValueEUR": 1300000,
+    "source": "transfermarkt"
+  },
+  "mohamed-amoura-2000": {
+    "name": "Mohamed Amoura",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "mohamed-kanno-1994": {
+    "name": "Mohamed Kanno",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "mohamed-kone-2002": {
+    "name": "Mohamed Koné",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
   },
   "mohamed-salah-1992": {
     "name": "Mohamed Salah",
-    "marketValueEUR": 50000000
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "mohamed-toure-2004": {
+    "name": "Mohamed Touré",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "mohammad-al-dawoud-1992": {
+    "name": "Mohammad Al-Dawoud",
+    "marketValueEUR": 150000,
+    "source": "transfermarkt"
+  },
+  "mohammad-ghorbani-2001": {
+    "name": "Mohammad Ghorbani",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "mohammad-mohebi-1998": {
+    "name": "Mohammad Mohebi",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "mohammed-abu-al-shamat-2002": {
+    "name": "Mohammed Abu Al-Shamat",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "mohammed-al-owais-1991": {
+    "name": "Mohammed Al-Owais",
+    "marketValueEUR": 275000,
+    "source": "transfermarkt"
+  },
+  "mohanad-ali-2000": {
+    "name": "Mohanad Ali",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "mohannad-abu-taha-2003": {
+    "name": "Mohannad Abu Taha",
+    "marketValueEUR": 550000,
+    "source": "transfermarkt"
+  },
+  "moise-bombito-2000": {
+    "name": "Moïse Bombito",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
   },
   "moises-caicedo-2001": {
     "name": "Moisés Caicedo",
-    "marketValueEUR": 90000000
+    "marketValueEUR": 100000000,
+    "source": "transfermarkt"
   },
-  "musa-al-taamari-1997": {
-    "name": "Musa Al-Taamari",
-    "marketValueEUR": 9000000
+  "moises-ramirez-2000": {
+    "name": "Moisés Ramírez",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "montassar-talbi-1998": {
+    "name": "Montassar Talbi",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "morten-thorsby-1996": {
+    "name": "Morten Thorsby",
+    "marketValueEUR": 2800000,
+    "source": "transfermarkt"
+  },
+  "mory-diaw-1993": {
+    "name": "Mory Diaw",
+    "marketValueEUR": 900000,
+    "source": "transfermarkt"
+  },
+  "moteb-al-harbi-2000": {
+    "name": "Moteb Al-Harbi",
+    "marketValueEUR": 1400000,
+    "source": "transfermarkt"
+  },
+  "moussa-niakhate-1996": {
+    "name": "Moussa Niakhaté",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "moutaz-neffati-2004": {
+    "name": "Moutaz Neffati",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "musab-al-juwayr-2003": {
+    "name": "Musab Al-Juwayr",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "mustafa-saadoon-2001": {
+    "name": "Mustafa Saadoon",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "nabil-bentaleb-1994": {
+    "name": "Nabil Bentaleb",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "nadiem-amiri-1996": {
+    "name": "Nadiem Amiri",
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "nahuel-molina-1998": {
+    "name": "Nahuel Molina",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "nando-pijnaker-1999": {
+    "name": "Nando Pijnaker",
+    "marketValueEUR": 400000,
+    "source": "transfermarkt"
+  },
+  "nasser-al-dawsari-1998": {
+    "name": "Nasser Al-Dawsari",
+    "marketValueEUR": 900000,
+    "source": "transfermarkt"
+  },
+  "nathan-ake-1995": {
+    "name": "Nathan Aké",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "nathan-ngoy-2003": {
+    "name": "Nathan Ngoy",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "nathan-patterson-2001": {
+    "name": "Nathan Patterson",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "nathanael-mbuku-2002": {
+    "name": "Nathanaël Mbuku",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "nathaniel-brown-2003": {
+    "name": "Nathaniel Brown",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "nawaf-al-aqidi-2000": {
+    "name": "Nawaf Al-Aqidi",
+    "marketValueEUR": 650000,
+    "source": "transfermarkt"
+  },
+  "nawaf-boushal-1999": {
+    "name": "Nawaf Boushal",
+    "marketValueEUR": 1400000,
+    "source": "transfermarkt"
+  },
+  "neil-el-aynaoui-2001": {
+    "name": "Neil El Aynaoui",
+    "marketValueEUR": 23000000,
+    "source": "transfermarkt"
+  },
+  "nestory-irankunda-2006": {
+    "name": "Nestory Irankunda",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "neymar-1992": {
+    "name": "Neymar",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "ngal-ayel-mukau-2004": {
+    "name": "Ngal'ayel Mukau",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "nick-woltemade-2002": {
+    "name": "Nick Woltemade",
+    "marketValueEUR": 55000000,
+    "source": "transfermarkt"
+  },
+  "nico-elvedi-1996": {
+    "name": "Nico Elvedi",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "nico-o-reilly-2005": {
+    "name": "Nico O'Reilly",
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "nico-paz-2004": {
+    "name": "Nico Paz",
+    "marketValueEUR": 80000000,
+    "source": "transfermarkt"
+  },
+  "nico-schlotterbeck-1999": {
+    "name": "Nico Schlotterbeck",
+    "marketValueEUR": 55000000,
+    "source": "transfermarkt"
+  },
+  "nico-williams-2002": {
+    "name": "Nico Williams",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "nicolas-de-la-cruz-1997": {
+    "name": "Nicolás de la Cruz",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
   },
   "nicolas-jackson-2001": {
     "name": "Nicolas Jackson",
-    "marketValueEUR": 65000000
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "nicolas-otamendi-1988": {
+    "name": "Nicolás Otamendi",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "nicolas-pepe-1995": {
+    "name": "Nicolas Pépé",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "nicolas-seiwald-2001": {
+    "name": "Nicolas Seiwald",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "nicolas-tagliafico-1992": {
+    "name": "Nicolás Tagliafico",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "niko-sigur-2003": {
+    "name": "Niko Sigur",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "nikola-katic-1996": {
+    "name": "Nikola Katić",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "nikola-moro-1998": {
+    "name": "Nikola Moro",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "nikola-vasilj-1995": {
+    "name": "Nikola Vasilj",
+    "marketValueEUR": 4500000,
+    "source": "transfermarkt"
+  },
+  "nikola-vlasic-1997": {
+    "name": "Nikola Vlašić",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "nilson-angulo-2003": {
+    "name": "Nilson Angulo",
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "nishan-velupillay-2001": {
+    "name": "Nishan Velupillay",
+    "marketValueEUR": 650000,
+    "source": "transfermarkt"
+  },
+  "nkosinathi-sibisi-1995": {
+    "name": "Nkosinathi Sibisi",
+    "marketValueEUR": 1600000,
+    "source": "transfermarkt"
+  },
+  "noah-okafor-2000": {
+    "name": "Noah Okafor",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "noah-sadiki-2004": {
+    "name": "Noah Sadiki",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "noni-madueke-2002": {
+    "name": "Noni Madueke",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "noor-al-rawabdeh-1997": {
+    "name": "Noor Al-Rawabdeh",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "noussair-mazraoui-1997": {
+    "name": "Noussair Mazraoui",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "nuno-mendes-2002": {
+    "name": "Nuno Mendes",
+    "marketValueEUR": 80000000,
+    "source": "transfermarkt"
+  },
+  "obed-vargas-2005": {
+    "name": "Obed Vargas",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "odilon-kossounou-2001": {
+    "name": "Odilon Kossounou",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "oliver-baumann-1990": {
+    "name": "Oliver Baumann",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "ollie-watkins-1995": {
+    "name": "Ollie Watkins",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "olwethu-makhanya-2004": {
+    "name": "Olwethu Makhanya",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "omar-alderete-1996": {
+    "name": "Omar Alderete",
+    "marketValueEUR": 13000000,
+    "source": "transfermarkt"
+  },
+  "omar-marmoush-1999": {
+    "name": "Omar Marmoush",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "omar-rekik-2001": {
+    "name": "Omar Rekik",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "orbelin-pineda-1996": {
+    "name": "Orbelín Pineda",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "orjan-nyland-1990": {
+    "name": "Ørjan Nyland",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "orlando-gill-2000": {
+    "name": "Orlando Gill",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "orlando-mosquera-1994": {
+    "name": "Orlando Mosquera",
+    "marketValueEUR": 700000,
+    "source": "transfermarkt"
+  },
+  "oswin-appollis-2001": {
+    "name": "Oswin Appollis",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "otabek-shukurov-1996": {
+    "name": "Otabek Shukurov",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "oumar-diakite-2003": {
+    "name": "Oumar Diakité",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "ousmane-dembele-1997": {
+    "name": "Ousmane Dembélé",
+    "marketValueEUR": 100000000,
+    "source": "transfermarkt"
+  },
+  "ousmane-diomande-2003": {
+    "name": "Ousmane Diomande",
+    "marketValueEUR": 42000000,
+    "source": "transfermarkt"
+  },
+  "ozan-kabak-2000": {
+    "name": "Ozan Kabak",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "pape-gueye-1999": {
+    "name": "Pape Gueye",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "pape-matar-sarr-2002": {
+    "name": "Pape Matar Sarr",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "parfait-guiagon-2001": {
+    "name": "Parfait Guiagon",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "pascal-gross-1991": {
+    "name": "Pascal Groß",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "pathe-ciss-1994": {
+    "name": "Pathé Ciss",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "patrick-beach-2003": {
+    "name": "Patrick Beach",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "patrick-berg-1997": {
+    "name": "Patrick Berg",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "patrick-pentz-1997": {
+    "name": "Patrick Pentz",
+    "marketValueEUR": 2200000,
+    "source": "transfermarkt"
+  },
+  "patrick-wimmer-2001": {
+    "name": "Patrick Wimmer",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
   },
   "patrik-schick-1996": {
     "name": "Patrik Schick",
-    "marketValueEUR": 30000000
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "pau-cubarsi-2007": {
+    "name": "Pau Cubarsí",
+    "marketValueEUR": 80000000,
+    "source": "transfermarkt"
+  },
+  "paul-izzo-1995": {
+    "name": "Paul Izzo",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "paul-okon-engstler-2005": {
+    "name": "Paul Okon-Engstler",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "paul-wanner-2005": {
+    "name": "Paul Wanner",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "pavel-sulc-2000": {
+    "name": "Pavel Šulc",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
   },
   "pedri-2002": {
     "name": "Pedri",
-    "marketValueEUR": 140000000
+    "marketValueEUR": 150000000,
+    "source": "transfermarkt"
+  },
+  "pedro-neto-2000": {
+    "name": "Pedro Neto",
+    "marketValueEUR": 60000000,
+    "source": "transfermarkt"
+  },
+  "pedro-porro-1999": {
+    "name": "Pedro Porro",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "pervis-estupinan-1998": {
+    "name": "Pervis Estupiñán",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "petar-musa-1998": {
+    "name": "Petar Musa",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "petar-sucic-2003": {
+    "name": "Petar Sučić",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "philipp-lienhart-1996": {
+    "name": "Philipp Lienhart",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "phillipp-mwene-1994": {
+    "name": "Phillipp Mwene",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "piero-hincapie-2002": {
+    "name": "Piero Hincapié",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "promise-david-2001": {
+    "name": "Promise David",
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "quinten-timber-2001": {
+    "name": "Quinten Timber",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "raed-chikhaoui-2004": {
+    "name": "Raed Chikhaoui",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
   },
   "rafael-leao-1999": {
     "name": "Rafael Leão",
-    "marketValueEUR": 90000000
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "rafik-belghali-2002": {
+    "name": "Rafik Belghali",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "rajaei-ayed-1993": {
+    "name": "Rajaei Ayed",
+    "marketValueEUR": 325000,
+    "source": "transfermarkt"
+  },
+  "ramiz-zerrouki-1998": {
+    "name": "Ramiz Zerrouki",
+    "marketValueEUR": 6500000,
+    "source": "transfermarkt"
+  },
+  "ramon-sosa-1999": {
+    "name": "Ramón Sosa",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "ramy-bensebaini-1995": {
+    "name": "Ramy Bensebaini",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "ramy-rabia-1993": {
+    "name": "Ramy Rabia",
+    "marketValueEUR": 600000,
+    "source": "transfermarkt"
+  },
+  "rani-khedira-1994": {
+    "name": "Rani Khedira",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
   },
   "raphinha-1996": {
     "name": "Raphinha",
-    "marketValueEUR": 100000000
+    "marketValueEUR": 70000000,
+    "source": "transfermarkt"
+  },
+  "raul-jimenez-1991": {
+    "name": "Raúl Jiménez",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "rayan-2006": {
+    "name": "Rayan",
+    "marketValueEUR": 60000000,
+    "source": "transfermarkt"
+  },
+  "rayan-cherki-2003": {
+    "name": "Rayan Cherki",
+    "marketValueEUR": 90000000,
+    "source": "transfermarkt"
+  },
+  "rayan-elloumi-2007": {
+    "name": "Rayan Elloumi",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "redouane-halhal-2003": {
+    "name": "Redouane Halhal",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "reece-james-1999": {
+    "name": "Reece James",
+    "marketValueEUR": 60000000,
+    "source": "transfermarkt"
+  },
+  "relebohile-mofokeng-2004": {
+    "name": "Relebohile Mofokeng",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "remo-freuler-1992": {
+    "name": "Remo Freuler",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "renato-veiga-2003": {
+    "name": "Renato Veiga",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "ricardo-ade-1990": {
+    "name": "Ricardo Adé",
+    "marketValueEUR": 300000,
+    "source": "transfermarkt"
+  },
+  "ricardo-goss-1994": {
+    "name": "Ricardo Goss",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "ricardo-pepi-2003": {
+    "name": "Ricardo Pepi",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "ricardo-rodriguez-1992": {
+    "name": "Ricardo Rodriguez",
+    "marketValueEUR": 1400000,
+    "source": "transfermarkt"
+  },
+  "richard-rios-2000": {
+    "name": "Richard Ríos",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "richie-laryea-1995": {
+    "name": "Richie Laryea",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "ritsu-doan-1998": {
+    "name": "Ritsu Dōan",
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "riyad-mahrez-1991": {
+    "name": "Riyad Mahrez",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "roberto-lopes-1992": {
+    "name": "Roberto Lopes",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "robin-hranac-2000": {
+    "name": "Robin Hranáč",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "robin-risser-2004": {
+    "name": "Robin Risser",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "robin-roefs-2003": {
+    "name": "Robin Roefs",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "roderick-miller-1992": {
+    "name": "Roderick Miller",
+    "marketValueEUR": 175000,
+    "source": "transfermarkt"
+  },
+  "rodri-1996": {
+    "name": "Rodri",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "rodrigo-bentancur-1997": {
+    "name": "Rodrigo Bentancur",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "rodrigo-de-paul-1994": {
+    "name": "Rodrigo De Paul",
+    "marketValueEUR": 14000000,
+    "source": "transfermarkt"
+  },
+  "rodrigo-zalazar-1999": {
+    "name": "Rodrigo Zalazar",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "roger-ibanez-1998": {
+    "name": "Roger Ibañez",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "romano-schmid-2000": {
+    "name": "Romano Schmid",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "romelu-lukaku-1993": {
+    "name": "Romelu Lukaku",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "ronald-araujo-1999": {
+    "name": "Ronald Araújo",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "ronwen-williams-1992": {
+    "name": "Ronwen Williams",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "ross-stewart-1996": {
+    "name": "Ross Stewart",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "ruben-dias-1997": {
+    "name": "Rúben Dias",
+    "marketValueEUR": 55000000,
+    "source": "transfermarkt"
+  },
+  "ruben-neves-1997": {
+    "name": "Rúben Neves",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "ruben-vargas-1998": {
+    "name": "Rubén Vargas",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
+  },
+  "rui-silva-1994": {
+    "name": "Rui Silva",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "ryan-christie-1995": {
+    "name": "Ryan Christie",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "ryan-gravenberch-2002": {
+    "name": "Ryan Gravenberch",
+    "marketValueEUR": 80000000,
+    "source": "transfermarkt"
   },
   "ryan-mendes-1990": {
     "name": "Ryan Mendes",
-    "marketValueEUR": 1500000
+    "marketValueEUR": 200000,
+    "source": "transfermarkt"
+  },
+  "ryan-thomas-1994": {
+    "name": "Ryan Thomas",
+    "marketValueEUR": 650000,
+    "source": "transfermarkt"
+  },
+  "sabri-ben-hessen-1996": {
+    "name": "Sabri Ben Hessen",
+    "marketValueEUR": 550000,
+    "source": "transfermarkt"
+  },
+  "sadio-mane-1992": {
+    "name": "Sadio Mané",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "saleh-al-shehri-1993": {
+    "name": "Saleh Al-Shehri",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
   },
   "salem-al-dawsari-1991": {
     "name": "Salem Al-Dawsari",
-    "marketValueEUR": 6000000
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "salih-ozcan-1998": {
+    "name": "Salih Özcan",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "saman-ghoddos-1993": {
+    "name": "Saman Ghoddos",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "samed-bazdar-2004": {
+    "name": "Samed Baždar",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "samir-chergui-1999": {
+    "name": "Samir Chergui",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "samir-el-mourabet-2005": {
+    "name": "Samir El Mourabet",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "samu-costa-2000": {
+    "name": "Samú Costa",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "samuel-moutoussamy-1996": {
+    "name": "Samuel Moutoussamy",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "samukele-kabini-2004": {
+    "name": "Samukele Kabini",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "sander-berge-1998": {
+    "name": "Sander Berge",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "sander-tangvik-2002": {
+    "name": "Sander Tangvik",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "santiago-bueno-1998": {
+    "name": "Santiago Bueno",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
   },
   "santiago-gimenez-2001": {
     "name": "Santiago Giménez",
-    "marketValueEUR": 45000000
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "sarpreet-singh-1999": {
+    "name": "Sarpreet Singh",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "sasa-kalajdzic-1997": {
+    "name": "Saša Kalajdžić",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "saud-abdulhamid-1999": {
+    "name": "Saud Abdulhamid",
+    "marketValueEUR": 9000000,
+    "source": "transfermarkt"
+  },
+  "scott-mckenna-1996": {
+    "name": "Scott McKenna",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
   },
   "scott-mctominay-1996": {
     "name": "Scott McTominay",
-    "marketValueEUR": 30000000
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "sead-kolasinac-1993": {
+    "name": "Sead Kolašinac",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "sebastian-berhalter-2001": {
+    "name": "Sebastian Berhalter",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "seko-fofana-1995": {
+    "name": "Seko Fofana",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "senne-lammens-2002": {
+    "name": "Senne Lammens",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "sergino-dest-2000": {
+    "name": "Sergiño Dest",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "sergio-rochet-1993": {
+    "name": "Sergio Rochet",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "sherel-floranus-1998": {
+    "name": "Sherel Floranus",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "shogo-taniguchi-1991": {
+    "name": "Shōgo Taniguchi",
+    "marketValueEUR": 750000,
+    "source": "transfermarkt"
+  },
+  "shurandy-sambo-2001": {
+    "name": "Shurandy Sambo",
+    "marketValueEUR": 1300000,
+    "source": "transfermarkt"
+  },
+  "shuto-machino-1999": {
+    "name": "Shūto Machino",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "sidny-lopes-cabral-2002": {
+    "name": "Sidny Lopes Cabral",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "silvan-widmer-1993": {
+    "name": "Silvan Widmer",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "simon-adingra-2002": {
+    "name": "Simon Adingra",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "simon-banza-1996": {
+    "name": "Simon Banza",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "sipho-chaine-1996": {
+    "name": "Sipho Chaine",
+    "marketValueEUR": 1600000,
+    "source": "transfermarkt"
+  },
+  "sofyan-amrabat-1996": {
+    "name": "Sofyan Amrabat",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "sondre-langas-2001": {
+    "name": "Sondre Langås",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "sontje-hansen-2002": {
+    "name": "Sontje Hansen",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "soufiane-rahimi-1996": {
+    "name": "Soufiane Rahimi",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "stefan-posch-1997": {
+    "name": "Stefan Posch",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "stephen-eustaquio-1996": {
+    "name": "Stephen Eustáquio",
+    "marketValueEUR": 6000000,
+    "source": "transfermarkt"
+  },
+  "steve-kapuadi-1998": {
+    "name": "Steve Kapuadi",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "steven-moreira-1994": {
+    "name": "Steven Moreira",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "stjepan-radeljic-1997": {
+    "name": "Stjepan Radeljić",
+    "marketValueEUR": 2800000,
+    "source": "transfermarkt"
+  },
+  "stopira-1988": {
+    "name": "Stopira",
+    "marketValueEUR": 50000,
+    "source": "transfermarkt"
+  },
+  "sultan-mandash-1994": {
+    "name": "Sultan Mandash",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "taha-ali-1998": {
+    "name": "Taha Ali",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "tahith-chong-1999": {
+    "name": "Tahith Chong",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "tajon-buchanan-1999": {
+    "name": "Tajon Buchanan",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
   },
   "takefusa-kubo-2001": {
     "name": "Takefusa Kubo",
-    "marketValueEUR": 60000000
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "takehiro-tomiyasu-1998": {
+    "name": "Takehiro Tomiyasu",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "tani-oluwaseyi-2000": {
+    "name": "Tani Oluwaseyi",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "tarik-muharemovic-2003": {
+    "name": "Tarik Muharemović",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "teboho-mokoena-1997": {
+    "name": "Teboho Mokoena",
+    "marketValueEUR": 2800000,
+    "source": "transfermarkt"
+  },
+  "telmo-arcanjo-2001": {
+    "name": "Telmo Arcanjo",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "tete-yengi-2000": {
+    "name": "Tete Yengi",
+    "marketValueEUR": 450000,
+    "source": "transfermarkt"
+  },
+  "teun-koopmeiners-1998": {
+    "name": "Teun Koopmeiners",
+    "marketValueEUR": 14000000,
+    "source": "transfermarkt"
+  },
+  "thabang-matuludi-1999": {
+    "name": "Thabang Matuludi",
+    "marketValueEUR": 1200000,
+    "source": "transfermarkt"
+  },
+  "thalente-mbatha-2000": {
+    "name": "Thalente Mbatha",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "thapelo-maseko-2003": {
+    "name": "Thapelo Maseko",
+    "marketValueEUR": 750000,
+    "source": "transfermarkt"
+  },
+  "themba-zwane-1989": {
+    "name": "Themba Zwane",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "theo-bongonda-1995": {
+    "name": "Théo Bongonda",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "theo-hernandez-1997": {
+    "name": "Théo Hernandez",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "thiago-almada-2001": {
+    "name": "Thiago Almada",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "thibaut-courtois-1992": {
+    "name": "Thibaut Courtois",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
+  },
+  "thomas-meunier-1991": {
+    "name": "Thomas Meunier",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "thomas-partey-1993": {
+    "name": "Thomas Partey",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "tijjani-reijnders-1998": {
+    "name": "Tijjani Reijnders",
+    "marketValueEUR": 50000000,
+    "source": "transfermarkt"
+  },
+  "tim-payne-1994": {
+    "name": "Tim Payne",
+    "marketValueEUR": 350000,
+    "source": "transfermarkt"
+  },
+  "tim-ream-1987": {
+    "name": "Tim Ream",
+    "marketValueEUR": 150000,
+    "source": "transfermarkt"
+  },
+  "timothy-castagne-1995": {
+    "name": "Timothy Castagne",
+    "marketValueEUR": 8000000,
+    "source": "transfermarkt"
+  },
+  "timothy-fayulu-1999": {
+    "name": "Timothy Fayulu",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "timothy-weah-2000": {
+    "name": "Timothy Weah",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "tino-livramento-2002": {
+    "name": "Tino Livramento",
+    "marketValueEUR": 45000000,
+    "source": "transfermarkt"
+  },
+  "tomas-araujo-2002": {
+    "name": "Tomás Araújo",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "tomas-rodriguez-1999": {
+    "name": "Tomás Rodríguez",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "tomas-soucek-1995": {
+    "name": "Tomáš Souček",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "tommy-smith-1990": {
+    "name": "Tommy Smith",
+    "marketValueEUR": 50000,
+    "source": "transfermarkt"
+  },
+  "tomoki-hayakawa-1999": {
+    "name": "Tomoki Hayakawa",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "toni-fruk-2001": {
+    "name": "Toni Fruk",
+    "marketValueEUR": 9000000,
+    "source": "transfermarkt"
+  },
+  "torbjorn-heggem-1999": {
+    "name": "Torbjørn Heggem",
+    "marketValueEUR": 13000000,
+    "source": "transfermarkt"
+  },
+  "tshepang-moremi-2000": {
+    "name": "Tshepang Moremi",
+    "marketValueEUR": 1400000,
+    "source": "transfermarkt"
+  },
+  "tsuyoshi-watanabe-1997": {
+    "name": "Tsuyoshi Watanabe",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "tyler-adams-1999": {
+    "name": "Tyler Adams",
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "tyler-bindon-2005": {
+    "name": "Tyler Bindon",
+    "marketValueEUR": 3500000,
+    "source": "transfermarkt"
+  },
+  "tyler-fletcher-2007": {
+    "name": "Tyler Fletcher",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "tyrese-noslin-2002": {
+    "name": "Tyrese Noslin",
+    "marketValueEUR": 750000,
+    "source": "transfermarkt"
+  },
+  "tyrick-bodak-2002": {
+    "name": "Tyrick Bodak",
+    "marketValueEUR": 25000,
+    "source": "transfermarkt"
+  },
+  "unai-simon-1997": {
+    "name": "Unai Simón",
+    "marketValueEUR": 22000000,
+    "source": "transfermarkt"
+  },
+  "valentin-barco-2004": {
+    "name": "Valentín Barco",
+    "marketValueEUR": 40000000,
+    "source": "transfermarkt"
+  },
+  "victor-lindelof-1994": {
+    "name": "Victor Lindelöf",
+    "marketValueEUR": 5000000,
+    "source": "transfermarkt"
+  },
+  "victor-munoz-2003": {
+    "name": "Víctor Muñoz",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "viktor-gyokeres-1998": {
+    "name": "Viktor Gyökeres",
+    "marketValueEUR": 65000000,
+    "source": "transfermarkt"
+  },
+  "viktor-johansson-1998": {
+    "name": "Viktor Johansson",
+    "marketValueEUR": 12000000,
+    "source": "transfermarkt"
   },
   "vinicius-junior-2000": {
     "name": "Vinícius Júnior",
-    "marketValueEUR": 200000000
+    "marketValueEUR": 140000000,
+    "source": "transfermarkt"
+  },
+  "virgil-van-dijk-1991": {
+    "name": "Virgil van Dijk",
+    "marketValueEUR": 15000000,
+    "source": "transfermarkt"
   },
   "vitinha-2000": {
     "name": "Vitinha",
-    "marketValueEUR": 70000000
+    "marketValueEUR": 140000000,
+    "source": "transfermarkt"
+  },
+  "vladimir-coufal-1992": {
+    "name": "Vladimír Coufal",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "vozinha-1986": {
+    "name": "Vozinha",
+    "marketValueEUR": 50000,
+    "source": "transfermarkt"
+  },
+  "waldemar-anton-1996": {
+    "name": "Waldemar Anton",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "warren-zaire-emery-2006": {
+    "name": "Warren Zaïre-Emery",
+    "marketValueEUR": 80000000,
+    "source": "transfermarkt"
+  },
+  "weston-mckennie-1998": {
+    "name": "Weston McKennie",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "weverton-1987": {
+    "name": "Weverton",
+    "marketValueEUR": 700000,
+    "source": "transfermarkt"
+  },
+  "wilguens-paugain-2001": {
+    "name": "Wilguens Paugain",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
+  },
+  "william-saliba-2001": {
+    "name": "William Saliba",
+    "marketValueEUR": 100000000,
+    "source": "transfermarkt"
+  },
+  "willian-pacho-2001": {
+    "name": "Willian Pacho",
+    "marketValueEUR": 80000000,
+    "source": "transfermarkt"
+  },
+  "willy-semedo-1994": {
+    "name": "Willy Semedo",
+    "marketValueEUR": 1000000,
+    "source": "transfermarkt"
+  },
+  "wilson-isidor-2000": {
+    "name": "Wilson Isidor",
+    "marketValueEUR": 18000000,
+    "source": "transfermarkt"
+  },
+  "woodensky-pierre-2004": {
+    "name": "Woodensky Pierre",
+    "marketValueEUR": 100000,
+    "source": "transfermarkt"
+  },
+  "wout-weghorst-1992": {
+    "name": "Wout Weghorst",
+    "marketValueEUR": 2000000,
+    "source": "transfermarkt"
+  },
+  "xaver-schlager-1997": {
+    "name": "Xaver Schlager",
+    "marketValueEUR": 10000000,
+    "source": "transfermarkt"
+  },
+  "yaimar-medina-2004": {
+    "name": "Yaimar Medina",
+    "marketValueEUR": 4000000,
+    "source": "transfermarkt"
+  },
+  "yan-diomande-2006": {
+    "name": "Yan Diomande",
+    "marketValueEUR": 90000000,
+    "source": "transfermarkt"
+  },
+  "yan-valery-1999": {
+    "name": "Yan Valery",
+    "marketValueEUR": 1500000,
+    "source": "transfermarkt"
+  },
+  "yannick-semedo-1995": {
+    "name": "Yannick Semedo",
+    "marketValueEUR": 250000,
+    "source": "transfermarkt"
+  },
+  "yasin-ayari-2003": {
+    "name": "Yasin Ayari",
+    "marketValueEUR": 35000000,
+    "source": "transfermarkt"
+  },
+  "yassin-fortune-1999": {
+    "name": "Yassin Fortuné",
+    "marketValueEUR": 300000,
+    "source": "transfermarkt"
+  },
+  "yassine-bounou-1991": {
+    "name": "Yassine Bounou",
+    "marketValueEUR": 3000000,
+    "source": "transfermarkt"
+  },
+  "yazeed-abulaila-1993": {
+    "name": "Yazeed Abulaila",
+    "marketValueEUR": 300000,
+    "source": "transfermarkt"
+  },
+  "yehvann-diouf-1999": {
+    "name": "Yehvann Diouf",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "yeremy-pino-2002": {
+    "name": "Yéremy Pino",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "yerry-mina-1994": {
+    "name": "Yerry Mina",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
   },
   "yoane-wissa-1996": {
     "name": "Yoane Wissa",
-    "marketValueEUR": 25000000
+    "marketValueEUR": 25000000,
+    "source": "transfermarkt"
+  },
+  "youri-tielemans-1997": {
+    "name": "Youri Tielemans",
+    "marketValueEUR": 30000000,
+    "source": "transfermarkt"
+  },
+  "youssef-amyn-2003": {
+    "name": "Youssef Amyn",
+    "marketValueEUR": 550000,
+    "source": "transfermarkt"
+  },
+  "yuito-suzuki-2001": {
+    "name": "Yuito Suzuki",
+    "marketValueEUR": 24000000,
+    "source": "transfermarkt"
+  },
+  "yukinari-sugawara-2000": {
+    "name": "Yukinari Sugawara",
+    "marketValueEUR": 5500000,
+    "source": "transfermarkt"
+  },
+  "yuto-nagatomo-1986": {
+    "name": "Yūto Nagatomo",
+    "marketValueEUR": 100000,
+    "source": "transfermarkt"
+  },
+  "yvon-mvogo-1994": {
+    "name": "Yvon Mvogo",
+    "marketValueEUR": 2500000,
+    "source": "transfermarkt"
+  },
+  "zaid-ismail-2002": {
+    "name": "Zaid Ismail",
+    "marketValueEUR": 500000,
+    "source": "transfermarkt"
+  },
+  "zakaria-el-ouahdi-2001": {
+    "name": "Zakaria El Ouahdi",
+    "marketValueEUR": 17000000,
+    "source": "transfermarkt"
+  },
+  "zeki-amdouni-2000": {
+    "name": "Zeki Amdouni",
+    "marketValueEUR": 7000000,
+    "source": "transfermarkt"
+  },
+  "zeki-celik-1997": {
+    "name": "Zeki Çelik",
+    "marketValueEUR": 14000000,
+    "source": "transfermarkt"
+  },
+  "zeno-debast-2003": {
+    "name": "Zeno Debast",
+    "marketValueEUR": 28000000,
+    "source": "transfermarkt"
+  },
+  "zineddine-belaid-1999": {
+    "name": "Zineddine Belaïd",
+    "marketValueEUR": 1800000,
+    "source": "transfermarkt"
+  },
+  "zion-suzuki-2002": {
+    "name": "Zion Suzuki",
+    "marketValueEUR": 20000000,
+    "source": "transfermarkt"
+  },
+  "ziyad-al-johani-2001": {
+    "name": "Ziyad Al-Johani",
+    "marketValueEUR": 800000,
+    "source": "transfermarkt"
   }
 }

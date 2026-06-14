@@ -36,16 +36,19 @@ No API keys are required.
 There are two enrichment sources, merged at build time (live data overrides the
 static snapshot for overlapping fields):
 
-1. **Static snapshot — `market_values.json` (default, offline).** A curated set
-   of approximate early-2026 market values (EUR), with at least one player per
-   nation so the "most valuable player per team" query (#4) covers all 48 teams.
-   It is loaded automatically if present; no network or Docker required. The
-   file is keyed by the canonical player id (`slug(name)-yearOfBirth`) so it maps
-   straight onto the graph's player nodes. Regenerate it from the curated table
-   with:
+1. **Scraped snapshot — `market_values.json` (default, offline).** Real market
+   values (EUR) scraped from Transfermarkt's World Cup market-value page
+   (`/weltmeisterschaft/marktwertaenderungen/pokalwettbewerb/FIWC`), matched onto
+   the squads by name slug. As of the 2026-06-14 scrape this covers **931 of 1248
+   players** — that page lists only players with a market-value change, so the
+   remainder (incl. all of Qatar) have no value from this source. The file is
+   keyed by the canonical player id (`slug(name)-yearOfBirth`) so it maps straight
+   onto the graph's player nodes, and is loaded automatically; no Docker required.
+   Regenerate it (polite: cached pages, descriptive UA, rate-limited) with:
 
    ```bash
-   python make_market_values.py     # matches curated names to the parsed squads
+   python scrape_transfermarkt.py   # scrapes TM, writes market_values.json
+   python build.py                  # rebuild the graph with the new values
    ```
 
 2. **Live Transfermarkt API (optional).** Adds market value *and* height *and*
@@ -155,11 +158,11 @@ is exactly one node (e.g. all Premier League clubs point at the single
   `{{… football updater}}` templates (Premier League, La Liga, …). Wikipedia
   infobox wikitext is used as a fallback. ~421 of 452 clubs get a league; the
   rest (lower-league / national-team-only entries) are simply left without one.
-- **Market value** is an *optional* enrichment. By default it comes from the
-  static, manually-curated `market_values.json` snapshot (approximate early-2026
-  values, ~one player per nation — **not** live data). A live Transfermarkt API,
-  if configured, supersedes it and additionally supplies **height** and
-  **preferred foot** (absent otherwise).
+- **Market value** is an *optional* enrichment, scraped from Transfermarkt's
+  World Cup market-value page (see above) into `market_values.json` — real values
+  for ~931/1248 players as of 2026-06-14 (that page omits players without a
+  recent change, e.g. all of Qatar). A live Transfermarkt API, if configured,
+  supersedes it and additionally supplies **height** and **preferred foot**.
 - All raw HTTP responses are cached under `./cache/` with a descriptive
   User-Agent and rate limiting, so reruns are offline and polite.
 - Parsing primary path is the MediaWiki API + BeautifulSoup; `pandas.read_html`
@@ -199,15 +202,13 @@ Group 12 · Confederation 6 · Position 4 · Tournament 1   (≈18,374 triples)
 #19 Endrick          Lyon
 ```
 
-**4. Most valuable player per team** — runs by default off the static
-`market_values.json` snapshot (top of the list):
+**4. Most valuable player per team** — runs by default off the scraped
+`market_values.json` (top of the list):
 
 ```
-Spain     Lamine Yamal     €200,000,000    Germany   Florian Wirtz    €140,000,000
-Brazil    Vinícius Júnior  €200,000,000    Uruguay   Fede Valverde    €130,000,000
-England   Jude Bellingham  €180,000,000    Sweden    Alexander Isak   €120,000,000
-Norway    Erling Haaland   €180,000,000    Portugal  Rafael Leão       €90,000,000
-France    Kylian Mbappé    €180,000,000    Ecuador   Moisés Caicedo    €90,000,000
+Norway    Erling Haaland   €200,000,000    Brazil    Vinícius Júnior  €140,000,000
+Spain     Lamine Yamal     €200,000,000    Portugal  João Neves       €140,000,000
+France    Kylian Mbappé    €180,000,000    England   Jude Bellingham  €130,000,000
 ```
 
 The four queries, copy-pasteable:
@@ -297,9 +298,9 @@ acquire.py      MediaWiki + Wikidata acquisition, caching, HTML parsing
 lookups.py      48-nation fallback: FIFA codes, confederations, positions
 ontology.py     the TBox (OWL ontology) builder
 graph.py        the ABox builder (data → RDF, de-duplicated)
-enrich.py       enrichment: static market_values.json + optional Transfermarkt
-make_market_values.py  regenerate the static market-value snapshot
-market_values.json     curated offline market-value snapshot (committed)
+enrich.py       enrichment: scraped market_values.json + optional Transfermarkt
+scrape_transfermarkt.py  scrape real market values from Transfermarkt
+market_values.json       scraped market values, keyed by player id (committed)
 uris.py         deterministic URI construction
 cache/          raw cached HTTP responses (gitignored)
 ```
