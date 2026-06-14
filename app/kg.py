@@ -25,10 +25,28 @@ WC = "http://example.org/wc2026/ontology#"
 _graph = None  # lazy-lastet rdflib.Graph
 
 
+def versions():
+    """Faktiske kjøretids-versjoner – nyttig for å feilsøke parser-feil."""
+    out = {}
+    try:
+        import rdflib
+        out["rdflib"] = rdflib.__version__
+    except Exception:  # noqa: BLE001
+        out["rdflib"] = "ukjent"
+    try:
+        import pyparsing
+        out["pyparsing"] = pyparsing.__version__
+    except Exception:  # noqa: BLE001
+        out["pyparsing"] = "ukjent"
+    return out
+
+
 def _load():
     global _graph
     if _graph is None:
+        import logging
         from rdflib import Graph
+        logging.getLogger("vm.kg").info("laster kunnskapsgraf (%s)", versions())
         g = Graph()
         g.parse(KG_TTL, format="turtle")
         # sørg for at vanlige prefikser er bundet, slik at spørringer slipper å
@@ -61,6 +79,7 @@ def info():
     return {
         "triples": len(g),
         "classes": classes,
+        "versions": versions(),
         "prefixes": {
             "wc": WC,
             "wcr": "http://example.org/wc2026/resource/",
