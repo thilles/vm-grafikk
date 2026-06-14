@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Utforsk grafen · VM 2026-tropper</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕸️</text></svg>">
+</head>
+<body>
+<header>
+  <div class="title">
+    <span class="ball">🕸️</span>
+    <div>
+      <h1>Utforsk grafen</h1>
+      <p class="subtitle">Kunnskapsgraf · VM 2026-tropper · SPARQL</p>
+    </div>
+  </div>
+  <div class="meta"><a class="news-src" href="/">← Tilbake til scoreboard</a></div>
+</header>
+
+<main>
+  <p class="hint" id="kg-meta">Laster grafen …</p>
+
+  <section>
+    <h2>🔎 SPARQL-spørring</h2>
+    <p class="hint">Skriv en read-only SPARQL-spørring (SELECT, ASK, CONSTRUCT eller DESCRIBE) og
+      trykk <b>Kjør</b>. Prefiksene <code>wc:</code>, <code>wcr:</code>, <code>foaf:</code>,
+      <code>rdfs:</code> og <code>schema:</code> er allerede definert. Grafen er skrivebeskyttet.</p>
+
+    <div class="kg-examples" id="kg-examples"></div>
+
+    <textarea id="kg-query" class="kg-query" spellcheck="false" rows="10"></textarea>
+    <div class="kg-toolbar">
+      <button id="kg-run" class="kg-btn">▶ Kjør</button>
+      <label class="kg-limit">Maks rader
+        <input id="kg-limit" type="number" value="200" min="1" max="5000" step="50">
+      </label>
+      <span class="hint" id="kg-status"></span>
+    </div>
+  </section>
+
+  <section>
+    <h2>📊 Resultat</h2>
+    <div id="kg-result"><p class="hint">Ingen spørring kjørt ennå.</p></div>
+  </section>
+</main>
+
+<footer>
+  <span>Data: «2026 FIFA World Cup squads» (Wikipedia) + Wikidata · modellert som RDF/Turtle.</span>
+</footer>
+
+<script src="/static/kg.js"></script>
+</body>
+</html>

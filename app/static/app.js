@@ -2,6 +2,13 @@
 
 const $ = (id) => document.getElementById(id);
 
+// Escaper tekst fra eksterne kilder (NRK) før den settes inn som innerHTML.
+function esc(s) {
+  const d = document.createElement("div");
+  d.textContent = s ?? "";
+  return d.innerHTML;
+}
+
 function fmtDate(iso) {
   if (!iso) return "";
   const d = new Date(iso);
@@ -41,23 +48,13 @@ function highlightsBlock(h) {
   return `<div class="match-details">${goals}${cards}</div>`;
 }
 
-function videoBlock(v) {
-  if (!v || !v.id) return "";
-  // iframe injiseres først ved åpning (toggleMatch) for å unngå tunge embeds.
-  return `<div class="match-video"><div class="yt" data-vid="${v.id}"></div></div>`;
-}
-
-// Klikk på en kamp: vis/skjul detaljer og last YouTube-embeden lazy ved åpning.
-function toggleMatch(el) {
-  el.classList.toggle("open");
-  const ph = el.querySelector(".yt[data-vid]");
-  if (ph && el.classList.contains("open") && !ph.dataset.loaded) {
-    ph.dataset.loaded = "1";
-    ph.innerHTML =
-      `<iframe src="https://www.youtube-nocookie.com/embed/${ph.dataset.vid}" ` +
-      `allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ` +
-      `allowfullscreen loading="lazy"></iframe>`;
-  }
+function reportBlock(url) {
+  if (!url) return "";
+  // Lenke til NRKs kampside (høydepunkter + rapport). stopPropagation så klikk
+  // på lenka ikke lukker kampkortet.
+  return `<a class="match-report" href="${url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+      📺 Se høydepunkter og rapport hos NRK →
+    </a>`;
 }
 
 function matchCard(m, live) {
@@ -65,10 +62,10 @@ function matchCard(m, live) {
   const score = played
     ? `${m.goals_home}–${m.goals_away}`
     : new Date(m.date).toLocaleTimeString("no-NO", { hour: "2-digit", minute: "2-digit" });
-  const inner = highlightsBlock(m.highlights) + videoBlock(m.video);
+  const inner = highlightsBlock(m.highlights) + reportBlock(m.report_url);
   const expandable = inner.length > 0;
   const cls = `match ${live ? "live" : ""}${expandable ? " clickable" : ""}`;
-  const onclick = expandable ? ' onclick="toggleMatch(this)"' : "";
+  const onclick = expandable ? ' onclick="this.classList.toggle(\'open\')"' : "";
   return `
     <div class="${cls}"${onclick}>
       <div class="team"><span>${m.home_flag}</span><span class="name">${m.home}</span></div>
@@ -205,6 +202,20 @@ function renderScorers(scorers) {
     </div>`).join("");
 }
 
+function renderNews(news) {
+  const link = $("news-link");
+  if (link && news && news.url) link.href = news.url;
+  const items = (news && news.items) || [];
+  $("news").innerHTML = items.length
+    ? items.map((n) => `
+        <article class="news-item">
+          <div class="news-time">${fmtDate(n.published)}</div>
+          <div class="news-title">${esc(n.title)}</div>
+          ${n.summary ? `<div class="news-summary">${esc(n.summary)}</div>` : ""}
+        </article>`).join("")
+    : '<p style="color:var(--muted)">Ingen nyheter akkurat nå.</p>';
+}
+
 async function refresh() {
   try {
     const res = await fetch("/api/state");
@@ -229,6 +240,7 @@ async function refresh() {
       '<p style="color:var(--muted)">Ingen spilte kamper ennå.</p>';
     $("upcoming-matches").innerHTML = s.matches.upcoming.map((m) => matchCard(m, false)).join("");
 
+    renderNews(s.news);
     renderPodium(s.leaderboard);
     renderLeaderboard(s.leaderboard);
     renderConsensus(s.consensus);
