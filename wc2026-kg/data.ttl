@@ -1513,6 +1513,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cod> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 150000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/kilmarnock> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/dr-congo> ;
     wc:shirtNumber 15 ;
@@ -1538,6 +1539,7 @@
     wc:goalsForCountry 8 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 7000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/istanbul-basaksehir> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 22 ;
@@ -1666,6 +1668,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 6500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 14 ;
@@ -1755,6 +1758,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/pan> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 4000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pumas-unam> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/panama> ;
     wc:shirtNumber 8 ;
@@ -1780,6 +1784,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tun> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 4000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/kasimpasa> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/tunisia> ;
     wc:shirtNumber 5 ;
@@ -1830,6 +1835,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-gharafa> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 17 ;
@@ -1855,6 +1861,7 @@
     wc:goalsForCountry 9 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 300000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-rayyan> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 7 ;
@@ -1891,6 +1898,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/zamalek> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 13 ;
@@ -2006,6 +2014,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1400000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pakhtakor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 6 ;
@@ -2018,6 +2027,7 @@
     wc:goalsForCountry 39 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-sadd> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 11 ;
@@ -2030,6 +2040,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 250000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-arabi> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 25 ;
@@ -2093,6 +2104,7 @@
     wc:goalsForCountry 7 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/pan> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 75000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/plaza-amador> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/panama> ;
     wc:shirtNumber 19 ;
@@ -2156,6 +2168,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/par> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 3500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/independiente-rivadavia> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/paraguay> ;
     wc:shirtNumber 18 ;
@@ -2323,6 +2336,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 2300000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/viktoria-plzen> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 24 ;
@@ -2348,6 +2362,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/par> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/talleres> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/paraguay> ;
     wc:shirtNumber 26 ;
@@ -2386,6 +2401,7 @@
     wc:goalsForCountry 7 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/toluca> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 10 ;
@@ -2449,6 +2465,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 1700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/persepolis> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 11 ;
@@ -2513,6 +2530,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 550000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/foolad> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 19 ;
@@ -2525,6 +2543,7 @@
     wc:goalsForCountry 29 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/jor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-sailiya> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/jordan> ;
     wc:shirtNumber 9 ;
@@ -2563,6 +2582,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 650000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/tractor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 1 ;
@@ -2601,6 +2621,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/can> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/celtic> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/canada> ;
     wc:shirtNumber 2 ;
@@ -2613,6 +2634,7 @@
     wc:goalsForCountry 55 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-duhail> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 19 ;
@@ -2664,6 +2686,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/col> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/velez-sarsfield> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/colombia> ;
     wc:shirtNumber 24 ;
@@ -2792,6 +2815,7 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/tractor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 18 ;
@@ -2804,6 +2828,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/esteghlal> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 26 ;
@@ -3049,6 +3074,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/sco> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/celtic> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/scotland> ;
     wc:shirtNumber 24 ;
@@ -3165,6 +3191,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/rotherham-united> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 15 ;
@@ -3228,6 +3255,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 15000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/guadalajara> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 14 ;
@@ -3318,6 +3346,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 350000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-wakrah> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 23 ;
@@ -3394,6 +3423,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/agmk> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 25 ;
@@ -3510,6 +3540,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 375000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-gharafa> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 13 ;
@@ -3636,6 +3667,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 4000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/stoke-city> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 17 ;
@@ -3674,6 +3706,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 30000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 21 ;
@@ -3712,6 +3745,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 350000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/surkhon-termiz> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 24 ;
@@ -3852,6 +3886,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/neftchi-fergana> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 16 ;
@@ -3864,6 +3899,7 @@
     wc:goalsForCountry 20 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-sadd> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 16 ;
@@ -4032,6 +4068,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/guadalajara> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 26 ;
@@ -4044,6 +4081,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uru> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/america> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uruguay> ;
     wc:shirtNumber 18 ;
@@ -4108,6 +4146,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 3500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fenerbahce> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 4 ;
@@ -4247,6 +4286,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 2800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/santos-laguna> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 12 ;
@@ -4491,6 +4531,7 @@
     wc:goalsForCountry 12 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/midtjylland> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 9 ;
@@ -4503,6 +4544,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 550000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/jeonbuk-hyundai-motors> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 14 ;
@@ -4554,6 +4596,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/civ> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 23000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/trabzonspor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/ivory-coast> ;
     wc:shirtNumber 26 ;
@@ -4863,6 +4906,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/malavan> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 25 ;
@@ -4977,6 +5021,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 3500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 21 ;
@@ -4989,6 +5034,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 5000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 14 ;
@@ -5053,6 +5099,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 7000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 2 ;
@@ -5065,6 +5112,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/col> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 16000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/colombia> ;
     wc:shirtNumber 23 ;
@@ -5168,6 +5216,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 3000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/viktoria-plzen> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 26 ;
@@ -5257,6 +5306,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/can> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/rangers> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/canada> ;
     wc:shirtNumber 13 ;
@@ -5269,6 +5319,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cpv> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/ludogorets-razgrad> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/cape-verde> ;
     wc:shirtNumber 14 ;
@@ -5475,6 +5526,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/hai> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/tatran-presov> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/haiti> ;
     wc:shirtNumber 25 ;
@@ -5500,6 +5552,7 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 900000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pakhtakor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 17 ;
@@ -5525,6 +5578,7 @@
     wc:goalsForCountry 44 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/hai> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/esteghlal> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/haiti> ;
     wc:shirtNumber 9 ;
@@ -5550,6 +5604,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/hai> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 125000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/colorado-springs-switchbacks-fc> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/haiti> ;
     wc:shirtNumber 13 ;
@@ -5638,6 +5693,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/pan> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 900000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pari-nizhny-novgorod> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/panama> ;
     wc:shirtNumber 5 ;
@@ -5663,6 +5719,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 1800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-duhail> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 8 ;
@@ -5701,6 +5758,7 @@
     wc:goalsForCountry 7 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 15000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fenerbahce> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 4 ;
@@ -5726,6 +5784,7 @@
     wc:goalsForCountry 7 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 250000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/sepahan> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 3 ;
@@ -5763,6 +5822,7 @@
     wc:goalsForCountry 44 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 7000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/istanbul-basaksehir> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 14 ;
@@ -5801,6 +5861,7 @@
     wc:goalsForCountry 9 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/nzl> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/motherwell> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/new-zealand> ;
     wc:shirtNumber 11 ;
@@ -5865,6 +5926,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 150000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/miami-fc> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 1 ;
@@ -5890,6 +5952,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 4000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-ahly> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 8 ;
@@ -5915,7 +5978,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uru> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
-    wc:marketValueEUR 12000000.0 ;
+    wc:marketValueEUR 6500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/palmeiras> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uruguay> ;
     wc:shirtNumber 15 ;
@@ -5928,6 +5991,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/civ> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 16000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/besiktas> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/ivory-coast> ;
     wc:shirtNumber 20 ;
@@ -5978,6 +6042,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/swansea-city> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 25 ;
@@ -6003,6 +6068,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 5000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 13 ;
@@ -6015,6 +6081,7 @@
     wc:goalsForCountry 9 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/pan> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 50000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/plaza-amador> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/panama> ;
     wc:shirtNumber 15 ;
@@ -6053,6 +6120,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 12000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/cruz-azul> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 6 ;
@@ -6091,6 +6159,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/bih> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 5000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slovan-liberec> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/bosnia-and-herzegovina> ;
     wc:shirtNumber 26 ;
@@ -6388,6 +6457,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uru> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/estudiantes> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uruguay> ;
     wc:shirtNumber 23 ;
@@ -6426,6 +6496,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/sco> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/kilmarnock> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/scotland> ;
     wc:shirtNumber 25 ;
@@ -6605,6 +6676,7 @@
     wc:goalsForCountry 34 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/hai> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 1500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/caykur-rizespor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/haiti> ;
     wc:shirtNumber 20 ;
@@ -6655,6 +6727,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/par> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 750000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/independiente> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/paraguay> ;
     wc:shirtNumber 21 ;
@@ -6743,6 +6816,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/par> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/olimpia> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/paraguay> ;
     wc:shirtNumber 22 ;
@@ -6871,6 +6945,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 10000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/tijuana> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 19 ;
@@ -6947,6 +7022,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 350000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/rkc-waalwijk> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 6 ;
@@ -7190,6 +7266,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/par> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 400000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/cerro-porteno> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/paraguay> ;
     wc:shirtNumber 2 ;
@@ -7470,6 +7547,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/ecu> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 300000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/huracan> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/ecuador> ;
     wc:shirtNumber 1 ;
@@ -7533,6 +7611,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/zamalek> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 4 ;
@@ -7582,6 +7661,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 3500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/sparta-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 25 ;
@@ -7620,6 +7700,7 @@
     wc:goalsForCountry 17 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 6000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/wolverhampton-wanderers> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 11 ;
@@ -7632,6 +7713,7 @@
     wc:goalsForCountry 6 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 7000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/feyenoord> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 6 ;
@@ -7657,6 +7739,7 @@
     wc:goalsForCountry 8 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irq> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-dhafra> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iraq> ;
     wc:shirtNumber 8 ;
@@ -7759,6 +7842,7 @@
     wc:goalsForCountry 25 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/persepolis> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 21 ;
@@ -7848,6 +7932,7 @@
     wc:goalsForCountry 6 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 3000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/kasimpasa> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 17 ;
@@ -7886,6 +7971,7 @@
     wc:goalsForCountry 17 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/pan> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/leon> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/panama> ;
     wc:shirtNumber 10 ;
@@ -7937,6 +8023,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/sen> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/senegal> ;
     wc:shirtNumber 14 ;
@@ -7949,6 +8036,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 15000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fenerbahce> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 16 ;
@@ -7974,6 +8062,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 6500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/america> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 15 ;
@@ -7999,6 +8088,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-arabi> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 4 ;
@@ -8102,6 +8192,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/ecu> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/tijuana> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/ecuador> ;
     wc:shirtNumber 25 ;
@@ -8153,6 +8244,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 600000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/dinamo-samarqand> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 26 ;
@@ -8178,6 +8270,7 @@
     wc:goalsForCountry 12 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/esteghlal> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 10 ;
@@ -8268,6 +8361,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/neftchi-fergana> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 8 ;
@@ -8280,6 +8374,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/sparta-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 11 ;
@@ -8318,7 +8413,6 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/eng> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
-    wc:marketValueEUR 45000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/bayer-leverkusen> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/england> ;
     wc:shirtNumber 26 ;
@@ -8331,6 +8425,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 600000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/sparta-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 20 ;
@@ -8356,6 +8451,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-rayyan> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 5 ;
@@ -8587,6 +8683,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 2800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/toluca> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 23 ;
@@ -8638,6 +8735,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 16 ;
@@ -8663,6 +8761,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 650000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/ulsan-hd> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 21 ;
@@ -8870,6 +8969,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/sco> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/rangers> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/scotland> ;
     wc:shirtNumber 15 ;
@@ -9038,6 +9138,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/ecu> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/huracan> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/ecuador> ;
     wc:shirtNumber 16 ;
@@ -9115,6 +9216,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/ned> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 40000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/chelsea> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/netherlands> ;
     wc:shirtNumber 25 ;
@@ -9127,6 +9229,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/par> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 2200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/lanus> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/paraguay> ;
     wc:shirtNumber 13 ;
@@ -9165,6 +9268,7 @@
     wc:goalsForCountry 8 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/pan> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/juarez> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/panama> ;
     wc:shirtNumber 7 ;
@@ -9229,6 +9333,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/kayserispor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 20 ;
@@ -9345,6 +9450,7 @@
     wc:goalsForCountry 6 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/col> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/river-plate> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/colombia> ;
     wc:shirtNumber 20 ;
@@ -9539,6 +9645,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/miami-fc> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 9 ;
@@ -9577,6 +9684,7 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 22 ;
@@ -9602,6 +9710,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/aus> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/new-york-city-fc> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/australia> ;
     wc:shirtNumber 15 ;
@@ -9679,6 +9788,7 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 175000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-duhail> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 12 ;
@@ -9691,6 +9801,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pyramids> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 15 ;
@@ -9846,6 +9957,7 @@
     wc:goalsForCountry 15 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 20000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fenerbahce> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 7 ;
@@ -9871,6 +9983,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/col> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 5000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/river-plate> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/colombia> ;
     wc:shirtNumber 5 ;
@@ -9909,6 +10022,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 400000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/den-bosch> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 22 ;
@@ -10023,6 +10137,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/sco> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/celtic> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/scotland> ;
     wc:shirtNumber 6 ;
@@ -10035,6 +10150,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/jeonbuk-hyundai-motors> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 24 ;
@@ -10047,6 +10163,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 20000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/bayern-munich> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 4 ;
@@ -10059,6 +10176,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 750000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/daejeon-hana-citizen> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 15 ;
@@ -10071,6 +10189,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fc-tokyo> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 1 ;
@@ -10083,6 +10202,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/kashima-antlers> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 5 ;
@@ -10367,6 +10487,7 @@
     wc:goalsForCountry 7 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/sco> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 3000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/heart-of-midlothian> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/scotland> ;
     wc:shirtNumber 20 ;
@@ -10392,6 +10513,7 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/arg> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 5000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/boca-juniors> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/argentina> ;
     wc:shirtNumber 5 ;
@@ -10417,6 +10539,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1600000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/ulsan-hd> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 26 ;
@@ -10429,6 +10552,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/gangwon-fc> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 3 ;
@@ -10441,6 +10565,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 3000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/midtjylland> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 2 ;
@@ -10453,6 +10578,7 @@
     wc:goalsForCountry 15 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/mainz-05> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 10 ;
@@ -10465,6 +10591,7 @@
     wc:goalsForCountry 11 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 28000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/paris-saint-germain> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 19 ;
@@ -10477,6 +10604,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/austria-wien> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 13 ;
@@ -10489,6 +10617,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/hai> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/ferencvaros> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/haiti> ;
     wc:shirtNumber 16 ;
@@ -10565,6 +10694,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/sco> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/rangers> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/scotland> ;
     wc:shirtNumber 12 ;
@@ -10771,6 +10901,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 350000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-wakrah> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 3 ;
@@ -10835,6 +10966,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 3000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/guadalajara> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 7 ;
@@ -10912,6 +11044,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 6000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/viktoria-plzen> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 12 ;
@@ -10937,6 +11070,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 17 ;
@@ -11014,6 +11148,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/zed> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 21 ;
@@ -11181,6 +11316,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/esp> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 35000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/atletico-madrid> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/spain> ;
     wc:shirtNumber 2 ;
@@ -11206,6 +11342,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cpv> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 350000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/montana> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/cape-verde> ;
     wc:shirtNumber 12 ;
@@ -11438,7 +11575,6 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cro> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
-    wc:marketValueEUR 4000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/midtjylland> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/croatia> ;
     wc:shirtNumber 25 ;
@@ -11697,6 +11833,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uru> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 3500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/river-plate> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uruguay> ;
     wc:shirtNumber 17 ;
@@ -11748,6 +11885,7 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/nzl> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 450000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/peterborough-united> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/new-zealand> ;
     wc:shirtNumber 7 ;
@@ -11928,6 +12066,7 @@
     wc:goalsForCountry 7 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/tractor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 16 ;
@@ -11966,6 +12105,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irq> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/viktoria-plzen> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iraq> ;
     wc:shirtNumber 23 ;
@@ -12003,6 +12143,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 7000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fenerbahce> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 18 ;
@@ -12027,6 +12168,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-sadd> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 22 ;
@@ -12116,6 +12258,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 8000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 18 ;
@@ -12219,6 +12362,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 900000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/persepolis> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 5 ;
@@ -12308,6 +12452,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/el-gouna> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 26 ;
@@ -12359,6 +12504,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-ahly> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 1 ;
@@ -12371,6 +12517,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-ahly> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 3 ;
@@ -12409,6 +12556,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-shamal> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 26 ;
@@ -12548,6 +12696,7 @@
     wc:goalsForCountry 16 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-gharafa> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 9 ;
@@ -12573,6 +12722,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 3000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pyramids> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 17 ;
@@ -12637,6 +12787,7 @@
     wc:goalsForCountry 6 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 4000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 13 ;
@@ -12662,6 +12813,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/eng> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 90000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/aston-villa> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/england> ;
     wc:shirtNumber 17 ;
@@ -12674,6 +12826,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tun> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/kasimpasa> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/tunisia> ;
     wc:shirtNumber 12 ;
@@ -12724,6 +12877,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pyramids> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 11 ;
@@ -12874,6 +13028,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/alg> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/gyori-eto> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/algeria> ;
     wc:shirtNumber 12 ;
@@ -13285,6 +13440,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/bih> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/gaziantep> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/bosnia-and-herzegovina> ;
     wc:shirtNumber 2 ;
@@ -13502,6 +13658,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cpv> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 400000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/istanbul-basaksehir> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/cape-verde> ;
     wc:shirtNumber 21 ;
@@ -13577,6 +13734,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 7000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fenerbahce> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 24 ;
@@ -13589,6 +13747,7 @@
     wc:goalsForCountry 6 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 15000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/besiktas> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 18 ;
@@ -13705,6 +13864,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 25000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/besiktas> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 6 ;
@@ -13743,6 +13903,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/nor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 28000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fulham> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/norway> ;
     wc:shirtNumber 22 ;
@@ -13755,6 +13916,7 @@
     wc:goalsForCountry 10 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/persepolis> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 11 ;
@@ -13869,6 +14031,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 2000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/birmingham-city> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 8 ;
@@ -13920,6 +14083,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/zhejiang> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 16 ;
@@ -14088,6 +14252,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/persepolis> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 12 ;
@@ -14151,6 +14316,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/ecu> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 6000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pumas-unam> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/ecuador> ;
     wc:shirtNumber 15 ;
@@ -14331,6 +14497,7 @@
     wc:goalsForCountry 8 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 250000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/foolad> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 23 ;
@@ -14434,6 +14601,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 6500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/guadalajara> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 1 ;
@@ -14459,6 +14627,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/alg> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 40000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/manchester-city> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/algeria> ;
     wc:shirtNumber 15 ;
@@ -14497,6 +14666,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irq> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 100000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/port> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iraq> ;
     wc:shirtNumber 2 ;
@@ -14652,6 +14822,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/konyaspor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 23 ;
@@ -14690,6 +14861,7 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/mex> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 7500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/guadalajara> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/mexico> ;
     wc:shirtNumber 25 ;
@@ -14780,6 +14952,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uru> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2300000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/tigres-uanl> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uruguay> ;
     wc:shirtNumber 19 ;
@@ -14896,6 +15069,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 375000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/rkc-waalwijk> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 4 ;
@@ -14959,6 +15133,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/hai> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 300000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/almere-city> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/haiti> ;
     wc:shirtNumber 15 ;
@@ -14997,6 +15172,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 750000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/esteghlal> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 5 ;
@@ -15111,6 +15287,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 400000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-duhail> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 21 ;
@@ -15136,6 +15313,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irn> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/esteghlal> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iran> ;
     wc:shirtNumber 2 ;
@@ -15212,6 +15390,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/caykur-rizespor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 25 ;
@@ -15276,7 +15455,6 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/rsa> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
-    wc:marketValueEUR 2500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/molde> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-africa> ;
     wc:shirtNumber 18 ;
@@ -15315,6 +15493,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/col> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/independiente> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/colombia> ;
     wc:shirtNumber 4 ;
@@ -15391,7 +15570,6 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/ksa> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
-    wc:marketValueEUR 9000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/lens> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/saudi-arabia> ;
     wc:shirtNumber 12 ;
@@ -15456,6 +15634,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uru> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 4500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/america> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uruguay> ;
     wc:shirtNumber 3 ;
@@ -15506,6 +15685,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 6500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/red-star-belgrade> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 22 ;
@@ -15569,6 +15749,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 450000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/bukhara> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 23 ;
@@ -15581,6 +15762,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1200000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/nasaf> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 13 ;
@@ -15657,7 +15839,6 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/sui> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
-    wc:marketValueEUR 800000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/mainz-05> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/switzerland> ;
     wc:shirtNumber 3 ;
@@ -15722,6 +15903,7 @@
     wc:goalsForCountry 56 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 15000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/los-angeles-fc> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 7 ;
@@ -15747,6 +15929,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/kor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/jeonbuk-hyundai-motors> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/south-korea> ;
     wc:shirtNumber 12 ;
@@ -15810,6 +15993,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 10000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 6 ;
@@ -15887,6 +16071,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 300000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-duhail> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 18 ;
@@ -16002,6 +16187,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 250000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/zed> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 24 ;
@@ -16325,6 +16511,7 @@
     wc:goalsForCountry 7 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 2700000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 19 ;
@@ -16337,6 +16524,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cze> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/slavia-prague> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/czech-republic> ;
     wc:shirtNumber 3 ;
@@ -16427,6 +16615,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cuw> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 50000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/vvv-venlo> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/curacao> ;
     wc:shirtNumber 26 ;
@@ -16439,6 +16628,7 @@
     wc:goalsForCountry 23 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 4500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-ahly> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 7 ;
@@ -16542,6 +16732,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 15000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 23 ;
@@ -16554,6 +16745,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 450000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/nasaf> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 15 ;
@@ -16579,6 +16771,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/uzb> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/navbahor-namangan> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/uzbekistan> ;
     wc:shirtNumber 1 ;
@@ -16733,6 +16926,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/cpv> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 11000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/trabzonspor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/cape-verde> ;
     wc:shirtNumber 24 ;
@@ -16797,6 +16991,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/civ> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 23000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/ivory-coast> ;
     wc:shirtNumber 5 ;
@@ -16822,6 +17017,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/col> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 5500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/cruz-azul> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/colombia> ;
     wc:shirtNumber 18 ;
@@ -16937,6 +17133,7 @@
     wc:goalsForCountry 0 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/civ> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/GK> ;
+    wc:marketValueEUR 5000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/caykur-rizespor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/ivory-coast> ;
     wc:shirtNumber 1 ;
@@ -17026,6 +17223,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 275000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-ahly> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 2 ;
@@ -17064,6 +17262,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/jor> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/fc-seoul> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/jordan> ;
     wc:shirtNumber 5 ;
@@ -17141,6 +17340,7 @@
     wc:goalsForCountry 10 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/pan> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 650000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/mazatlan> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/panama> ;
     wc:shirtNumber 11 ;
@@ -17217,6 +17417,7 @@
     wc:goalsForCountry 4 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/tur> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 18000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/galatasaray> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/turkey> ;
     wc:shirtNumber 19 ;
@@ -17229,6 +17430,7 @@
     wc:goalsForCountry 3 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/qat> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 275000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-wakrah> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/qatar> ;
     wc:shirtNumber 15 ;
@@ -17280,6 +17482,7 @@
     wc:goalsForCountry 1 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irq> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/DF> ;
+    wc:marketValueEUR 600000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/pakhtakor> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iraq> ;
     wc:shirtNumber 4 ;
@@ -17344,6 +17547,7 @@
     wc:goalsForCountry 2 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/irq> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/MF> ;
+    wc:marketValueEUR 1000000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/utrecht> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/iraq> ;
     wc:shirtNumber 14 ;
@@ -17395,6 +17599,7 @@
     wc:goalsForCountry 5 ;
     wc:hasNationality <http://example.org/wc2026/resource/country/egy> ;
     wc:hasPosition <http://example.org/wc2026/resource/position/FW> ;
+    wc:marketValueEUR 3500000.0 ;
     wc:playsAtClub <http://example.org/wc2026/resource/club/al-ahly> ;
     wc:playsForNationalTeam <http://example.org/wc2026/resource/team/egypt> ;
     wc:shirtNumber 25 ;
@@ -19233,7 +19438,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/J> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/alg> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 204850000.0 .
+    wc:totalMarketValueEUR 246050000.0 .
 
 <http://example.org/wc2026/resource/team/argentina> a wc:NationalTeam ;
     rdfs:label "Argentina"@en ;
@@ -19268,7 +19473,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/J> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/arg> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 776000000.0 .
+    wc:totalMarketValueEUR 781000000.0 .
 
 <http://example.org/wc2026/resource/team/australia> a wc:NationalTeam ;
     rdfs:label "Australia"@en ;
@@ -19303,7 +19508,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/D> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/aus> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 73650000.0 .
+    wc:totalMarketValueEUR 75450000.0 .
 
 <http://example.org/wc2026/resource/team/austria> a wc:NationalTeam ;
     rdfs:label "Austria"@en ;
@@ -19408,7 +19613,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/B> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/bih> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 135700000.0 .
+    wc:totalMarketValueEUR 141900000.0 .
 
 <http://example.org/wc2026/resource/team/brazil> a wc:NationalTeam ;
     rdfs:label "Brazil"@en ;
@@ -19478,7 +19683,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/B> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/can> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 180100000.0 .
+    wc:totalMarketValueEUR 190600000.0 .
 
 <http://example.org/wc2026/resource/team/cape-verde> a wc:NationalTeam ;
     rdfs:label "Cape Verde"@en ;
@@ -19513,7 +19718,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/H> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/cpv> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 32850000.0 .
+    wc:totalMarketValueEUR 46400000.0 .
 
 <http://example.org/wc2026/resource/team/colombia> a wc:NationalTeam ;
     rdfs:label "Colombia"@en ;
@@ -19548,7 +19753,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/K> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/col> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 269900000.0 .
+    wc:totalMarketValueEUR 301900000.0 .
 
 <http://example.org/wc2026/resource/team/croatia> a wc:NationalTeam ;
     rdfs:label "Croatia"@en ;
@@ -19583,7 +19788,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/L> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/cro> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 387300000.0 .
+    wc:totalMarketValueEUR 383300000.0 .
 
 <http://example.org/wc2026/resource/team/curacao> a wc:NationalTeam ;
     rdfs:label "Curaçao"@en ;
@@ -19618,7 +19823,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/E> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/cuw> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 20050000.0 .
+    wc:totalMarketValueEUR 24775000.0 .
 
 <http://example.org/wc2026/resource/team/czech-republic> a wc:NationalTeam ;
     rdfs:label "Czech Republic"@en ;
@@ -19653,7 +19858,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/A> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/cze> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 118500000.0 .
+    wc:totalMarketValueEUR 187800000.0 .
 
 <http://example.org/wc2026/resource/team/dr-congo> a wc:NationalTeam ;
     rdfs:label "DR Congo"@en ;
@@ -19688,7 +19893,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/K> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/cod> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 140050000.0 .
+    wc:totalMarketValueEUR 140200000.0 .
 
 <http://example.org/wc2026/resource/team/ecuador> a wc:NationalTeam ;
     rdfs:label "Ecuador"@en ;
@@ -19723,7 +19928,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/E> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/ecu> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 356900000.0 .
+    wc:totalMarketValueEUR 367700000.0 .
 
 <http://example.org/wc2026/resource/team/egypt> a wc:NationalTeam ;
     rdfs:label "Egypt"@en ;
@@ -19758,7 +19963,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/G> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/egy> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 82600000.0 .
+    wc:totalMarketValueEUR 108325000.0 .
 
 <http://example.org/wc2026/resource/team/england> a wc:NationalTeam ;
     rdfs:label "England"@en ;
@@ -19793,7 +19998,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/L> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/eng> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 1273200000.0 .
+    wc:totalMarketValueEUR 1318200000.0 .
 
 <http://example.org/wc2026/resource/team/france> a wc:NationalTeam ;
     rdfs:label "France"@en ;
@@ -19933,7 +20138,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/C> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/hai> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 50650000.0 .
+    wc:totalMarketValueEUR 55575000.0 .
 
 <http://example.org/wc2026/resource/team/iran> a wc:NationalTeam ;
     rdfs:label "Iran"@en ;
@@ -19968,7 +20173,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/G> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/irn> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 11900000.0 .
+    wc:totalMarketValueEUR 23300000.0 .
 
 <http://example.org/wc2026/resource/team/iraq> a wc:NationalTeam ;
     rdfs:label "Iraq"@en ;
@@ -20003,7 +20208,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/I> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/irq> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 14350000.0 .
+    wc:totalMarketValueEUR 18550000.0 .
 
 <http://example.org/wc2026/resource/team/ivory-coast> a wc:NationalTeam ;
     rdfs:label "Ivory Coast"@en ;
@@ -20038,7 +20243,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/E> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/civ> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 451100000.0 .
+    wc:totalMarketValueEUR 518100000.0 .
 
 <http://example.org/wc2026/resource/team/japan> a wc:NationalTeam ;
     rdfs:label "Japan"@en ;
@@ -20108,7 +20313,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/J> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/jor> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 4200000.0 .
+    wc:totalMarketValueEUR 6000000.0 .
 
 <http://example.org/wc2026/resource/team/mexico> a wc:NationalTeam ;
     rdfs:label "Mexico"@en ;
@@ -20143,7 +20348,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/A> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/mex> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 93250000.0 .
+    wc:totalMarketValueEUR 190350000.0 .
 
 <http://example.org/wc2026/resource/team/morocco> a wc:NationalTeam ;
     rdfs:label "Morocco"@en ;
@@ -20213,7 +20418,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/F> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/ned> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 692200000.0 .
+    wc:totalMarketValueEUR 732200000.0 .
 
 <http://example.org/wc2026/resource/team/new-zealand> a wc:NationalTeam ;
     rdfs:label "New Zealand"@en ;
@@ -20248,7 +20453,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/G> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/nzl> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 31000000.0 .
+    wc:totalMarketValueEUR 33950000.0 .
 
 <http://example.org/wc2026/resource/team/norway> a wc:NationalTeam ;
     rdfs:label "Norway"@en ;
@@ -20283,7 +20488,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/I> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/nor> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 552100000.0 .
+    wc:totalMarketValueEUR 580100000.0 .
 
 <http://example.org/wc2026/resource/team/panama> a wc:NationalTeam ;
     rdfs:label "Panama"@en ;
@@ -20318,7 +20523,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/L> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/pan> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 15075000.0 .
+    wc:totalMarketValueEUR 25050000.0 .
 
 <http://example.org/wc2026/resource/team/paraguay> a wc:NationalTeam ;
     rdfs:label "Paraguay"@en ;
@@ -20353,7 +20558,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/D> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/par> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 143700000.0 .
+    wc:totalMarketValueEUR 153550000.0 .
 
 <http://example.org/wc2026/resource/team/portugal> a wc:NationalTeam ;
     rdfs:label "Portugal"@en ;
@@ -20422,7 +20627,8 @@
     wc:fifaCode "QAT" ;
     wc:inGroup <http://example.org/wc2026/resource/group/B> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/qat> ;
-    wc:squadSize 26 .
+    wc:squadSize 26 ;
+    wc:totalMarketValueEUR 17875000.0 .
 
 <http://example.org/wc2026/resource/team/saudi-arabia> a wc:NationalTeam ;
     rdfs:label "Saudi Arabia"@en ;
@@ -20457,7 +20663,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/H> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/ksa> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 38575000.0 .
+    wc:totalMarketValueEUR 29575000.0 .
 
 <http://example.org/wc2026/resource/team/scotland> a wc:NationalTeam ;
     rdfs:label "Scotland"@en ;
@@ -20492,7 +20698,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/C> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/sco> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 145750000.0 .
+    wc:totalMarketValueEUR 163050000.0 .
 
 <http://example.org/wc2026/resource/team/senegal> a wc:NationalTeam ;
     rdfs:label "Senegal"@en ;
@@ -20527,7 +20733,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/I> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/sen> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 465100000.0 .
+    wc:totalMarketValueEUR 473100000.0 .
 
 <http://example.org/wc2026/resource/team/south-africa> a wc:NationalTeam ;
     rdfs:label "South Africa"@en ;
@@ -20562,7 +20768,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/A> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/rsa> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 48650000.0 .
+    wc:totalMarketValueEUR 46150000.0 .
 
 <http://example.org/wc2026/resource/team/south-korea> a wc:NationalTeam ;
     rdfs:label "South Korea"@en ;
@@ -20597,7 +20803,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/A> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/kor> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 10000000.0 .
+    wc:totalMarketValueEUR 134050000.0 .
 
 <http://example.org/wc2026/resource/team/spain> a wc:NationalTeam ;
     rdfs:label "Spain"@en ;
@@ -20632,7 +20838,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/H> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/esp> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 1167800000.0 .
+    wc:totalMarketValueEUR 1202800000.0 .
 
 <http://example.org/wc2026/resource/team/sweden> a wc:NationalTeam ;
     rdfs:label "Sweden"@en ;
@@ -20702,7 +20908,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/B> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/sui> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 332500000.0 .
+    wc:totalMarketValueEUR 331700000.0 .
 
 <http://example.org/wc2026/resource/team/tunisia> a wc:NationalTeam ;
     rdfs:label "Tunisia"@en ;
@@ -20737,7 +20943,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/F> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/tun> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 41650000.0 .
+    wc:totalMarketValueEUR 47150000.0 .
 
 <http://example.org/wc2026/resource/team/turkey> a wc:NationalTeam ;
     rdfs:label "Turkey"@en ;
@@ -20772,7 +20978,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/D> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/tur> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 315500000.0 .
+    wc:totalMarketValueEUR 473200000.0 .
 
 <http://example.org/wc2026/resource/team/united-states> a wc:NationalTeam ;
     rdfs:label "United States"@en ;
@@ -20842,7 +21048,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/H> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/uru> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 308800000.0 .
+    wc:totalMarketValueEUR 322300000.0 .
 
 <http://example.org/wc2026/resource/team/uzbekistan> a wc:NationalTeam ;
     rdfs:label "Uzbekistan"@en ;
@@ -20877,7 +21083,7 @@
     wc:inGroup <http://example.org/wc2026/resource/group/K> ;
     wc:representsCountry <http://example.org/wc2026/resource/country/uzb> ;
     wc:squadSize 26 ;
-    wc:totalMarketValueEUR 52000000.0 .
+    wc:totalMarketValueEUR 78800000.0 .
 
 <http://example.org/wc2026/resource/country/aus> a wc:Country ;
     rdfs:label "Australia"@en ;

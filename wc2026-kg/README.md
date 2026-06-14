@@ -37,14 +37,15 @@ There are two enrichment sources, merged at build time (live data overrides the
 static snapshot for overlapping fields):
 
 1. **Scraped snapshot — `market_values.json` (default, offline).** Real market
-   values (EUR) scraped from Transfermarkt's World Cup market-value page
-   (`/weltmeisterschaft/marktwertaenderungen/pokalwettbewerb/FIWC`), matched onto
-   the squads by name slug. As of the 2026-06-14 scrape this covers **931 of 1248
-   players** — that page lists only players with a market-value change, so the
-   remainder (incl. all of Qatar) have no value from this source. The file is
-   keyed by the canonical player id (`slug(name)-yearOfBirth`) so it maps straight
-   onto the graph's player nodes, and is loaded automatically; no Docker required.
-   Regenerate it (polite: cached pages, descriptive UA, rate-limited) with:
+   values (EUR) scraped from Transfermarkt's World Cup page, iterated **per nation**
+   (the `land_id` filter, so every squad member is captured) and matched onto the
+   squads by name slug (with an order-independent fallback for romanised names like
+   "Son Heung-min"). As of the 2026-06-14 scrape this covers **1136 of 1248
+   players** — all 48 teams have values; the rest are name-form mismatches
+   (e.g. Brazilian mononyms). The file is keyed by the canonical player id
+   (`slug(name)-yearOfBirth`) so it maps straight onto the graph's player nodes,
+   and is loaded automatically; no Docker required. Regenerate it (polite: cached
+   pages, descriptive UA, rate-limited) with:
 
    ```bash
    python scrape_transfermarkt.py   # scrapes TM, writes market_values.json
@@ -158,11 +159,11 @@ is exactly one node (e.g. all Premier League clubs point at the single
   `{{… football updater}}` templates (Premier League, La Liga, …). Wikipedia
   infobox wikitext is used as a fallback. ~421 of 452 clubs get a league; the
   rest (lower-league / national-team-only entries) are simply left without one.
-- **Market value** is an *optional* enrichment, scraped from Transfermarkt's
-  World Cup market-value page (see above) into `market_values.json` — real values
-  for ~931/1248 players as of 2026-06-14 (that page omits players without a
-  recent change, e.g. all of Qatar). A live Transfermarkt API, if configured,
-  supersedes it and additionally supplies **height** and **preferred foot**.
+- **Market value** is an *optional* enrichment, scraped per nation from
+  Transfermarkt's World Cup page (see above) into `market_values.json` — real
+  values for 1136/1248 players as of 2026-06-14 (all 48 teams covered; the rest
+  are name-form mismatches). A live Transfermarkt API, if configured, supersedes
+  it and additionally supplies **height** and **preferred foot**.
 - All raw HTTP responses are cached under `./cache/` with a descriptive
   User-Agent and rate limiting, so reruns are offline and polite.
 - Parsing primary path is the MediaWiki API + BeautifulSoup; `pandas.read_html`
