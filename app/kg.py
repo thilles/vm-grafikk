@@ -64,22 +64,17 @@ def available():
 
 
 def info():
-    """Metadata til UI: triple-antall og instanser per klasse."""
+    """Metadata til UI: triple-antall og instanser per klasse.
+
+    Robust: versjoner og triple-antall returneres alltid, også om SPARQL-
+    parseren skulle feile (da kommer i stedet et `query_error`-felt) – slik at
+    /api/kg/info kan brukes til å se hvilken rdflib/pyparsing som faktisk kjører.
+    """
     g = _load()
-    classes = {}
-    q = (
-        "PREFIX wc: <%s> "
-        "SELECT ?cls (COUNT(?s) AS ?n) WHERE { "
-        "  VALUES ?cls { wc:Tournament wc:NationalTeam wc:Player wc:Club "
-        "    wc:League wc:Group wc:Confederation wc:Country wc:Position } "
-        "  ?s a ?cls . } GROUP BY ?cls ORDER BY DESC(?n)" % WC
-    )
-    for row in g.query(q):
-        classes[str(row[0]).split("#")[-1]] = int(row[1])
-    return {
+    result = {
         "triples": len(g),
-        "classes": classes,
         "versions": versions(),
+        "classes": {},
         "prefixes": {
             "wc": WC,
             "wcr": "http://example.org/wc2026/resource/",
@@ -88,6 +83,19 @@ def info():
             "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         },
     }
+    q = (
+        "PREFIX wc: <%s> "
+        "SELECT ?cls (COUNT(?s) AS ?n) WHERE { "
+        "  VALUES ?cls { wc:Tournament wc:NationalTeam wc:Player wc:Club "
+        "    wc:League wc:Group wc:Confederation wc:Country wc:Position } "
+        "  ?s a ?cls . } GROUP BY ?cls ORDER BY DESC(?n)" % WC
+    )
+    try:
+        for row in g.query(q):
+            result["classes"][str(row[0]).split("#")[-1]] = int(row[1])
+    except Exception as exc:  # noqa: BLE001 – ikke skjul versjonsinfoen
+        result["query_error"] = str(exc)
+    return result
 
 
 def _term_to_json(term):
