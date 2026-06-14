@@ -163,8 +163,8 @@ loaded lazily and read-only.
   but static (not live); ~1136/1248 players covered.
 - **Runtime** (`app/kg.py`): lazy-loads `KG_TTL` into an in-memory rdflib `Graph`.
   Endpoints in `main.py`: `GET /graf` (page = `app/static/kg.html` + `kg-graph.js`
-  + `kg.js`), `GET /api/kg/info`, `GET /api/kg/teams`, `GET /api/kg/graph?view=
-  team|groups|confed`, and `GET|POST /api/kg/sparql`.
+  + `kg.js`), `GET /api/kg/info`, `GET /api/kg/teams`, `GET /api/kg/graph?team=<name>`
+  (one squad: team→group + team→players), and `GET|POST /api/kg/sparql`.
 - **SPARQL is read-only**: queries run through rdflib `Graph.query()`, which only
   executes SELECT/ASK/CONSTRUCT/DESCRIBE — UPDATE/INSERT raise and return 400.
   Results are capped by row count, query length, and a timeout.

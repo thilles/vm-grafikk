@@ -1,15 +1,12 @@
 "use strict";
-// Avhengighetsfri force-directed nodegraf på canvas.
-// Visninger: ett landslag (lag→gruppe, spiller→liga), alle grupper, alle landslag.
+// Avhengighetsfri force-directed nodegraf på canvas: ett landslag → gruppe + spillere.
 
 const KG_TYPES = {
-  team:          { color: "#fbbf24", r: 16, label: "Landslag" },
-  confederation: { color: "#f97316", r: 15, label: "Konføderasjon" },
-  group:         { color: "#60a5fa", r: 13, label: "Gruppe" },
-  league:        { color: "#c084fc", r: 11, label: "Liga" },
-  player:        { color: "#4ade80", r: 6,  label: "Spiller" },
+  team:   { color: "#fbbf24", r: 16, label: "Landslag" },
+  group:  { color: "#60a5fa", r: 13, label: "Gruppe" },
+  player: { color: "#4ade80", r: 6,  label: "Spiller" },
 };
-const KG_LEGEND_ORDER = ["team", "confederation", "group", "league", "player"];
+const KG_LEGEND_ORDER = ["team", "group", "player"];
 
 const WC = "http://example.org/wc2026/ontology#";
 const Q_PREFIX =
@@ -22,8 +19,6 @@ const Q_PREFIX =
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
   const sel = document.getElementById("kg-team");
-  const viewSel = document.getElementById("kg-view");
-  const teamWrap = document.getElementById("kg-team-wrap");
   const statusEl = document.getElementById("kg-graph-status");
   const legendEl = document.getElementById("kg-legend");
 
@@ -169,15 +164,6 @@ const Q_PREFIX =
       return Q_PREFIX + "SELECT ?landslag WHERE {\n" +
         "  ?t wc:inGroup " + u + " ; rdfs:label ?landslag .\n} ORDER BY ?landslag";
     }
-    if (n.type === "league") {
-      return Q_PREFIX + "SELECT ?spiller ?klubb WHERE {\n" +
-        "  ?c wc:clubInLeague " + u + " ; rdfs:label ?klubb .\n" +
-        "  ?p wc:playsAtClub ?c ; foaf:name ?spiller .\n} ORDER BY ?klubb ?spiller";
-    }
-    if (n.type === "confederation") {
-      return Q_PREFIX + "SELECT ?landslag WHERE {\n" +
-        "  ?t wc:affiliatedTo " + u + " ; rdfs:label ?landslag .\n} ORDER BY ?landslag";
-    }
     // player (eller annet): alle fakta om noden
     return Q_PREFIX + "SELECT ?egenskap ?verdi WHERE {\n  " + u + " ?egenskap ?verdi .\n}";
   }
@@ -213,14 +199,9 @@ const Q_PREFIX =
   canvas.addEventListener("pointerleave", () => { hoverNode = null; });
 
   async function load() {
-    const view = viewSel ? viewSel.value : "team";
-    teamWrap.style.display = view === "team" ? "" : "none";
-    const url = view === "team"
-      ? "/api/kg/graph?view=team&team=" + encodeURIComponent(sel.value || "Norway")
-      : "/api/kg/graph?view=" + encodeURIComponent(view);
     statusEl.textContent = "Laster …";
     try {
-      const r = await fetch(url);
+      const r = await fetch("/api/kg/graph?team=" + encodeURIComponent(sel.value || "Norway"));
       const d = await r.json();
       if (!r.ok) throw new Error(d.error || r.statusText);
       resize();
@@ -239,7 +220,6 @@ const Q_PREFIX =
       const teams = d.teams || [];
       sel.innerHTML = teams.map((t) => `<option${t === "Norway" ? " selected" : ""}>${t}</option>`).join("");
       sel.onchange = load;
-      if (viewSel) viewSel.onchange = load;
       await load();
     } catch (e) {
       statusEl.textContent = "Klarte ikke å laste landslag: " + e.message;

@@ -220,36 +220,18 @@ def _pack(nodes, links):
     }
 
 
-def graph(view="team", team_label="Norway"):
-    """Dispatch til ønsket nodegraf-visning.
+def subgraph(team_label="Norway"):
+    """Nodegraf for ett landslag: lag → gruppe og lag → spillere.
 
-    view: "team" (én tropp), "groups" (alle grupper + landslag) eller
-    "confed" (alle landslag + konføderasjoner). Hever ValueError ved ukjent lag.
+    Hever ValueError ved ukjent lag (gjøres om til HTTP 404 i ruten).
     """
-    v = (view or "team").lower()
-    if v == "groups":
-        return _groups_graph()
-    if v in ("confed", "confederation", "teams"):
-        return _confed_graph()
-    return _team_graph(team_label)
-
-
-def _team_graph(team_label):
-    """Én tropp: lag→gruppe og spiller→liga (klubb-leddet kollapses bort)."""
     from rdflib import Literal
     g = _load()
     q = _PREFIXES + """
-    SELECT ?team ?teamLabel ?group ?groupLabel ?player ?playerName
-           ?league ?leagueLabel WHERE {
+    SELECT ?team ?teamLabel ?group ?groupLabel ?player ?playerName WHERE {
       ?team a wc:NationalTeam ; rdfs:label ?tname ; rdfs:label ?teamLabel .
       OPTIONAL { ?team wc:inGroup ?group . ?group rdfs:label ?groupLabel }
-      OPTIONAL {
-        ?team wc:calledUp ?player . ?player foaf:name ?playerName .
-        OPTIONAL {
-          ?player wc:playsAtClub ?club . ?club wc:clubInLeague ?league .
-          ?league rdfs:label ?leagueLabel
-        }
-      }
+      OPTIONAL { ?team wc:calledUp ?player . ?player foaf:name ?playerName }
     }
     """
     with _lock:
@@ -270,51 +252,7 @@ def _team_graph(team_label):
             pl = str(r.player)
             add(pl, str(r.playerName), "player")
             links.add((team_uri, pl, "calledUp"))
-            if r.league:  # spiller → liga (utledet via klubben)
-                lg = str(r.league)
-                add(lg, str(r.leagueLabel), "league")
-                links.add((pl, lg, "playsInLeague"))
 
     if not nodes:
         raise ValueError(f"Ukjent landslag: {team_label}")
-    return {"view": "team", "team": team_label, **_pack(nodes, links)}
-
-
-def _groups_graph():
-    """Hele turneringen på gruppenivå: hver gruppe med sine landslag."""
-    g = _load()
-    q = _PREFIXES + """
-    SELECT ?group ?groupLabel ?team ?teamLabel WHERE {
-      ?group a wc:Group ; rdfs:label ?groupLabel .
-      ?team a wc:NationalTeam ; wc:inGroup ?group ; rdfs:label ?teamLabel .
-    }
-    """
-    nodes, links = {}, set()
-    with _lock:
-        rows = list(g.query(q))
-    for r in rows:
-        gr, te = str(r.group), str(r.team)
-        nodes.setdefault(gr, {"id": gr, "label": str(r.groupLabel), "type": "group"})
-        nodes.setdefault(te, {"id": te, "label": str(r.teamLabel), "type": "team"})
-        links.add((te, gr, "inGroup"))
-    return {"view": "groups", **_pack(nodes, links)}
-
-
-def _confed_graph():
-    """Hele turneringen på landslagsnivå: landslag gruppert per konføderasjon."""
-    g = _load()
-    q = _PREFIXES + """
-    SELECT ?conf ?confLabel ?team ?teamLabel WHERE {
-      ?team a wc:NationalTeam ; rdfs:label ?teamLabel ; wc:affiliatedTo ?conf .
-      ?conf rdfs:label ?confLabel .
-    }
-    """
-    nodes, links = {}, set()
-    with _lock:
-        rows = list(g.query(q))
-    for r in rows:
-        co, te = str(r.conf), str(r.team)
-        nodes.setdefault(co, {"id": co, "label": str(r.confLabel), "type": "confederation"})
-        nodes.setdefault(te, {"id": te, "label": str(r.teamLabel), "type": "team"})
-        links.add((te, co, "affiliatedTo"))
-    return {"view": "confed", **_pack(nodes, links)}
+    return {"team": team_label, **_pack(nodes, links)}
