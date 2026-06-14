@@ -4,3 +4,5 @@ data/fasit.example.json
 data/highlights_cache.json
 __pycache__/
 .DS_Store
+*.pdf
+*.xlsx

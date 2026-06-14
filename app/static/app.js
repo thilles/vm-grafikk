@@ -41,22 +41,41 @@ function highlightsBlock(h) {
   return `<div class="match-details">${goals}${cards}</div>`;
 }
 
+function videoBlock(v) {
+  if (!v || !v.id) return "";
+  // iframe injiseres først ved åpning (toggleMatch) for å unngå tunge embeds.
+  return `<div class="match-video"><div class="yt" data-vid="${v.id}"></div></div>`;
+}
+
+// Klikk på en kamp: vis/skjul detaljer og last YouTube-embeden lazy ved åpning.
+function toggleMatch(el) {
+  el.classList.toggle("open");
+  const ph = el.querySelector(".yt[data-vid]");
+  if (ph && el.classList.contains("open") && !ph.dataset.loaded) {
+    ph.dataset.loaded = "1";
+    ph.innerHTML =
+      `<iframe src="https://www.youtube-nocookie.com/embed/${ph.dataset.vid}" ` +
+      `allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ` +
+      `allowfullscreen loading="lazy"></iframe>`;
+  }
+}
+
 function matchCard(m, live) {
   const played = m.goals_home !== null && m.goals_home !== undefined;
   const score = played
     ? `${m.goals_home}–${m.goals_away}`
     : new Date(m.date).toLocaleTimeString("no-NO", { hour: "2-digit", minute: "2-digit" });
-  const details = highlightsBlock(m.highlights);
-  const clickable = details
-    ? ' clickable" onclick="this.classList.toggle(\'open\')"'
-    : '"';
+  const inner = highlightsBlock(m.highlights) + videoBlock(m.video);
+  const expandable = inner.length > 0;
+  const cls = `match ${live ? "live" : ""}${expandable ? " clickable" : ""}`;
+  const onclick = expandable ? ' onclick="toggleMatch(this)"' : "";
   return `
-    <div class="match ${live ? "live" : ""}${clickable}>
+    <div class="${cls}"${onclick}>
       <div class="team"><span>${m.home_flag}</span><span class="name">${m.home}</span></div>
       <div class="score">${score}</div>
       <div class="team away"><span class="name">${m.away}</span><span>${m.away_flag}</span></div>
-      <div class="when">${fmtDate(m.date)} · ${stageBadge(m)}${m.pens ? " · " + m.pens : ""}${live ? " · PÅGÅR" : ""}${details ? " · 👆 detaljer" : ""}</div>
-      ${details}
+      <div class="when">${fmtDate(m.date)} · ${stageBadge(m)}${m.pens ? " · " + m.pens : ""}${live ? " · PÅGÅR" : ""}${expandable ? " · 👆 detaljer" : ""}</div>
+      ${inner}
     </div>`;
 }
 

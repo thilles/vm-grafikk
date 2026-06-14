@@ -129,7 +129,11 @@ def _fixture_ids_for_date(client, date):
         away = (teams.get("away") or {}).get("name") or ""
         pair = frozenset({canonical(home) or home, canonical(away) or away})
         idmap[pair] = (f.get("fixture") or {}).get("id")
-    _date_fixtures[date] = idmap
+    # Cache bare faktiske treff. Et tomt svar (API-feil, suspendert konto e.l.)
+    # caches ikke, slik at neste oppdatering prøver datoen på nytt i stedet for
+    # å feste seg på «ingen kamper» til containeren restartes.
+    if idmap:
+        _date_fixtures[date] = idmap
     return idmap
 
 

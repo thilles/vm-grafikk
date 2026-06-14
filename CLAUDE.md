@@ -39,6 +39,10 @@ With no `FOOTBALL_DATA_TOKEN` set, the app runs on built-in demo data
 - `HIGHLIGHTS_CACHE` — path for the highlights cache, default
   `/data/highlights_cache.json`. `APISPORTS_MAX_CALLS_PER_REFRESH` (default 15)
   caps api-sports calls per refresh.
+- `YOUTUBE_API_KEY` — YouTube Data API v3 key for per-match highlight videos
+  (`highlights.py`'s sibling `videos.py`). Absent → no videos, rest unchanged.
+  `YOUTUBE_PLAYLIST_ID` (default the WC highlights playlist) picks the playlist;
+  videos are matched to matches by parsing team names out of the video title.
 - `SHEET_CSV_URL` — published Google Sheet CSV of predictions. Takes priority
   over the local Excel file; required in the cloud (no local file there).
 - `PREDICTIONS_XLSX` — local predictions file, default `/data/svar.xlsx`.

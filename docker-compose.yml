@@ -11,6 +11,9 @@ services:
       - SHEET_CSV_URL=${SHEET_CSV_URL:-}
       # Valgfritt: api-sports-nøkkel for mål/kort pr ferdig kamp (https://www.api-football.com)
       - APISPORTS_KEY=${APISPORTS_KEY:-}
+      # Valgfritt: YouTube Data API-nøkkel + spilleliste for høydepunkt-video pr kamp
+      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY:-}
+      - YOUTUBE_PLAYLIST_ID=${YOUTUBE_PLAYLIST_ID:-PLBRLtDhTHh5o}
       - REFRESH_MINUTES=${REFRESH_MINUTES:-10}
     volumes:
       - ./data:/data

@@ -170,8 +170,12 @@ class DemoProvider:
                 ],
             },
         }
+        # Demo-video (YouTube-id) keyet som videos.pair_key: sortert kanonisk lagpar.
+        videos = {
+            "Brazil|Morocco": {"id": "dQw4w9WgXcQ", "title": "Brazil v Morocco | Highlights"},
+        }
         return {"matches": matches, "scorers": scorers, "source": "demodata",
-                "demo": True, "highlights": highlights}
+                "demo": True, "highlights": highlights, "videos": videos}
 
 
 def get_provider():

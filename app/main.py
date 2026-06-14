@@ -19,6 +19,8 @@ from .facts import build_facts
 from .football_api import get_provider
 from .highlights import build_highlights, match_key
 from .highlights import view as highlights_view
+from .videos import build_videos, pair_key as video_key
+from .videos import view as video_view
 from .predictions import load_predictions
 from .scoring import (
     compute_group_tables,
@@ -38,7 +40,7 @@ REFRESH_MINUTES = int(os.environ.get("REFRESH_MINUTES", "10"))
 STATE = {"ready": False, "error": None}
 
 
-def _match_view(m, highlights=None):
+def _match_view(m, highlights=None, videos=None):
     return {
         "date": m["utc_date"],
         "status": m["status"],
@@ -54,6 +56,7 @@ def _match_view(m, highlights=None):
         if m.get("pens_home") is not None
         else None,
         "highlights": highlights_view((highlights or {}).get(match_key(m))),
+        "video": video_view((videos or {}).get(video_key(m))),
     }
 
 
@@ -73,6 +76,8 @@ def rebuild_state():
 
     # Mål/kort pr ferdig kamp (api-sports). Demo-data har dem ferdig påsatt.
     highlights = data.get("highlights") or build_highlights(matches)
+    # Høydepunkt-video pr kamp (YouTube-spilleliste). Tom uten YOUTUBE_API_KEY.
+    videos = data.get("videos") or build_videos()
 
     STATE.update(
         {
@@ -85,7 +90,7 @@ def rebuild_state():
             "leaderboard": leaderboard,
             "matches": {
                 "live": [_match_view(m) for m in live],
-                "finished": [_match_view(m, highlights) for m in finished[-12:]][::-1],
+                "finished": [_match_view(m, highlights, videos) for m in finished[-12:]][::-1],
                 "upcoming": [_match_view(m) for m in upcoming],
             },
             "groups": {
