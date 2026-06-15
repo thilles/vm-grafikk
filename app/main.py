@@ -14,6 +14,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
+from . import duell as duell_mod
 from . import kg
 from . import kg_nlq
 
@@ -43,8 +44,9 @@ REFRESH_MINUTES = int(os.environ.get("REFRESH_MINUTES", "10"))
 STATE = {"ready": False, "error": None}
 
 
-def _match_view(m, highlights=None, nrk=None):
+def _match_view(m, highlights=None, nrk=None, duell_index=None):
     return {
+        "id": match_key(m),
         "date": m["utc_date"],
         "status": m["status"],
         "stage": m["stage"],
@@ -60,6 +62,7 @@ def _match_view(m, highlights=None, nrk=None):
         else None,
         "highlights": highlights_view((highlights or {}).get(match_key(m))),
         "report_url": nrk_url(m, nrk),
+        "duell": duell_mod.for_match(m, duell_index) if duell_index else None,
     }
 
 
@@ -83,6 +86,9 @@ def rebuild_state():
     nrk_links = build_links(finished)
     # Nyhetsfeed fra NRKs direkterapportering (åpent API, ingen nøkkel).
     news = build_news()
+    # «Kamp i kampen»: felles klubblag pr kamp (KG). Indeksen bygges én gang her;
+    # kg.club_rosters() er memoisert, så dette koster ingen SPARQL etter oppstart.
+    duell_index = duell_mod.build_index()
 
     STATE.update(
         {
@@ -94,9 +100,12 @@ def rebuild_state():
             "predictions_source": pred_source,
             "leaderboard": leaderboard,
             "matches": {
-                "live": [_match_view(m) for m in live],
-                "finished": [_match_view(m, highlights, nrk_links) for m in finished[-12:]][::-1],
-                "upcoming": [_match_view(m) for m in upcoming],
+                "live": [_match_view(m, duell_index=duell_index) for m in live],
+                "finished": [
+                    _match_view(m, highlights, nrk_links, duell_index)
+                    for m in finished[-12:]
+                ][::-1],
+                "upcoming": [_match_view(m, duell_index=duell_index) for m in upcoming],
             },
             "groups": {
                 letter: [
