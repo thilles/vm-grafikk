@@ -331,16 +331,16 @@ def full_graph():
     return {"view": "all", **_pack(nodes, links)}
 
 
-_club_roster = None  # memoisert: liste av {team_label, club, club_label, player_name, value}
+_club_rosters = None  # memoisert: liste av {team_label, club, club_label, player_name, value}
 
 
 def club_rosters():
     """Alle opptatte spillere som har en klubb, som flate rader til «Kamp i
     kampen»-duellene. Memoisert – grafen er statisk, så SPARQL kjøres bare én
     gang i prosessens levetid (grafen lastes uansett ved oppstart)."""
-    global _club_roster
-    if _club_roster is not None:
-        return _club_roster
+    global _club_rosters
+    if _club_rosters is not None:
+        return _club_rosters
     g = _load()
     q = _PREFIXES + """
     SELECT ?teamLabel ?club ?clubLabel ?playerName ?mv WHERE {
@@ -351,15 +351,16 @@ def club_rosters():
     }
     """
     with _lock:
-        rows = list(g.query(q))
-    _club_roster = [
-        {
-            "team_label": str(r.teamLabel),
-            "club": str(r.club),
-            "club_label": str(r.clubLabel),
-            "player_name": str(r.playerName),
-            "value": _num(r.mv),
-        }
-        for r in rows
-    ]
-    return _club_roster
+        if _club_rosters is None:
+            rows = list(g.query(q))
+            _club_rosters = [
+                {
+                    "team_label": str(r.teamLabel),
+                    "club": str(r.club),
+                    "club_label": str(r.clubLabel),
+                    "player_name": str(r.playerName),
+                    "value": _num(r.mv),
+                }
+                for r in rows
+            ]
+    return _club_rosters

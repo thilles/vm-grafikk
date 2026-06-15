@@ -2,6 +2,44 @@
 
 const $ = (id) => document.getElementById(id);
 
+// «Kamp i kampen»: payload pr kamp-id (kortene re-rendres hvert 60 s, så vi
+// holder duell-dataene utenfor DOM-en) + aktive sim-håndtak pr kort-element.
+const DUELL = new Map();
+const _kikHandles = new WeakMap();
+
+function toggleMatch(card) {
+  const open = card.classList.toggle("open");
+  const canvas = card.querySelector(".kik-canvas");
+  if (!canvas) return;
+  if (open) {
+    const d = DUELL.get(card.dataset.mid);
+    if (d && !_kikHandles.has(card)) {
+      _kikHandles.set(card, window.mountKik(canvas, d.duell, d.homeFlag, d.awayFlag));
+    }
+  } else {
+    const h = _kikHandles.get(card);
+    if (h) { h.stop(); _kikHandles.delete(card); }
+  }
+}
+window.toggleMatch = toggleMatch;
+
+// Sett et kamp-containers innhold på nytt uten å miste hvilke kort som er åpne.
+// Kortene re-rendres hvert minutt; her bevares «open»-tilstand og evt. kjørende
+// kamp-i-kampen-animasjon stoppes rent før DOM-en byttes ut (ingen foreldreløs rAF).
+function setMatchHTML(container, html) {
+  const openIds = [...container.querySelectorAll(".match.open")].map((c) => c.dataset.mid);
+  container.querySelectorAll(".match.open").forEach((c) => {
+    const h = _kikHandles.get(c);
+    if (h) { h.stop(); _kikHandles.delete(c); }
+  });
+  container.innerHTML = html;
+  openIds.forEach((id) => {
+    if (!id) return;
+    const c = container.querySelector(`.match[data-mid="${CSS.escape(id)}"]`);
+    if (c) toggleMatch(c); // gjenåpner kortet og re-monterer grafen
+  });
+}
+
 // Escaper tekst fra eksterne kilder (NRK) før den settes inn som innerHTML.
 function esc(s) {
   const d = document.createElement("div");
@@ -57,17 +95,25 @@ function reportBlock(url) {
     </a>`;
 }
 
+function kikBlock(m) {
+  if (!m.duell || !m.duell.length) return "";
+  return `<div class="kik"><h4>🔗 Kamp i kampen</h4><canvas class="kik-canvas"></canvas></div>`;
+}
+
 function matchCard(m, live) {
   const played = m.goals_home !== null && m.goals_home !== undefined;
   const score = played
     ? `${m.goals_home}–${m.goals_away}`
     : new Date(m.date).toLocaleTimeString("no-NO", { hour: "2-digit", minute: "2-digit" });
-  const inner = highlightsBlock(m.highlights) + reportBlock(m.report_url);
+  const inner = highlightsBlock(m.highlights) + reportBlock(m.report_url) + kikBlock(m);
   const expandable = inner.length > 0;
+  if (m.duell && m.duell.length) {
+    DUELL.set(m.id, { duell: m.duell, homeFlag: m.home_flag, awayFlag: m.away_flag });
+  }
   const cls = `match ${live ? "live" : ""}${expandable ? " clickable" : ""}`;
-  const onclick = expandable ? ' onclick="this.classList.toggle(\'open\')"' : "";
+  const onclick = expandable ? ' onclick="toggleMatch(this)"' : "";
   return `
-    <div class="${cls}"${onclick}>
+    <div class="${cls}"${onclick} data-mid="${m.id}">
       <div class="team"><span>${m.home_flag}</span><span class="name">${m.home}</span></div>
       <div class="score">${score}</div>
       <div class="team away"><span class="name">${m.away}</span><span>${m.away_flag}</span></div>
@@ -140,7 +186,7 @@ function renderTimelineStrip(matches) {
     ...next.map((m) => matchCard(m, false)),
   ].join("");
   const strip = $("timeline-strip");
-  strip.innerHTML = chips || '<p style="color:var(--muted)">Ingen kamper å vise ennå.</p>';
+  setMatchHTML(strip, chips || '<p style="color:var(--muted)">Ingen kamper å vise ennå.</p>');
   // Rull stripa slik at «Nå»-skillet er synlig (grensen mellom spilt og kommende).
   const nowEl = strip.querySelector(".tl-now");
   if (nowEl) strip.scrollLeft = Math.max(0, nowEl.offsetLeft - strip.clientWidth / 2);
@@ -310,7 +356,7 @@ async function refresh() {
       (s.demo ? ' · <b style="color:var(--gold)">DEMODATA</b>' : "");
 
     $("live-section").hidden = s.matches.live.length === 0;
-    $("live-matches").innerHTML = s.matches.live.map((m) => matchCard(m, true)).join("");
+    setMatchHTML($("live-matches"), s.matches.live.map((m) => matchCard(m, true)).join(""));
 
     const anyMatches =
       s.matches.live.length + s.matches.finished.length + s.matches.upcoming.length > 0;
