@@ -23,6 +23,23 @@ function toggleMatch(card) {
 }
 window.toggleMatch = toggleMatch;
 
+// Sett et kamp-containers innhold på nytt uten å miste hvilke kort som er åpne.
+// Kortene re-rendres hvert minutt; her bevares «open»-tilstand og evt. kjørende
+// kamp-i-kampen-animasjon stoppes rent før DOM-en byttes ut (ingen foreldreløs rAF).
+function setMatchHTML(container, html) {
+  const openIds = [...container.querySelectorAll(".match.open")].map((c) => c.dataset.mid);
+  container.querySelectorAll(".match.open").forEach((c) => {
+    const h = _kikHandles.get(c);
+    if (h) { h.stop(); _kikHandles.delete(c); }
+  });
+  container.innerHTML = html;
+  openIds.forEach((id) => {
+    if (!id) return;
+    const c = container.querySelector(`.match[data-mid="${CSS.escape(id)}"]`);
+    if (c) toggleMatch(c); // gjenåpner kortet og re-monterer grafen
+  });
+}
+
 // Escaper tekst fra eksterne kilder (NRK) før den settes inn som innerHTML.
 function esc(s) {
   const d = document.createElement("div");
@@ -169,7 +186,7 @@ function renderTimelineStrip(matches) {
     ...next.map((m) => matchCard(m, false)),
   ].join("");
   const strip = $("timeline-strip");
-  strip.innerHTML = chips || '<p style="color:var(--muted)">Ingen kamper å vise ennå.</p>';
+  setMatchHTML(strip, chips || '<p style="color:var(--muted)">Ingen kamper å vise ennå.</p>');
   // Rull stripa slik at «Nå»-skillet er synlig (grensen mellom spilt og kommende).
   const nowEl = strip.querySelector(".tl-now");
   if (nowEl) strip.scrollLeft = Math.max(0, nowEl.offsetLeft - strip.clientWidth / 2);
@@ -339,7 +356,7 @@ async function refresh() {
       (s.demo ? ' · <b style="color:var(--gold)">DEMODATA</b>' : "");
 
     $("live-section").hidden = s.matches.live.length === 0;
-    $("live-matches").innerHTML = s.matches.live.map((m) => matchCard(m, true)).join("");
+    setMatchHTML($("live-matches"), s.matches.live.map((m) => matchCard(m, true)).join(""));
 
     const anyMatches =
       s.matches.live.length + s.matches.finished.length + s.matches.upcoming.length > 0;
