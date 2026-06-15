@@ -1076,3 +1076,25 @@ code {
     border-radius: 12px;
     touch-action: none;
 }
+
+.kik {
+    grid-column: 1 / -1;
+    display: none;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+}
+.match.open .kik {
+    display: block;
+}
+.kik h4 {
+    margin: 0 0 4px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+}
+.kik-canvas {
+    display: block;
+    width: 100%;
+}
