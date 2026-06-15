@@ -4,7 +4,7 @@ A SPARQL-queryable RDF/Turtle knowledge graph of all **48 squads** (≈**1248
 players**) at the 2026 FIFA World Cup, built from Wikipedia with a custom but
 standards-aligned OWL ontology.
 
-The pipeline scrapes the article *"2026 FIFA World Cup squads"* via the MediaWiki
+The pipeline scrapes the article _"2026 FIFA World Cup squads"_ via the MediaWiki
 API, enriches club→league/country links from Wikidata, and emits three Turtle
 files: the ontology (TBox), the data (ABox), and a combined graph.
 
@@ -52,7 +52,7 @@ static snapshot for overlapping fields):
    python build.py                  # rebuild the graph with the new values
    ```
 
-2. **Live Transfermarkt API (optional).** Adds market value *and* height *and*
+2. **Live Transfermarkt API (optional).** Adds market value _and_ height _and_
    preferred foot. Transfermarkt is Cloudflare-protected, so this prefers a
    locally hosted
    [felipeall/transfermarkt-api](https://github.com/felipeall/transfermarkt-api):
@@ -73,10 +73,10 @@ static snapshot). Set `ENABLE_TRANSFERMARKT=0` to disable the live API path; del
 
 Namespaces:
 
-| prefix | IRI |
-|--------|-----|
-| `wc:`  | `http://example.org/wc2026/ontology#` (terms / TBox) |
-| `wcr:` | `http://example.org/wc2026/resource/` (instances / ABox) |
+| prefix                                              | IRI                                                      |
+| --------------------------------------------------- | -------------------------------------------------------- |
+| `wc:`                                               | `http://example.org/wc2026/ontology#` (terms / TBox)     |
+| `wcr:`                                              | `http://example.org/wc2026/resource/` (instances / ABox) |
 | plus `rdf:` `rdfs:` `owl:` `xsd:` `foaf:` `schema:` |
 
 **Classes:** `wc:Tournament`, `wc:NationalTeam`, `wc:Player`
@@ -86,19 +86,19 @@ Namespaces:
 **Object properties** (with `rdfs:domain`/`rdfs:range`, and `owl:inverseOf` where
 natural):
 
-| property | domain → range |
-|----------|----------------|
-| `wc:hasParticipant` | Tournament → NationalTeam |
-| `wc:inGroup` | NationalTeam → Group |
-| `wc:affiliatedTo` | NationalTeam → Confederation |
-| `wc:representsCountry` | NationalTeam → Country |
+| property                                  | domain → range                  |
+| ----------------------------------------- | ------------------------------- |
+| `wc:hasParticipant`                       | Tournament → NationalTeam       |
+| `wc:inGroup`                              | NationalTeam → Group            |
+| `wc:affiliatedTo`                         | NationalTeam → Confederation    |
+| `wc:representsCountry`                    | NationalTeam → Country          |
 | `wc:calledUp` ⇄ `wc:playsForNationalTeam` | NationalTeam → Player (inverse) |
-| `wc:playsAtClub` | Player → Club |
-| `wc:hasPosition` | Player → Position |
-| `wc:hasNationality` | Player → Country |
-| `wc:clubInLeague` | Club → League |
-| `wc:clubInCountry` | Club → Country |
-| `wc:leagueInCountry` | League → Country |
+| `wc:playsAtClub`                          | Player → Club                   |
+| `wc:hasPosition`                          | Player → Position               |
+| `wc:hasNationality`                       | Player → Country                |
+| `wc:clubInLeague`                         | Club → League                   |
+| `wc:clubInCountry`                        | Club → Country                  |
+| `wc:leagueInCountry`                      | League → Country                |
 
 **Datatype properties:**
 
@@ -121,16 +121,16 @@ stripped, hyphenated) is applied **only to the URI local part** — the full nam
 **with** diacritics (ø, å, ü, é, …) is always preserved in the `foaf:name`
 literal.
 
-| entity | URI pattern | example |
-|--------|-------------|---------|
-| player | `wcr:player/{slug(name)}-{yearOfBirth}` | `wcr:player/erling-haaland-2000` |
-| team | `wcr:team/{slug(country)}` | `wcr:team/norway` |
-| club | `wcr:club/{slug(name)}` | `wcr:club/manchester-city` |
-| league | `wcr:league/{slug(name)}` | `wcr:league/premier-league` |
-| country | `wcr:country/{code}` | `wcr:country/nor` |
-| group | `wcr:group/{letter}` | `wcr:group/I` |
-| confederation | `wcr:confederation/{conf}` | `wcr:confederation/UEFA` |
-| position | `wcr:position/{code}` | `wcr:position/FW` |
+| entity        | URI pattern                             | example                          |
+| ------------- | --------------------------------------- | -------------------------------- |
+| player        | `wcr:player/{slug(name)}-{yearOfBirth}` | `wcr:player/erling-haaland-2000` |
+| team          | `wcr:team/{slug(country)}`              | `wcr:team/norway`                |
+| club          | `wcr:club/{slug(name)}`                 | `wcr:club/manchester-city`       |
+| league        | `wcr:league/{slug(name)}`               | `wcr:league/premier-league`      |
+| country       | `wcr:country/{code}`                    | `wcr:country/nor`                |
+| group         | `wcr:group/{letter}`                    | `wcr:group/I`                    |
+| confederation | `wcr:confederation/{conf}`              | `wcr:confederation/UEFA`         |
+| position      | `wcr:position/{code}`                   | `wcr:position/FW`                |
 
 The country `{code}` is the 3-letter FIFA code for the 48 participating nations
 (a stable, unique key; FIFA codes are used where they differ from ISO-3166
@@ -143,7 +143,7 @@ is exactly one node (e.g. all Premier League clubs point at the single
 
 ## Data provenance & caveats
 
-- **Squads:** Wikipedia, *"2026 FIFA World Cup squads"*, via the MediaWiki
+- **Squads:** Wikipedia, _"2026 FIFA World Cup squads"_, via the MediaWiki
   `action=parse` API. Final 26-man squads were locked **1 June 2026**; the graph
   reflects the article as published. Shirt number, position, name, date of birth,
   caps, goals and club come straight from the per-nation squad tables.
@@ -159,7 +159,7 @@ is exactly one node (e.g. all Premier League clubs point at the single
   `{{… football updater}}` templates (Premier League, La Liga, …). Wikipedia
   infobox wikitext is used as a fallback. ~421 of 452 clubs get a league; the
   rest (lower-league / national-team-only entries) are simply left without one.
-- **Market value** is an *optional* enrichment, scraped per nation from
+- **Market value** is an _optional_ enrichment, scraped per nation from
   Transfermarkt's World Cup page (see above) into `market_values.json` — real
   values for 1136/1248 players as of 2026-06-14 (all 48 teams covered; the rest
   are name-form mismatches). A live Transfermarkt API, if configured, supersedes
@@ -168,6 +168,30 @@ is exactly one node (e.g. all Premier League clubs point at the single
   User-Agent and rate limiting, so reruns are offline and polite.
 - Parsing primary path is the MediaWiki API + BeautifulSoup; `pandas.read_html`
   is the documented fallback for the squad tables.
+
+```mermaid
+graph TD
+    Tournament -->|hasParticipant| NationalTeam
+
+    NationalTeam -->|inGroup| Group
+    NationalTeam -->|affiliatedTo| Confederation
+    NationalTeam -->|representsCountry| Country
+    NationalTeam -->|calledUp| Player
+    Player -->|playsForNationalTeam| NationalTeam
+
+    Player -->|hasPosition| Position
+    Player -->|hasNationality| Country
+    Player -->|playsAtClub| Club
+
+    Club -->|clubInLeague| League
+    Club -->|clubInCountry| Country
+    League -->|leagueInCountry| Country
+
+    Player -.->|rdfs:subClassOf| Person["foaf:Person"]
+
+    classDef cls fill:#eef,stroke:#557,stroke-width:1px;
+    class Tournament,NationalTeam,Player,Club,League,Group,Confederation,Country,Position cls;
+```
 
 ## Validation & demo queries
 
