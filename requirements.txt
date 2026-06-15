@@ -4,3 +4,4 @@ httpx==0.28.1
 openpyxl==3.1.5
 rdflib==7.6.0
 pyparsing==3.3.2  # låst sammen med rdflib – eldre pyparsing/rdflib gir SPARQL-parserfeil
+anthropic==0.109.2  # Claude-SDK for naturlig språk → SPARQL på /graf (kg_nlq.py)

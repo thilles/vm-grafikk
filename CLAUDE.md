@@ -39,6 +39,11 @@ With no `FOOTBALL_DATA_TOKEN` set, the app runs on built-in demo data
 - `HIGHLIGHTS_CACHE` — path for the highlights cache, default
   `/data/highlights_cache.json`. `APISPORTS_MAX_CALLS_PER_REFRESH` (default 15)
   caps api-sports calls per refresh.
+- `ANTHROPIC_API_KEY` — Claude key for the `/graf` "ask in plain Norwegian"
+  feature (`kg_nlq.py`): translates a free-text question to SPARQL and summarizes
+  the result. Absent → `/api/kg/ask` returns 503 and the ask-box is hidden; the
+  rest of `/graf` is unchanged. `KG_NLQ_MODEL` overrides the model (default
+  `claude-haiku-4-5`).
 - NRK match-page links (`nrk_links.py`) and the news feed (`news.py`) use NRK's
   open NIFS/serum APIs and need no key. `NIFS_TOURNAMENT_ID` (default 56 = the
   World Cup) and `NIFS_SEASON_YEAR` (default 2026) pick the tournament/season;
@@ -164,7 +169,9 @@ loaded lazily and read-only.
 - **Runtime** (`app/kg.py`): lazy-loads `KG_TTL` into an in-memory rdflib `Graph`.
   Endpoints in `main.py`: `GET /graf` (page = `app/static/kg.html` + `kg-graph.js`
   + `kg.js`), `GET /api/kg/info`, `GET /api/kg/teams`, `GET /api/kg/graph?team=<name>`
-  (one squad: team→group + team→players), and `GET|POST /api/kg/sparql`.
+  (one squad: team→group + team→players), `GET|POST /api/kg/sparql`, and
+  `POST /api/kg/ask` (natural-language question → SPARQL via Claude; see
+  `app/kg_nlq.py` and `ANTHROPIC_API_KEY` above).
 - **SPARQL is read-only**: queries run through rdflib `Graph.query()`, which only
   executes SELECT/ASK/CONSTRUCT/DESCRIBE — UPDATE/INSERT raise and return 400.
   Results are capped by row count, query length, and a timeout.

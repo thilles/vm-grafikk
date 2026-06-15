@@ -912,6 +912,44 @@ footer {
 .kg-btn:hover {
     filter: brightness(1.1);
 }
+.kg-ask {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+}
+.kg-ask-row {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 4px;
+    flex-wrap: wrap;
+}
+.kg-ask-input {
+    flex: 1 1 280px;
+    background: #0a1810;
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+}
+.kg-ask-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+.kg-ask-answer {
+    margin-top: 10px;
+    background: var(--panel2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--text);
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
 .kg-limit {
     color: var(--muted);
     font-size: 0.8rem;

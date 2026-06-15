@@ -15,6 +15,7 @@ from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 from . import kg
+from . import kg_nlq
 
 from .consensus import build_consensus
 from .facts import build_facts
@@ -181,7 +182,7 @@ def api_kg_info():
         return JSONResponse({"ok": False, "error": "Kunnskapsgrafen er ikke tilgjengelig."},
                             status_code=503)
     try:
-        return JSONResponse({"ok": True, **kg.info()})
+        return JSONResponse({"ok": True, "ask": kg_nlq.available(), **kg.info()})
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"ok": False, "error": str(e)}, status_code=500)
 
@@ -245,6 +246,64 @@ async def api_kg_sparql_get(request: Request):
 @app.post("/api/kg/sparql")
 async def api_kg_sparql_post(request: Request):
     return await _run_kg_query(request)
+
+
+@app.post("/api/kg/ask")
+async def api_kg_ask(request: Request):
+    """Naturlig språk → SPARQL via Claude (kg_nlq), kjør, og oppsummer på norsk."""
+    if not kg.available():
+        return JSONResponse({"error": "Kunnskapsgrafen er ikke tilgjengelig."},
+                            status_code=503)
+    if not kg_nlq.available():
+        return JSONResponse(
+            {"error": "Spør-funksjonen er ikke aktivert (mangler ANTHROPIC_API_KEY)."},
+            status_code=503)
+    try:
+        body = await request.json()
+    except Exception:  # noqa: BLE001
+        body = {}
+    spørsmål = (body.get("spørsmål") or body.get("sporsmal") or "").strip()
+    if not spørsmål:
+        return JSONResponse({"error": "Tomt spørsmål."}, status_code=400)
+
+    loop = asyncio.get_event_loop()
+    import time
+    t0 = time.perf_counter()
+    try:
+        # 1) NL → SPARQL
+        sparql = await asyncio.wait_for(
+            loop.run_in_executor(None, kg_nlq.to_sparql, spørsmål),
+            timeout=KG_QUERY_TIMEOUT,
+        )
+        # 2) Kjør spørringen (read-only, med tak og lås – samme vei som /sparql)
+        result = await asyncio.wait_for(
+            loop.run_in_executor(None, kg.run_query, sparql, kg.DEFAULT_LIMIT),
+            timeout=KG_QUERY_TIMEOUT,
+        )
+    except asyncio.TimeoutError:
+        return JSONResponse(
+            {"error": f"Spørringen tok for lang tid (over {KG_QUERY_TIMEOUT:.0f} s)."},
+            status_code=504)
+    except ValueError as e:
+        # Ugyldig/forbudt SPARQL fra modellen – ta med spørringen så den vises i UI.
+        return JSONResponse({"error": str(e), "sparql": locals().get("sparql")},
+                            status_code=400)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=502)
+
+    ms = round((time.perf_counter() - t0) * 1000)
+    # 3) Kort norsk svar (feiler stille → tom streng)
+    svar = await loop.run_in_executor(
+        None, kg_nlq.summarize, spørsmål, sparql, result["content_type"], result["body"])
+
+    payload = {"sparql": sparql, "svar": svar, "truncated": result.get("truncated", False),
+               "ms": ms}
+    if "sparql-results+json" in result["content_type"]:
+        import json as _json
+        payload["results"] = _json.loads(result["body"])
+    else:
+        payload["turtle"] = result["body"]
+    return JSONResponse(payload)
 
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")

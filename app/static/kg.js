@@ -113,6 +113,7 @@ async function loadInfo() {
       .map(([k, v]) => `${v} ${k.toLowerCase()}`).join(" · ");
     $("kg-meta").innerHTML =
       `Grafen inneholder <b>${d.triples.toLocaleString("no-NO")}</b> triples — ${cls}.`;
+    if (d.ask) $("kg-ask").hidden = false;  // vis spør-boksen kun når Claude er konfigurert
   } catch (e) {
     $("kg-meta").textContent = "Klarte ikke å laste graf-info: " + e.message;
   }
@@ -184,11 +185,59 @@ async function runQuery() {
   }
 }
 
+// Naturlig språk → SPARQL via Claude (/api/kg/ask)
+async function askQuestion() {
+  const q = $("kg-ask-input").value.trim();
+  if (!q) return;
+  const status = $("kg-ask-status");
+  const answer = $("kg-ask-answer");
+  const btn = $("kg-ask-btn");
+  const out = $("kg-result");
+  status.textContent = "Tenker … (oversetter til SPARQL og kjører)";
+  answer.hidden = true;
+  btn.disabled = true;
+  try {
+    const r = await fetch("/api/kg/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ "spørsmål": q }),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      if (d.sparql) $("kg-query").value = d.sparql;  // vis spørringen som feilet
+      status.textContent = "⚠ " + (d.error || `Feil (${r.status})`);
+      return;
+    }
+    $("kg-query").value = d.sparql || "";  // synlig og redigerbar i SPARQL-feltet
+    if (d.results && "boolean" in d.results) {
+      out.innerHTML = `<p class="kg-bool">${d.results.boolean ? "✅ true" : "❌ false"}</p>`;
+      $("kg-status").textContent = `Ferdig · ${d.ms} ms`;
+    } else if (d.results) {
+      const n = (d.results.results.bindings || []).length;
+      out.innerHTML = renderSelect(d.results);
+      $("kg-status").textContent = `${n} rad(er)${d.truncated ? " (avkortet)" : ""} · ${d.ms} ms`;
+    } else if (d.turtle != null) {
+      out.innerHTML = `<pre class="kg-turtle">${escapeHtml(d.turtle)}</pre>`;
+      $("kg-status").textContent = `Ferdig · ${d.ms} ms`;
+    }
+    if (d.svar) { answer.textContent = d.svar; answer.hidden = false; }
+    status.textContent = "Ferdig.";
+  } catch (e) {
+    status.textContent = "⚠ " + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
 // Ctrl/Cmd+Enter kjører spørringen
 document.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); runQuery(); }
 });
 
+$("kg-ask-btn").onclick = askQuestion;
+$("kg-ask-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") { e.preventDefault(); askQuestion(); }
+});
 $("kg-run").onclick = runQuery;
 renderExamples();
 $("kg-query").value = EXAMPLES[0].q;

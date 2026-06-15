@@ -39,6 +39,19 @@
 
   <section>
     <h2>🔎 SPARQL-spørring</h2>
+
+    <div class="kg-ask" id="kg-ask" hidden>
+      <p class="hint">🤖 Spør på vanlig norsk, så oversetter Claude spørsmålet til SPARQL og kjører det.
+        F.eks. <i>«Hvor mange spillere spiller i Danmark?»</i> eller <i>«Hvem er yngst på hvert lag?»</i></p>
+      <div class="kg-ask-row">
+        <input id="kg-ask-input" class="kg-ask-input" type="text" spellcheck="false"
+          placeholder="Still et spørsmål på norsk …">
+        <button id="kg-ask-btn" class="kg-btn">🤖 Spør</button>
+      </div>
+      <p class="hint" id="kg-ask-status"></p>
+      <div id="kg-ask-answer" class="kg-ask-answer" hidden></div>
+    </div>
+
     <p class="hint">Skriv en read-only SPARQL-spørring (SELECT, ASK, CONSTRUCT eller DESCRIBE) og
       trykk <b>Kjør</b>. Prefiksene <code>wc:</code>, <code>wcr:</code>, <code>foaf:</code>,
       <code>rdfs:</code> og <code>schema:</code> er allerede definert. Grafen er skrivebeskyttet.</p>
