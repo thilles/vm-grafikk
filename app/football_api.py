@@ -150,9 +150,9 @@ class DemoProvider:
         highlights = {
             "2026-06-11|Mexico|South Africa": {
                 "goals": [
-                    {"team": "Mexico", "player": "S. Giménez", "minute": "12", "type": "normal"},
-                    {"team": "South Africa", "player": "L. Mokoena", "minute": "34", "type": "penalty"},
-                    {"team": "Mexico", "player": "H. Lozano", "minute": "78", "type": "normal"},
+                    {"team": "Mexico", "player": "S. Giménez", "minute": "12", "type": "normal", "video": None},
+                    {"team": "South Africa", "player": "L. Mokoena", "minute": "34", "type": "penalty", "video": None},
+                    {"team": "Mexico", "player": "H. Lozano", "minute": "78", "type": "normal", "video": None},
                 ],
                 "cards": [
                     {"team": "South Africa", "player": "T. Mbatha", "minute": "55", "card": "YELLOW"},
@@ -161,9 +161,9 @@ class DemoProvider:
             },
             "2026-06-12|Brazil|Morocco": {
                 "goals": [
-                    {"team": "Morocco", "player": "Y. En-Nesyri", "minute": "23", "type": "normal"},
-                    {"team": "Brazil", "player": "Vinícius Jr.", "minute": "61", "type": "normal"},
-                    {"team": "Brazil", "player": "Rodrygo", "minute": "88", "type": "normal"},
+                    {"team": "Morocco", "player": "Y. En-Nesyri", "minute": "23", "type": "normal", "video": None},
+                    {"team": "Brazil", "player": "Vinícius Jr.", "minute": "61", "type": "normal", "video": None},
+                    {"team": "Brazil", "player": "Rodrygo", "minute": "88", "type": "normal", "video": None},
                 ],
                 "cards": [
                     {"team": "Morocco", "player": "S. Amrabat", "minute": "70", "card": "YELLOW"},
