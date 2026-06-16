@@ -116,6 +116,15 @@
   <span id="footer-source"></span>
 </footer>
 
+<div id="clip-modal" class="clip-modal" hidden onclick="if(event.target===this)closeClip()">
+  <div class="clip-box">
+    <button class="clip-close" aria-label="Lukk" onclick="closeClip()">✕</button>
+    <h4 class="clip-title"></h4>
+    <video class="clip-video" controls playsinline></video>
+    <p class="clip-msg" hidden></p>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
 <script src="/static/kik.js"></script>
 <script src="/static/app.js"></script>
 </body>

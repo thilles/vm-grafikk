@@ -78,11 +78,12 @@ function eventSuffix(e) {
 
 function timelineRow(e) {
   const playable = e.kind === "goal" && e.video;
+  const player = esc(e.player); // spillernavn kommer fra NRK/NIFS – escapes
   const label =
-    `${eventIcon(e)} ${e.minute}' ${e.flag} ${e.player}${eventSuffix(e)}` +
+    `${eventIcon(e)} ${e.minute}' ${e.flag} ${player}${eventSuffix(e)}` +
     (playable ? ' <span class="hl-play">▶</span>' : "");
   const cell = playable
-    ? `<button class="hl-event hl-clip" data-clip="${e.video}" data-title="${e.player} ${e.minute}'" onclick="event.stopPropagation()">${label}</button>`
+    ? `<button class="hl-event hl-clip" data-clip="${e.video}" data-title="${player} ${e.minute}'" onclick="event.stopPropagation();openClip(this.dataset.clip,this.dataset.title)">${label}</button>`
     : `<span class="hl-event">${label}</span>`;
   return `<div class="hl-row hl-${e.side}"><div class="hl-cell">${cell}</div></div>`;
 }
@@ -393,3 +394,64 @@ async function refresh() {
 
 refresh();
 setInterval(refresh, 60_000);
+
+// ---- Video-modal for NRK-høydepunktklipp ----
+let _hls = null;
+
+function closeClip() {
+  const modal = document.getElementById("clip-modal");
+  const video = modal.querySelector(".clip-video");
+  video.pause();
+  video.removeAttribute("src");
+  video.load();
+  if (_hls) {
+    _hls.destroy();
+    _hls = null;
+  }
+  modal.hidden = true;
+}
+
+async function openClip(uuid, title) {
+  const modal = document.getElementById("clip-modal");
+  const video = modal.querySelector(".clip-video");
+  const msg = modal.querySelector(".clip-msg");
+  modal.querySelector(".clip-title").textContent = title || "Høydepunkt";
+  msg.hidden = true;
+  video.hidden = false;
+  modal.hidden = false;
+
+  // Rydd opp en evt. tidligere hls.js-instans før vi åpner et nytt klipp, slik at
+  // den ikke fortsetter å laste segmenter i bakgrunnen mot samme <video>.
+  if (_hls) {
+    _hls.destroy();
+    _hls = null;
+  }
+
+  const fail = () => {
+    video.hidden = true;
+    msg.hidden = false;
+    msg.textContent = "Fikk ikke spilt av klippet her. Prøv NRK-lenken under kampen.";
+  };
+
+  let info;
+  try {
+    const r = await fetch(`/api/highlights/clip/${uuid}`);
+    if (!r.ok) throw new Error("not found");
+    info = await r.json();
+  } catch (e) {
+    fail();
+    return;
+  }
+
+  if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = info.m3u8; // Safari spiller HLS nativt
+  } else if (window.Hls && window.Hls.isSupported()) {
+    _hls = new window.Hls();
+    _hls.loadSource(info.m3u8);
+    _hls.attachMedia(video);
+  } else {
+    fail(); // ingen hls.js (CDN blokkert e.l.) og ingen nativ HLS-støtte
+    return;
+  }
+  video.play().catch(() => {});
+}

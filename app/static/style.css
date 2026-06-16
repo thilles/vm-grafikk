@@ -1169,3 +1169,46 @@ button.hl-clip:hover {
   font-size: 0.7rem;
   opacity: 0.8;
 }
+
+/* Video-modal for NRK-klipp */
+.clip-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.clip-modal[hidden] {
+  display: none;
+}
+.clip-box {
+  background: var(--bg2, #102818);
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: min(90vw, 720px);
+  width: 100%;
+  position: relative;
+}
+.clip-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.clip-title {
+  margin: 0 1.5rem 0.5rem 0;
+}
+.clip-video {
+  width: 100%;
+  border-radius: 4px;
+  background: #000;
+}
+.clip-msg {
+  opacity: 0.8;
+}
