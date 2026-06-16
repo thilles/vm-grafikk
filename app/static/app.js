@@ -445,15 +445,33 @@ async function openClip(uuid, title) {
     return;
   }
 
-  // hls.js sjekkes FØRST (Chromium/Arc/Firefox). Chromium på Mac svarer «maybe»
-  // på canPlayType for HLS, men kan ikke spille det nativt – så native-grenen må
-  // komme sist (kun Safari, som faktisk har nativ HLS-støtte).
-  if (window.Hls && window.Hls.isSupported()) {
+  const canPlayNativeHls = !!video.canPlayType("application/vnd.apple.mpegurl");
+  const ua = navigator.userAgent || "";
+  const isIosSafari =
+    /iP(hone|ad|od)/.test(ua) &&
+    /Safari/.test(ua) &&
+    !/CriOS|FxiOS|EdgiOS/.test(ua);
+
+  // iOS Safari er mest stabil med nativ HLS-avspilling.
+  if (isIosSafari && canPlayNativeHls) {
+    video.src = info.m3u8;
+  } else if (window.Hls && window.Hls.isSupported()) {
     _hls = new window.Hls();
+    _hls.on(window.Hls.Events.ERROR, (_event, data) => {
+      if (!data?.fatal) return;
+      _hls.destroy();
+      _hls = null;
+      if (canPlayNativeHls) {
+        video.src = info.m3u8;
+        video.play().catch(() => {});
+        return;
+      }
+      fail();
+    });
     _hls.loadSource(info.m3u8);
     _hls.attachMedia(video);
-  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-    video.src = info.m3u8; // Safari spiller HLS nativt
+  } else if (canPlayNativeHls) {
+    video.src = info.m3u8;
   } else {
     fail(); // ingen hls.js (CDN blokkert e.l.) og ingen nativ HLS-støtte
     return;
