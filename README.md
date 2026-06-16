@@ -21,7 +21,10 @@ export FOOTBALL_DATA_TOKEN=din-nøkkel
 # 3. (Valgfritt) Mål/kort pr kamp: gratis nøkkel fra https://www.api-football.com
 export APISPORTS_KEY=din-api-football-nøkkel
 
-# 4. Bygg og start
+# 4. (Valgfritt) Norsk spørring i kunnskapsgrafen (/graf → «Spør grafen på norsk»)
+export ANTHROPIC_API_KEY=din-claude-nøkkel
+
+# 5. Bygg og start
 docker compose up --build -d
 ```
 
@@ -37,6 +40,9 @@ ikke, fungerer alt som før, bare uten kamphøydepunkter (se under).
 | Mål/kort pr ferdig kamp (høydepunkter) | [api-sports](https://www.api-football.com) (gratisnivået dekker VM via `?date=`) | `APISPORTS_KEY`                   |
 | Tippesvar                             | Google Sheet (live) eller lokal Excel-fil                                   | `SHEET_CSV_URL` eller `data/svar.xlsx` |
 | Manuell fasit                         | `data/fasit.json`                                                           | se under                               |
+| Kampsidelenker                        | NRKs åpne NIFS-API (resultater.nrk.no, ingen nøkkel)                       | `NIFS_TOURNAMENT_ID`, `NIFS_SEASON_YEAR` |
+| Nyhetsfeed                            | NRKs åpne serum-API (VM 2026-direkterapportering, ingen nøkkel)             | innebygd                               |
+| Tropper og markedsverdier             | Wikipedia/Wikidata + Transfermarkt (statiske, bakt inn i grafen)            | `wc2026-kg/wc2026.ttl`                 |
 
 **Live-kobling mot Google Sheet:** I regnearket: _Fil → Del → Publiser på
 nettet → velg arket → CSV_, og sett lenken som `SHEET_CSV_URL` i miljøet
@@ -46,6 +52,11 @@ endrede svar opp automatisk. Uten denne brukes `data/svar.xlsx`.
 Appen oppdaterer seg selv hvert `REFRESH_MINUTES` minutt (standard 10), og
 frontend laster på nytt hvert minutt. `POST /api/refresh` tvinger en
 oppdatering umiddelbart.
+
+**NRK-lenker og nyhetsfeed:** Ferdigspilte kamper lenkes automatisk til NRKs
+kampside (resultater.nrk.no) via NTBs åpne NIFS-API. Nyhetene øverst på siden
+hentes fra NRKs serum-API (VM 2026-direkterapporteringen). Ingen API-nøkkel
+trengs for disse funksjonene.
 
 **Kamphøydepunkter (mål/kort) – krever api-football:** Funksjonen er avhengig av
 en gratis nøkkel fra [api-football / api-sports](https://www.api-football.com),
@@ -61,6 +72,55 @@ blir noen få kall i døgnet.
 > blir ikke klikkbare og ingen mål/kort vises. Det gjøres ingen api-sports-kall,
 > og resten av appen (resultater, ledertavle, tabeller, fakta) fungerer akkurat
 > som før. Nøkkelen er altså valgfri.
+
+**«Kamp i kampen» (felles klubblag):** Når man åpner et kampkort vises en
+interaktiv nodegraf over spillere fra begge landslag som til daglig spiller i
+det samme klubblaget – «kampen i kampen». Dataene hentes fra
+kunnskapsgrafen (se under); grafen er tom dersom `wc2026.ttl` ikke er
+tilgjengelig.
+
+## Kunnskapsgraf – VM 2026-tropper
+
+En selvstendig utvidelse av appen, tilgjengelig på `/graf`. Den laster alle
+48 landslagstropper (~1248 spillere) inn i en RDF-kunnskapsgraf og gir et
+interaktivt grensesnitt for å utforske squads, klubbtilhørighet og
+markedsverdier.
+
+### Funksjoner
+
+- **SPARQL-utforsker:** Kjør vilkårlige SPARQL-spørringer mot grafen direkte i
+  nettleseren. Resultater vises som tabell.
+- **Naturlig norsk spørring:** Skriv et spørsmål på norsk i tekstfeltet, så
+  oversetter Claude det til SPARQL og sammenfatter svaret på norsk.
+  Krever `ANTHROPIC_API_KEY` – uten nøkkel er spørreboksen skjult, og resten av
+  `/graf` fungerer som normalt.
+- **Nodegraf per lag:** Klikk på et lag for å se alle spillere som noder,
+  koblet til gruppe og posisjon, med markedsverdi som nodestørrelse.
+- **Markedsverdier:** Hentet fra Transfermarkt, statiske og bakt inn i grafen
+  (~1136 av 1248 spillere dekket).
+
+### Bygge grafen lokalt
+
+Grafen (`wc2026-kg/wc2026.ttl`) er sjekket inn i repoet og bakt inn i
+Docker-imaget. For å regenerere den (f.eks. etter ny tropp-uttaking):
+
+```bash
+python -m venv wc2026-kg/.venv
+wc2026-kg/.venv/bin/pip install -r wc2026-kg/requirements.txt
+wc2026-kg/.venv/bin/python wc2026-kg/build.py   # cacher rådata i wc2026-kg/cache/
+```
+
+Commit den oppdaterte `wc2026.ttl` og push; Dockerfile kopierer den inn i
+imaget ved neste deploy.
+
+### Miljøvariabler for grafen
+
+| Variabel | Standard | Beskrivelse |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | – | Claude-nøkkel for norsk spørring → SPARQL. Valgfri. |
+| `KG_NLQ_MODEL` | `claude-haiku-4-5` | Modell for NLQ-oversettelsen. |
+| `KG_TTL` | `wc2026-kg/wc2026.ttl` | Sti til Turtle-filen. |
+| `KG_QUERY_TIMEOUT` | `12` | Maks sekunder pr SPARQL-spørring. |
 
 ## Poengberegning
 
@@ -157,11 +217,27 @@ app/
   main.py          FastAPI-app + bakgrunnsjobb
   football_api.py  football-data.org-klient + demodata
   highlights.py    api-sports-klient: mål/kort pr kamp + cache
+  nrk_links.py     NRK/NIFS-kampsidelenker (åpent API, ingen nøkkel)
+  news.py          NRK VM-nyhetsfeed via serum-API (åpent, ingen nøkkel)
   predictions.py   parser Google Forms-svarene (CSV/XLSX)
   scoring.py       fasit-utledning og poengberegning
   facts.py         fakta, kuriositeter og highlights
+  consensus.py     «Kontoret stemte» – aggregerte tipp-statistikker
   teams.py         lagdatabase (navn, alias, flagg, grupper)
-  static/          frontend (scoreboard)
+  kg.py            kunnskapsgraf-runtime (rdflib, SPARQL-endepunkter)
+  kg_nlq.py        naturlig norsk spørring → SPARQL via Claude
+  duell.py         «kamp i kampen» – felles-klubb-indeks fra KG + kampdata
+  static/
+    index.html     scoreboard-side
+    app.js         scoreboard-logikk
+    style.css      stiler
+    kg.html        kunnskapsgraf-side (/graf)
+    kg.js          SPARQL-utforsker og norsk spørring
+    kg-graph.js    nodegraf-visualisering (d3 force-directed)
+    kik.js         «kamp i kampen»-nodegraf i kampkortene
+wc2026-kg/
+  build.py         pipeline: Wikipedia/Wikidata/Transfermarkt → Turtle
+  wc2026.ttl       ferdig kunnskapsgraf (bakt inn i Docker-imaget)
 ```
 
 Merk: gruppetabeller beregnes med poeng → målforskjell → scorede mål som
