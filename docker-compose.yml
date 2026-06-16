@@ -9,8 +9,7 @@ services:
       - FOOTBALL_DATA_TOKEN=${FOOTBALL_DATA_TOKEN:-}
       # Valgfritt: publisert CSV-lenke til Google Sheet (Fil -> Del -> Publiser på nettet -> CSV)
       - SHEET_CSV_URL=${SHEET_CSV_URL:-}
-      # Valgfritt: api-sports-nøkkel for mål/kort pr ferdig kamp (https://www.api-football.com)
-      - APISPORTS_KEY=${APISPORTS_KEY:-}
+      # Kamphøydepunkter (mål/kort + NRK-videoklipp) hentes fra NRKs åpne NIFS-API – ingen nøkkel.
       # Valgfritt: Claude-nøkkel for «spør på norsk» → SPARQL på /graf (kg_nlq.py)
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
       - REFRESH_MINUTES=${REFRESH_MINUTES:-10}

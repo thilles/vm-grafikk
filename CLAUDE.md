@@ -34,11 +34,11 @@ With no `FOOTBALL_DATA_TOKEN` set, the app runs on built-in demo data
 ### Key environment variables
 
 - `FOOTBALL_DATA_TOKEN` — football-data.org v4 key. Absent → demo data.
-- `APISPORTS_KEY` — api-sports key for per-match goals/cards (highlights).
-  Absent → highlights disabled, rest of the app unchanged.
-- `HIGHLIGHTS_CACHE` — path for the highlights cache, default
-  `/data/highlights_cache.json`. `APISPORTS_MAX_CALLS_PER_REFRESH` (default 15)
-  caps api-sports calls per refresh.
+- Per-match goals/cards (highlights) come from NRK's open NIFS API — no key
+  needed (see "Match highlights" below). `HIGHLIGHTS_CACHE` — path for the
+  highlights cache, default `/data/highlights_cache.json`.
+  `HIGHLIGHTS_MAX_PER_REFRESH` (default 20) caps how many new matches are fetched
+  per refresh.
 - `ANTHROPIC_API_KEY` — Claude key for the `/graf` "ask in plain Norwegian"
   feature (`kg_nlq.py`): translates a free-text question to SPARQL and summarizes
   the result. Absent → `/api/kg/ask` returns 503 and the ask-box is hidden; the
@@ -123,19 +123,21 @@ both together.
 (429 backoff + proactive wait when near the per-minute limit), and computes goals
 excluding penalty sh-out scores (knockout matches use regular+extra time).
 
-**Match highlights (`app/highlights.py`)** is a separate, optional data source
-for the click-to-expand goals/cards on finished matches — football-data's free
-tier exposes no match events. It uses api-sports, whose free tier blocks
-`?league=&season=2026` but **does** serve WC matches via `?date=YYYY-MM-DD`
-(returns fixture ids) + `?id=` (returns events). Events are immutable once a
-match is `FINISHED`, so they're fetched once per match and cached (in-memory +
-best-effort JSON file), with a per-refresh call cap — keeping usage to a handful
-of calls/day under the 100/day free limit. football-data and api-sports matches
-are joined by `match_key(m)` = `"<date>|<canonical teams sorted>"` (both sides
-go through `teams.py:canonical`). `build_highlights(matches)` is a no-op when
-`APISPORTS_KEY` is unset; `DemoProvider` returns sample highlights so the UI is
-testable offline. `main.py` attaches the view (flag + Norwegian name per
-event) onto finished matches in `_match_view`.
+**Match highlights (`app/highlights.py`)** is the goals/cards source for the
+click-to-expand timeline on finished matches — football-data's free tier exposes
+no match events. It uses NRK's open NIFS API (`api.nifs.no`, no key) — the same
+source as `nrk_links.py` — reusing the NIFS match ids that `build_links`
+resolves. For each finished match it fetches `/matches/<id>/` once and extracts
+goals (event type 2; own goals type 8; penalties when the scorer also has a type
+9/10 award), and cards (type 4 yellow, type 3 red), caching them (in-memory +
+JSON file) since events are immutable once `FINISHED`. Each goal carries an
+optional NRK clip uuid; `app/nrk_video.py` resolves it to an HLS stream via NRK
+psapi, served at `GET /api/highlights/clip/{uuid}` (clips are geo-blocked to
+Norway). `build_highlights(matches, links)` takes the `nrk_links` map and is a
+no-op without resolved ids. `highlights.view()` merges goals+cards into one
+minute-sorted timeline tagged with home/away side; `DemoProvider` returns sample
+highlights (no clips) so the UI is testable offline. `main.py` attaches the view
+onto finished matches in `_match_view`.
 
 ## Frontend
 
