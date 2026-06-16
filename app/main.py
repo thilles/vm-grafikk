@@ -60,7 +60,7 @@ def _match_view(m, highlights=None, nrk=None, duell_index=None):
         "pens": f"{m['pens_home']}–{m['pens_away']} på straffer"
         if m.get("pens_home") is not None
         else None,
-        "highlights": highlights_view((highlights or {}).get(match_key(m))),
+        "highlights": highlights_view((highlights or {}).get(match_key(m)), m["home"], m["away"]),
         "report_url": nrk_url(m, nrk),
         "duell": duell_mod.for_match(m, duell_index) if duell_index else None,
     }
@@ -80,10 +80,10 @@ def rebuild_state():
     live = [m for m in matches if m["status"] in ("IN_PLAY", "PAUSED")]
     upcoming = [m for m in matches if m["status"] in ("SCHEDULED", "TIMED")][:8]
 
-    # Mål/kort pr ferdig kamp (api-sports). Demo-data har dem ferdig påsatt.
-    highlights = data.get("highlights") or build_highlights(matches)
-    # Lenke til NRKs kampside pr kamp (NIFS åpne API, ingen nøkkel).
+    # Lenke til NRKs kampside pr kamp + NIFS kamp-id-er (åpent API, ingen nøkkel).
     nrk_links = build_links(finished)
+    # Mål/kort pr ferdig kamp (NRKs NIFS-API). Demo-data har dem ferdig påsatt.
+    highlights = data.get("highlights") or build_highlights(matches, nrk_links)
     # Nyhetsfeed fra NRKs direkterapportering (åpent API, ingen nøkkel).
     news = build_news()
     # «Kamp i kampen»: felles klubblag pr kamp (KG). Indeksen bygges én gang her;
