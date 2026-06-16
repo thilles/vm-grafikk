@@ -445,12 +445,15 @@ async function openClip(uuid, title) {
     return;
   }
 
-  if (video.canPlayType("application/vnd.apple.mpegurl")) {
-    video.src = info.m3u8; // Safari spiller HLS nativt
-  } else if (window.Hls && window.Hls.isSupported()) {
+  // hls.js sjekkes FØRST (Chromium/Arc/Firefox). Chromium på Mac svarer «maybe»
+  // på canPlayType for HLS, men kan ikke spille det nativt – så native-grenen må
+  // komme sist (kun Safari, som faktisk har nativ HLS-støtte).
+  if (window.Hls && window.Hls.isSupported()) {
     _hls = new window.Hls();
     _hls.loadSource(info.m3u8);
     _hls.attachMedia(video);
+  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = info.m3u8; // Safari spiller HLS nativt
   } else {
     fail(); // ingen hls.js (CDN blokkert e.l.) og ingen nativ HLS-støtte
     return;
