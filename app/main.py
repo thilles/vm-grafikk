@@ -24,6 +24,7 @@ from .football_api import get_provider
 from .highlights import build_highlights, match_key
 from .highlights import view as highlights_view
 from .news import build_news
+from .nrk_video import resolve_clip
 from .nrk_links import build_links, url_for as nrk_url
 from .predictions import load_predictions
 from .scoring import (
@@ -159,6 +160,14 @@ STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 @app.get("/api/state")
 def api_state():
     return JSONResponse(STATE)
+
+
+@app.get("/api/highlights/clip/{uuid}")
+def api_highlight_clip(uuid: str):
+    info = resolve_clip(uuid)
+    if not info or not info["m3u8"]:
+        return JSONResponse({"error": "Fant ikke klipp."}, status_code=404)
+    return JSONResponse(info)
 
 
 @app.post("/api/refresh")
