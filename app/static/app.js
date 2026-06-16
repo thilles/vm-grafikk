@@ -66,24 +66,35 @@ function stageBadge(m) {
   return STAGE_LABEL[m.stage] || m.stage;
 }
 
-function goalLabel(g) {
-  const extra = g.type === "penalty" ? " (str)" : g.type === "own" ? " (selvmål)" : "";
-  return `<li>⚽ ${g.minute}' ${g.flag} ${g.player}${extra}</li>`;
+function eventIcon(e) {
+  if (e.kind === "goal") return "⚽";
+  return e.card === "RED" ? "🟥" : "🟨";
 }
 
-function cardLabel(c) {
-  return `<li>${c.card === "RED" ? "🟥" : "🟨"} ${c.minute}' ${c.flag} ${c.player}</li>`;
+function eventSuffix(e) {
+  if (e.kind !== "goal") return "";
+  return e.type === "penalty" ? " (str)" : e.type === "own" ? " (selvmål)" : "";
+}
+
+function timelineRow(e) {
+  const playable = e.kind === "goal" && e.video;
+  const label =
+    `${eventIcon(e)} ${e.minute}' ${e.flag} ${e.player}${eventSuffix(e)}` +
+    (playable ? ' <span class="hl-play">▶</span>' : "");
+  const cell = playable
+    ? `<button class="hl-event hl-clip" data-clip="${e.video}" data-title="${e.player} ${e.minute}'" onclick="event.stopPropagation()">${label}</button>`
+    : `<span class="hl-event">${label}</span>`;
+  return `<div class="hl-row hl-${e.side}"><div class="hl-cell">${cell}</div></div>`;
 }
 
 function highlightsBlock(h) {
-  if (!h || (!h.goals.length && !h.cards.length)) return "";
-  const goals = h.goals.length
-    ? `<div class="hl-col"><h4>⚽ Mål</h4><ul>${h.goals.map(goalLabel).join("")}</ul></div>`
-    : "";
-  const cards = h.cards.length
-    ? `<div class="hl-col"><h4>🟨 Kort</h4><ul>${h.cards.map(cardLabel).join("")}</ul></div>`
-    : "";
-  return `<div class="match-details">${goals}${cards}</div>`;
+  if (!h || !h.events || !h.events.length) return "";
+  const rows = h.events.map(timelineRow).join("");
+  return `<div class="hl-timeline">
+      <div class="hl-cap">Start</div>
+      ${rows}
+      <div class="hl-cap">Slutt</div>
+    </div>`;
 }
 
 function reportBlock(url) {

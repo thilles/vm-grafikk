@@ -1098,3 +1098,74 @@ code {
     display: block;
     width: 100%;
 }
+
+/* Vertikal høydepunkt-tidslinje */
+.hl-timeline {
+  grid-column: 1 / -1;
+  display: none;
+  position: relative;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+.match.open .hl-timeline {
+  display: block;
+}
+.hl-timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border, #444);
+  transform: translateX(-50%);
+}
+.hl-cap {
+  text-align: center;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  position: relative;
+  margin: 0.25rem 0;
+}
+.hl-row {
+  display: flex;
+  position: relative;
+  margin: 0.35rem 0;
+}
+.hl-row .hl-cell {
+  width: 50%;
+  box-sizing: border-box;
+}
+.hl-home .hl-cell {
+  text-align: right;
+  padding-right: 1rem;
+}
+.hl-away {
+  justify-content: flex-end;
+}
+.hl-away .hl-cell {
+  text-align: left;
+  padding-left: 1rem;
+}
+.hl-event {
+  display: inline-block;
+  font-size: 0.9rem;
+}
+button.hl-clip {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+button.hl-clip:hover {
+  text-decoration: underline;
+}
+.hl-play {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
