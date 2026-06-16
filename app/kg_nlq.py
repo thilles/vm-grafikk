@@ -43,11 +43,13 @@ markdown, ingen ```-kodeblokker.
 
 Prefikser (alltid tilgjengelige – ta dem likevel med i spørringen):
   PREFIX wc:   <http://example.org/wc2026/ontology#>
-  PREFIX wcr:  <http://example.org/wc2026/resource/>
   PREFIX foaf: <http://xmlns.com/foaf/0.1/>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX schema: <https://schema.org/>
   PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+Ressurser har ett prefiks per type (sjelden nødvendig – match heller på label):
+  player: team: club: league: country: group: confederation: position:
+  bundet til <http://example.org/wc2026/resource/{type}/> (f.eks. position:FW).
 
 Klasser (?s a wc:Klasse): Tournament, NationalTeam, Player, Club, League, Group,
 Confederation, Country, Position.
@@ -87,6 +89,11 @@ Regler:
   - «verdi/markedsverdi» = wc:marketValueEUR i euro (150 millioner = 150000000).
   - «spiller i <land>» betyr klubb i landet: ?p wc:playsAtClub ?c . ?c wc:clubInCountry ?co . ?co rdfs:label "<Land>"@en .
   - «yngst» = størst wc:dateOfBirth; «eldst» = minst. «per lag» → GROUP BY laget.
+  - «alder» regnes alltid med måned/dag (fullførte år), aldri kun YEAR – ellers
+    blir snitt unøyaktige og kolliderer. Bruk:
+      (YEAR(NOW()) - YEAR(?født))
+      - IF(MONTH(NOW()) < MONTH(?født)
+           || (MONTH(NOW()) = MONTH(?født) && DAY(NOW()) < DAY(?født)), 1, 0)
 
 Eksempler:
 Spørsmål: Hvor mange spillere spiller i Danmark?

@@ -1,8 +1,20 @@
 "use strict";
 
+// Resource IRIs are abbreviated per type (player:, team:, …) to match how the
+// graph itself is serialised — a single "…/resource/" prefix can't shorten them
+// because a "/" is illegal in a Turtle/SPARQL prefixed-name local part. These
+// must precede any broader prefix in shorten() (first match wins).
 const PREFIXES = {
   "http://example.org/wc2026/ontology#": "wc:",
-  "http://example.org/wc2026/resource/": "wcr:",
+  "http://example.org/wc2026/resource/tournament/": "tournament:",
+  "http://example.org/wc2026/resource/team/": "team:",
+  "http://example.org/wc2026/resource/player/": "player:",
+  "http://example.org/wc2026/resource/club/": "club:",
+  "http://example.org/wc2026/resource/league/": "league:",
+  "http://example.org/wc2026/resource/country/": "country:",
+  "http://example.org/wc2026/resource/group/": "group:",
+  "http://example.org/wc2026/resource/confederation/": "confederation:",
+  "http://example.org/wc2026/resource/position/": "position:",
   "http://xmlns.com/foaf/0.1/": "foaf:",
   "https://schema.org/": "schema:",
   "http://www.w3.org/2000/01/rdf-schema#": "rdfs:",
@@ -54,6 +66,19 @@ SELECT ?navn ?født ?lag WHERE {
      wc:playsForNationalTeam ?t .
   ?t rdfs:label ?lag .
 } ORDER BY ?født LIMIT 15`,
+  },
+  {
+    label: "Yngste lag (snittalder)",
+    q: `PREFIX wc: <http://example.org/wc2026/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?lag (AVG(
+    (YEAR(NOW()) - YEAR(?født))
+    - IF(MONTH(NOW()) < MONTH(?født)
+         || (MONTH(NOW()) = MONTH(?født) && DAY(NOW()) < DAY(?født)), 1, 0)
+  ) AS ?snittalder) WHERE {
+  ?t a wc:NationalTeam ; rdfs:label ?lag ; wc:calledUp ?p .
+  ?p wc:dateOfBirth ?født .
+} GROUP BY ?lag ORDER BY ?snittalder LIMIT 48`,
   },
   {
     label: "Spillere i Premier League",

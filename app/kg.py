@@ -22,6 +22,14 @@ DEFAULT_LIMIT = 1000
 MAX_LIMIT = 5000
 
 WC = "http://example.org/wc2026/ontology#"
+WCR = "http://example.org/wc2026/resource/"
+# Ressurs-IRI-er ligger under …/resource/<type>/<slug>. En enkelt «wcr:» kan ikke
+# forkorte dem i Turtle/SPARQL (en «/» er ulovlig i et prefiks-kortnavns lokaldel),
+# så vi binder ett prefiks per type – likt serialiseringen i wc2026-kg/ontology.py.
+RESOURCE_TYPES = (
+    "tournament", "team", "player", "club", "league",
+    "country", "group", "confederation", "position",
+)
 
 _graph = None  # lazy-lastet rdflib.Graph
 # pyparsing (rdflib sin SPARQL-parser) er IKKE trådsikker ved første parsing –
@@ -67,9 +75,10 @@ def _load():
             g.parse(KG_TTL, format="turtle")
             # bind vanlige prefikser så spørringer slipper å deklarere dem
             g.bind("wc", WC)
-            g.bind("wcr", "http://example.org/wc2026/resource/")
             g.bind("foaf", "http://xmlns.com/foaf/0.1/")
             g.bind("schema", "https://schema.org/")
+            for t in RESOURCE_TYPES:
+                g.bind(t, WCR + t + "/")
             # varm opp SPARQL-parseren enkelt-trådet (løser pyparsing sin arity-
             # deteksjon én gang) før samtidige forespørsler treffer den
             for wq in _WARMUP:
@@ -99,10 +108,10 @@ def info():
         "classes": {},
         "prefixes": {
             "wc": WC,
-            "wcr": "http://example.org/wc2026/resource/",
             "foaf": "http://xmlns.com/foaf/0.1/",
             "schema": "https://schema.org/",
             "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+            **{t: WCR + t + "/" for t in RESOURCE_TYPES},
         },
     }
     q = (

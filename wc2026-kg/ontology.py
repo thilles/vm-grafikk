@@ -12,15 +12,26 @@ WCR = Namespace("http://example.org/wc2026/resource/")
 SCHEMA = Namespace("https://schema.org/")
 
 
+# Resource URIs live under …/resource/<type>/<slug>. A single wcr: prefix can't
+# abbreviate them in Turtle (the "/" can't appear in a prefixed name's local
+# part), so we bind one prefix per resource type. Then …/resource/player/luis-
+# diaz-1997 serialises as the readable player:luis-diaz-1997 (URIs unchanged).
+RESOURCE_TYPES = (
+    "tournament", "team", "player", "club", "league",
+    "country", "group", "confederation", "position",
+)
+
+
 def bind(g):
     g.bind("wc", WC)
-    g.bind("wcr", WCR)
     g.bind("owl", OWL)
     g.bind("rdf", RDF)
     g.bind("rdfs", RDFS)
     g.bind("xsd", XSD)
     g.bind("foaf", FOAF)
     g.bind("schema", SCHEMA)
+    for t in RESOURCE_TYPES:
+        g.bind(t, Namespace(WCR + t + "/"))
 
 
 CLASSES = {

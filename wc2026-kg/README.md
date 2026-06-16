@@ -76,8 +76,14 @@ Namespaces:
 | prefix                                              | IRI                                                      |
 | --------------------------------------------------- | -------------------------------------------------------- |
 | `wc:`                                               | `http://example.org/wc2026/ontology#` (terms / TBox)     |
-| `wcr:`                                              | `http://example.org/wc2026/resource/` (instances / ABox) |
+| `player:` `team:` `club:` `league:` `country:` `group:` `confederation:` `position:` `tournament:` | `http://example.org/wc2026/resource/<type>/` (instances / ABox) |
 | plus `rdf:` `rdfs:` `owl:` `xsd:` `foaf:` `schema:` |
+
+Instances live under `…/resource/<type>/<slug>`. Turtle prefixed names can't
+contain a `/` in their local part, so a single `wcr:` prefix could never
+abbreviate them — instead one prefix per resource type is bound (in
+`ontology.py:bind`), so `…/resource/player/erling-haaland-2000` serialises as
+the readable `player:erling-haaland-2000`. The IRIs themselves are unchanged.
 
 **Classes:** `wc:Tournament`, `wc:NationalTeam`, `wc:Player`
 (`rdfs:subClassOf foaf:Person`), `wc:Club`, `wc:League`, `wc:Group`,
@@ -112,7 +118,7 @@ natural):
 - Group: `rdfs:label` ("Group A" …).
 
 **Position** is a controlled vocabulary of four instances:
-`wcr:position/{GK|DF|MF|FW}`.
+`position:{GK|DF|MF|FW}`.
 
 ## URI scheme
 
@@ -121,16 +127,16 @@ stripped, hyphenated) is applied **only to the URI local part** — the full nam
 **with** diacritics (ø, å, ü, é, …) is always preserved in the `foaf:name`
 literal.
 
-| entity        | URI pattern                             | example                          |
-| ------------- | --------------------------------------- | -------------------------------- |
-| player        | `wcr:player/{slug(name)}-{yearOfBirth}` | `wcr:player/erling-haaland-2000` |
-| team          | `wcr:team/{slug(country)}`              | `wcr:team/norway`                |
-| club          | `wcr:club/{slug(name)}`                 | `wcr:club/manchester-city`       |
-| league        | `wcr:league/{slug(name)}`               | `wcr:league/premier-league`      |
-| country       | `wcr:country/{code}`                    | `wcr:country/nor`                |
-| group         | `wcr:group/{letter}`                    | `wcr:group/I`                    |
-| confederation | `wcr:confederation/{conf}`              | `wcr:confederation/UEFA`         |
-| position      | `wcr:position/{code}`                   | `wcr:position/FW`                |
+| entity        | URI pattern                            | example                        |
+| ------------- | -------------------------------------- | ------------------------------ |
+| player        | `player:{slug(name)}-{yearOfBirth}`    | `player:erling-haaland-2000`   |
+| team          | `team:{slug(country)}`                 | `team:norway`                  |
+| club          | `club:{slug(name)}`                    | `club:manchester-city`         |
+| league        | `league:{slug(name)}`                  | `league:premier-league`        |
+| country       | `country:{code}`                       | `country:nor`                  |
+| group         | `group:{letter}`                       | `group:I`                      |
+| confederation | `confederation:{conf}`                 | `confederation:UEFA`           |
+| position      | `position:{code}`                      | `position:FW`                  |
 
 The country `{code}` is the 3-letter FIFA code for the 48 participating nations
 (a stable, unique key; FIFA codes are used where they differ from ISO-3166
@@ -139,7 +145,7 @@ country that only appears as a club's location (the "iso3 or slug" rule).
 
 Shared clubs, leagues and countries are de-duplicated, so every distinct entity
 is exactly one node (e.g. all Premier League clubs point at the single
-`wcr:league/premier-league`).
+`league:premier-league`).
 
 ## Data provenance & caveats
 
@@ -282,37 +288,44 @@ SELECT ?team ?name ?value WHERE {
 ## One fully-modeled player
 
 ```turtle
-@prefix wc:   <http://example.org/wc2026/ontology#> .
-@prefix wcr:  <http://example.org/wc2026/resource/> .
+@prefix wc:     <http://example.org/wc2026/ontology#> .
+@prefix player: <http://example.org/wc2026/resource/player/> .
+@prefix team:   <http://example.org/wc2026/resource/team/> .
+@prefix club:   <http://example.org/wc2026/resource/club/> .
+@prefix league: <http://example.org/wc2026/resource/league/> .
+@prefix country:    <http://example.org/wc2026/resource/country/> .
+@prefix group:      <http://example.org/wc2026/resource/group/> .
+@prefix confederation: <http://example.org/wc2026/resource/confederation/> .
+@prefix position:   <http://example.org/wc2026/resource/position/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
-wcr:player/erling-haaland-2000 a wc:Player ;
+player:erling-haaland-2000 a wc:Player ;
     rdfs:label "Erling Haaland"@en ;
     foaf:name "Erling Haaland" ;
     wc:shirtNumber 9 ;
     wc:dateOfBirth "2000-07-21"^^xsd:date ;
     wc:caps 50 ;
     wc:goalsForCountry 55 ;
-    wc:hasPosition wcr:position/FW ;
-    wc:hasNationality wcr:country/nor ;
-    wc:playsAtClub wcr:club/manchester-city ;
-    wc:playsForNationalTeam wcr:team/norway .
+    wc:hasPosition position:FW ;
+    wc:hasNationality country:nor ;
+    wc:playsAtClub club:manchester-city ;
+    wc:playsForNationalTeam team:norway .
 
-wcr:team/norway a wc:NationalTeam ;
+team:norway a wc:NationalTeam ;
     rdfs:label "Norway"@en ;
     wc:fifaCode "NOR" ;
     wc:squadSize 26 ;
-    wc:inGroup wcr:group/I ;
-    wc:affiliatedTo wcr:confederation/UEFA ;
-    wc:representsCountry wcr:country/nor ;
-    wc:calledUp wcr:player/erling-haaland-2000 .
+    wc:inGroup group:I ;
+    wc:affiliatedTo confederation:UEFA ;
+    wc:representsCountry country:nor ;
+    wc:calledUp player:erling-haaland-2000 .
 
-wcr:club/manchester-city a wc:Club ;
+club:manchester-city a wc:Club ;
     rdfs:label "Manchester City"@en ;
-    wc:clubInCountry wcr:country/eng ;     # England is a WC nation → FIFA code
-    wc:clubInLeague wcr:league/premier-league .
+    wc:clubInCountry country:eng ;     # England is a WC nation → FIFA code
+    wc:clubInLeague league:premier-league .
 ```
 
 ## Project layout
