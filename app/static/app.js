@@ -79,8 +79,10 @@ function eventSuffix(e) {
 function timelineRow(e) {
   const playable = e.kind === "goal" && e.video;
   const player = esc(e.player); // spillernavn kommer fra NRK/NIFS – escapes
+  // Minutt + ikon (f.eks. 15'🟨). Flagget droppes – siden av tidslinjen viser
+  // allerede hvilket lag hendelsen tilhører.
   const label =
-    `${eventIcon(e)} ${e.minute}' ${e.flag} ${player}${eventSuffix(e)}` +
+    `${e.minute}'${eventIcon(e)} ${player}${eventSuffix(e)}` +
     (playable ? ' <span class="hl-play">▶</span>' : "");
   const cell = playable
     ? `<button class="hl-event hl-clip" data-clip="${e.video}" data-title="${player} ${e.minute}'" onclick="event.stopPropagation();openClip(this.dataset.clip,this.dataset.title)">${label}</button>`
