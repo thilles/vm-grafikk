@@ -131,9 +131,14 @@ resolves. For each finished match it fetches `/matches/<id>/` once and extracts
 goals (event type 2; own goals type 8; penalties when the scorer also has a type
 9/10 award), and cards (type 4 yellow, type 3 red), caching them (in-memory +
 JSON file) since events are immutable once `FINISHED`. Each goal carries an
-optional NRK clip uuid; `app/nrk_video.py` resolves it to an HLS stream via NRK
-psapi, served at `GET /api/highlights/clip/{uuid}` (clips are geo-blocked to
-Norway). `build_highlights(matches, links)` takes the `nrk_links` map and is a
+optional NRK clip uuid; the frontend plays it by embedding NRK's own player in an
+iframe (`https://www.nrk.no/video/embed/<uuid>`, see `openClip` in `app.js`).
+**Do not resolve the clip server-side** — NRK's psapi geo-blocks the manifest to
+Norwegian IPs and CORS-whitelists only nrk.no origins, so the old server-side
+`GET /api/highlights/clip/{uuid}` (and `app/nrk_video.py`) always returned 404
+from the non-Norway Render host; the iframe sidesteps both by resolving in the
+user's own (Norwegian) browser. Clips remain geo-blocked to Norway for viewers
+outside it. `build_highlights(matches, links)` takes the `nrk_links` map and is a
 no-op without resolved ids. `highlights.view()` merges goals+cards into one
 minute-sorted timeline tagged with home/away side; `DemoProvider` returns sample
 highlights (no clips) so the UI is testable offline. `main.py` attaches the view

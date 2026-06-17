@@ -15,17 +15,15 @@ from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 from . import duell as duell_mod
-from . import kg
-from . import kg_nlq
-
+from . import kg, kg_nlq
 from .consensus import build_consensus
 from .facts import build_facts
 from .football_api import get_provider
 from .highlights import build_highlights, match_key
 from .highlights import view as highlights_view
 from .news import build_news
-from .nrk_video import resolve_clip
-from .nrk_links import build_links, url_for as nrk_url
+from .nrk_links import build_links
+from .nrk_links import url_for as nrk_url
 from .predictions import load_predictions
 from .scoring import (
     compute_group_tables,
@@ -61,7 +59,9 @@ def _match_view(m, highlights=None, nrk=None, duell_index=None):
         "pens": f"{m['pens_home']}–{m['pens_away']} på straffer"
         if m.get("pens_home") is not None
         else None,
-        "highlights": highlights_view((highlights or {}).get(match_key(m)), m["home"], m["away"]),
+        "highlights": highlights_view(
+            (highlights or {}).get(match_key(m)), m["home"], m["away"]
+        ),
         "report_url": nrk_url(m, nrk),
         "duell": duell_mod.for_match(m, duell_index) if duell_index else None,
     }
@@ -162,14 +162,6 @@ def api_state():
     return JSONResponse(STATE)
 
 
-@app.get("/api/highlights/clip/{uuid}")
-def api_highlight_clip(uuid: str):
-    info = resolve_clip(uuid)
-    if not info or not info["m3u8"]:
-        return JSONResponse({"error": "Fant ikke klipp."}, status_code=404)
-    return JSONResponse(info)
-
-
 @app.post("/api/refresh")
 def api_refresh():
     try:
@@ -197,8 +189,10 @@ def graf():
 @app.get("/api/kg/info")
 def api_kg_info():
     if not kg.available():
-        return JSONResponse({"ok": False, "error": "Kunnskapsgrafen er ikke tilgjengelig."},
-                            status_code=503)
+        return JSONResponse(
+            {"ok": False, "error": "Kunnskapsgrafen er ikke tilgjengelig."},
+            status_code=503,
+        )
     try:
         return JSONResponse({"ok": True, "ask": kg_nlq.available(), **kg.info()})
     except Exception as e:  # noqa: BLE001
@@ -207,12 +201,16 @@ def api_kg_info():
 
 async def _run_kg_query(request: Request):
     if not kg.available():
-        return JSONResponse({"error": "Kunnskapsgrafen er ikke tilgjengelig."},
-                            status_code=503)
+        return JSONResponse(
+            {"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503
+        )
     if request.method == "POST":
         raw = (await request.body()).decode("utf-8")
-        if request.headers.get("content-type", "").startswith("application/x-www-form-urlencoded"):
+        if request.headers.get("content-type", "").startswith(
+            "application/x-www-form-urlencoded"
+        ):
             from urllib.parse import parse_qs
+
             query = (parse_qs(raw).get("query") or [raw])[0]
         else:  # application/sparql-query eller annet: rå body er spørringen
             query = raw
@@ -227,27 +225,33 @@ async def _run_kg_query(request: Request):
     except asyncio.TimeoutError:
         return JSONResponse(
             {"error": f"Spørringen tok for lang tid (over {KG_QUERY_TIMEOUT:.0f} s)."},
-            status_code=504)
+            status_code=504,
+        )
     except ValueError as e:
         return JSONResponse({"error": str(e)}, status_code=400)
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
     headers = {"X-Truncated": "1"} if result.get("truncated") else {}
-    return Response(content=result["body"], media_type=result["content_type"],
-                    headers=headers)
+    return Response(
+        content=result["body"], media_type=result["content_type"], headers=headers
+    )
 
 
 @app.get("/api/kg/teams")
 def api_kg_teams():
     if not kg.available():
-        return JSONResponse({"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503)
+        return JSONResponse(
+            {"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503
+        )
     return JSONResponse({"teams": kg.team_labels()})
 
 
 @app.get("/api/kg/graph")
 def api_kg_graph(team: str = "Norway", view: str = "team"):
     if not kg.available():
-        return JSONResponse({"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503)
+        return JSONResponse(
+            {"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503
+        )
     try:
         return JSONResponse(kg.full_graph() if view == "all" else kg.subgraph(team))
     except ValueError as e:
@@ -270,12 +274,14 @@ async def api_kg_sparql_post(request: Request):
 async def api_kg_ask(request: Request):
     """Naturlig språk → SPARQL via Claude (kg_nlq), kjør, og oppsummer på norsk."""
     if not kg.available():
-        return JSONResponse({"error": "Kunnskapsgrafen er ikke tilgjengelig."},
-                            status_code=503)
+        return JSONResponse(
+            {"error": "Kunnskapsgrafen er ikke tilgjengelig."}, status_code=503
+        )
     if not kg_nlq.available():
         return JSONResponse(
             {"error": "Spør-funksjonen er ikke aktivert (mangler ANTHROPIC_API_KEY)."},
-            status_code=503)
+            status_code=503,
+        )
     try:
         body = await request.json()
     except Exception:  # noqa: BLE001
@@ -286,6 +292,7 @@ async def api_kg_ask(request: Request):
 
     loop = asyncio.get_event_loop()
     import time
+
     t0 = time.perf_counter()
     try:
         # 1) NL → SPARQL
@@ -301,23 +308,31 @@ async def api_kg_ask(request: Request):
     except asyncio.TimeoutError:
         return JSONResponse(
             {"error": f"Spørringen tok for lang tid (over {KG_QUERY_TIMEOUT:.0f} s)."},
-            status_code=504)
+            status_code=504,
+        )
     except ValueError as e:
         # Ugyldig/forbudt SPARQL fra modellen – ta med spørringen så den vises i UI.
-        return JSONResponse({"error": str(e), "sparql": locals().get("sparql")},
-                            status_code=400)
+        return JSONResponse(
+            {"error": str(e), "sparql": locals().get("sparql")}, status_code=400
+        )
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=502)
 
     ms = round((time.perf_counter() - t0) * 1000)
     # 3) Kort norsk svar (feiler stille → tom streng)
     svar = await loop.run_in_executor(
-        None, kg_nlq.summarize, spørsmål, sparql, result["content_type"], result["body"])
+        None, kg_nlq.summarize, spørsmål, sparql, result["content_type"], result["body"]
+    )
 
-    payload = {"sparql": sparql, "svar": svar, "truncated": result.get("truncated", False),
-               "ms": ms}
+    payload = {
+        "sparql": sparql,
+        "svar": svar,
+        "truncated": result.get("truncated", False),
+        "ms": ms,
+    }
     if "sparql-results+json" in result["content_type"]:
         import json as _json
+
         payload["results"] = _json.loads(result["body"])
     else:
         payload["turtle"] = result["body"]

@@ -398,83 +398,23 @@ refresh();
 setInterval(refresh, 60_000);
 
 // ---- Video-modal for NRK-høydepunktklipp ----
-let _hls = null;
-
+// Klippene er geoblokkert til Norge, og NRKs psapi gir bare manifestet til norske
+// IP-er + whitelistede nrk.no-origins. Render-serveren står utenfor Norge, så et
+// server-side oppslag ble alltid 404. Vi bygger derfor inn NRKs egen spiller
+// (iframe mot nrk.no), som laster fra nrk.no: den resolver geo og spiller av i
+// brukerens egen nettleser (som er i Norge) og håndterer HLS på iOS/Android/desktop
+// selv. Da slipper vi både geoblokk-problemet og egen hls.js/nativ-avspilling.
 function closeClip() {
   const modal = document.getElementById("clip-modal");
-  const video = modal.querySelector(".clip-video");
-  video.pause();
-  video.removeAttribute("src");
-  video.load();
-  if (_hls) {
-    _hls.destroy();
-    _hls = null;
-  }
+  const frame = modal.querySelector(".clip-frame");
+  frame.removeAttribute("src"); // stopp avspillingen
   modal.hidden = true;
 }
 
-async function openClip(uuid, title) {
+function openClip(uuid, title) {
   const modal = document.getElementById("clip-modal");
-  const video = modal.querySelector(".clip-video");
-  const msg = modal.querySelector(".clip-msg");
+  const frame = modal.querySelector(".clip-frame");
   modal.querySelector(".clip-title").textContent = title || "Høydepunkt";
-  msg.hidden = true;
-  video.hidden = false;
+  frame.src = `https://www.nrk.no/video/embed/${encodeURIComponent(uuid)}`;
   modal.hidden = false;
-
-  // Rydd opp en evt. tidligere hls.js-instans før vi åpner et nytt klipp, slik at
-  // den ikke fortsetter å laste segmenter i bakgrunnen mot samme <video>.
-  if (_hls) {
-    _hls.destroy();
-    _hls = null;
-  }
-
-  const fail = () => {
-    video.hidden = true;
-    msg.hidden = false;
-    msg.textContent = "Fikk ikke spilt av klippet her. Prøv NRK-lenken under kampen.";
-  };
-
-  let info;
-  try {
-    const r = await fetch(`/api/highlights/clip/${uuid}`);
-    if (!r.ok) throw new Error("not found");
-    info = await r.json();
-  } catch (e) {
-    fail();
-    return;
-  }
-
-  const canPlayNativeHls = !!video.canPlayType("application/vnd.apple.mpegurl");
-  const ua = navigator.userAgent || "";
-  const isIosSafari =
-    /iP(hone|ad|od)/.test(ua) &&
-    /Safari/.test(ua) &&
-    !/CriOS|FxiOS|EdgiOS/.test(ua);
-
-  // iOS Safari er mest stabil med nativ HLS-avspilling.
-  if (isIosSafari && canPlayNativeHls) {
-    video.src = info.m3u8;
-  } else if (window.Hls && window.Hls.isSupported()) {
-    _hls = new window.Hls();
-    _hls.on(window.Hls.Events.ERROR, (_event, data) => {
-      if (!data?.fatal) return;
-      _hls.destroy();
-      _hls = null;
-      if (canPlayNativeHls) {
-        video.src = info.m3u8;
-        video.play().catch(() => {});
-        return;
-      }
-      fail();
-    });
-    _hls.loadSource(info.m3u8);
-    _hls.attachMedia(video);
-  } else if (canPlayNativeHls) {
-    video.src = info.m3u8;
-  } else {
-    fail(); // ingen hls.js (CDN blokkert e.l.) og ingen nativ HLS-støtte
-    return;
-  }
-  video.play().catch(() => {});
 }

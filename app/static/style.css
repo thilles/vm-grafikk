@@ -1207,11 +1207,11 @@ button.hl-clip:hover {
 .clip-title {
   margin: 0 1.5rem 0.5rem 0;
 }
-.clip-video {
+.clip-frame {
   width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
   border-radius: 4px;
   background: #000;
-}
-.clip-msg {
-  opacity: 0.8;
+  display: block;
 }
