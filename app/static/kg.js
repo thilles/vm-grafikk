@@ -24,6 +24,17 @@ const PREFIXES = {
 
 const EXAMPLES = [
   {
+    label: "Spillere, lag og grupper",
+    q: `PREFIX wc: <http://example.org/wc2026/ontology#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?spiller ?spillernavn ?lag ?lagnavn ?gruppe ?gruppenavn WHERE {
+  ?gruppe a wc:Group ; rdfs:label ?gruppenavn .
+  ?lag wc:inGroup ?gruppe ; rdfs:label ?lagnavn .
+  ?spiller wc:playsForNationalTeam ?lag ; foaf:name ?spillernavn .
+} ORDER BY ?gruppenavn ?lagnavn ?spillernavn`,
+  },
+  {
     label: "Klubber med flest spillere",
     q: `PREFIX wc: <http://example.org/wc2026/ontology#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -144,13 +155,26 @@ async function loadInfo() {
   }
 }
 
+let _activeChip = null;
+
+function setActiveChip(btn) {
+  if (_activeChip) _activeChip.classList.remove("active");
+  _activeChip = btn || null;
+  if (_activeChip) _activeChip.classList.add("active");
+}
+
 function renderExamples() {
   const box = $("kg-examples");
-  EXAMPLES.forEach((ex) => {
+  EXAMPLES.forEach((ex, idx) => {
     const b = document.createElement("button");
     b.className = "kg-chip";
     b.textContent = ex.label;
-    b.onclick = () => { $("kg-query").value = ex.q; runQuery(); };
+    b.onclick = () => {
+      setActiveChip(b);
+      $("kg-query").value = ex.q;
+      runQuery();
+    };
+    if (idx === 0) { b.classList.add("active"); _activeChip = b; }
     box.appendChild(b);
   });
 }
@@ -167,7 +191,15 @@ function renderSelect(data) {
       <thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
 }
 
+// Første automatiske kjøring ved sideinnlasting skal ikke overskrive
+// API-lastet fullgraf – bare brukerinitiierte søk oppdaterer grafen.
+// JavaScript er entrådet og sideinnlasting kaller runQuery() synkront
+// før noen brukerinteraksjon er mulig, så flagget er trygt.
+let _firstRun = true;
+
 async function runQuery() {
+  const skipGraph = _firstRun;
+  _firstRun = false;
   const query = $("kg-query").value;
   const limit = $("kg-limit").value || 200;
   const status = $("kg-status");
@@ -197,6 +229,9 @@ async function runQuery() {
         const trunc = r.headers.get("X-Truncated") === "1";
         out.innerHTML = renderSelect(data);
         status.textContent = `${n} rad(er)${trunc ? " (avkortet)" : ""} · ${ms} ms`;
+        if (!skipGraph && window.KGGraph && window.KGGraph.updateFromSparql) {
+          window.KGGraph.updateFromSparql(data);
+        }
         return;
       }
     } else {
@@ -234,6 +269,7 @@ async function askQuestion() {
       return;
     }
     $("kg-query").value = d.sparql || "";  // synlig og redigerbar i SPARQL-feltet
+    setActiveChip(null); // NLP-spørring er ikke et forhåndsdefinert eksempel
     if (d.results && "boolean" in d.results) {
       out.innerHTML = `<p class="kg-bool">${d.results.boolean ? "✅ true" : "❌ false"}</p>`;
       $("kg-status").textContent = `Ferdig · ${d.ms} ms`;
@@ -241,6 +277,9 @@ async function askQuestion() {
       const n = (d.results.results.bindings || []).length;
       out.innerHTML = renderSelect(d.results);
       $("kg-status").textContent = `${n} rad(er)${d.truncated ? " (avkortet)" : ""} · ${d.ms} ms`;
+      if (window.KGGraph && window.KGGraph.updateFromSparql) {
+        window.KGGraph.updateFromSparql(d.results);
+      }
     } else if (d.turtle != null) {
       out.innerHTML = `<pre class="kg-turtle">${escapeHtml(d.turtle)}</pre>`;
       $("kg-status").textContent = `Ferdig · ${d.ms} ms`;

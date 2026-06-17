@@ -873,6 +873,12 @@ footer {
     background: var(--line);
     border-color: var(--accent);
 }
+.kg-chip.active {
+    background: var(--accent);
+    color: #06140b;
+    border-color: var(--accent);
+    font-weight: 600;
+}
 
 .kg-query {
     width: 100%;

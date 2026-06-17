@@ -5,8 +5,92 @@ const KG_TYPES = {
   team: { color: "#fbbf24", r: 16, label: "Landslag" },
   group: { color: "#60a5fa", r: 13, label: "Gruppe" },
   player: { color: "#4ade80", r: 6, label: "Spiller" },
+  club: { color: "#f472b6", r: 8, label: "Klubb" },
+  league: { color: "#a78bfa", r: 10, label: "Liga" },
 };
-const KG_LEGEND_ORDER = ["team", "group", "player"];
+const KG_LEGEND_ORDER = ["team", "group", "player", "club", "league"];
+
+// Bygg en {nodes, links}-graf fra SPARQL SELECT-resultater.
+// URI-kolonner → noder (type utledet fra URI-prefikset), tilstøtende
+// literal-kolonner brukes som etiketter.  Kanter opprettes for kjente
+// type-par (spiller↔lag, lag↔gruppe, spiller↔klubb, klubb↔liga).
+function buildGraphFromSparql(data) {
+  const TYPE_PREFIXES = [
+    ["http://example.org/wc2026/resource/player/", "player"],
+    ["http://example.org/wc2026/resource/team/", "team"],
+    ["http://example.org/wc2026/resource/group/", "group"],
+    ["http://example.org/wc2026/resource/club/", "club"],
+    ["http://example.org/wc2026/resource/league/", "league"],
+    ["http://example.org/wc2026/resource/country/", "country"],
+    ["http://example.org/wc2026/resource/confederation/", "confederation"],
+  ];
+  // source-type|target-type → rel-navn (kompat. med computeAnchors)
+  const LINK_TYPES = {
+    "team|player": "calledUp",
+    "team|group": "inGroup",
+    "player|club": "playsAt",
+    "club|league": "inLeague",
+  };
+
+  function inferType(uri) {
+    for (const [pfx, t] of TYPE_PREFIXES) if (uri.startsWith(pfx)) return t;
+    return null;
+  }
+  function slugLabel(uri) {
+    return decodeURIComponent(uri.split("/").pop()).replace(/-/g, " ");
+  }
+
+  const vars = (data.head && data.head.vars) || [];
+  const rows = (data.results && data.results.bindings) || [];
+  if (!rows.length) return { nodes: [], links: [] };
+
+  const nodesMap = new Map();
+  const linksSet = new Set();
+  const links = [];
+
+  for (const row of rows) {
+    const uris = []; // {uri, type}
+    const lits = []; // string
+
+    for (const v of vars) {
+      const b = row[v];
+      if (!b) continue;
+      if (b.type === "uri") {
+        const t = inferType(b.value);
+        if (t) uris.push({ uri: b.value, type: t });
+      } else if (b.type === "literal") {
+        lits.push(b.value);
+      }
+    }
+
+    // Opprett noder – bruk literal[i] som etikett for uri[i].
+    // Forutsetter at SELECT-kolonner er parvis ordnet: ?uri ?etikett ?uri2 ?etikett2 …
+    // (slik eksempelspørringen er bygget). Faller tilbake til URI-slug ved avvik.
+    for (let i = 0; i < uris.length; i++) {
+      const { uri, type } = uris[i];
+      if (!nodesMap.has(uri)) {
+        nodesMap.set(uri, { id: uri, label: lits[i] || slugLabel(uri), type });
+      }
+    }
+
+    // Opprett kanter for kjente type-par
+    for (let i = 0; i < uris.length; i++) {
+      for (let j = i + 1; j < uris.length; j++) {
+        const a = uris[i], b = uris[j];
+        const k1 = a.type + "|" + b.type;
+        const k2 = b.type + "|" + a.type;
+        let src, tgt, rel;
+        if (LINK_TYPES[k1]) { src = a.uri; tgt = b.uri; rel = LINK_TYPES[k1]; }
+        else if (LINK_TYPES[k2]) { src = b.uri; tgt = a.uri; rel = LINK_TYPES[k2]; }
+        else continue;
+        const lk = src + "|" + tgt;
+        if (!linksSet.has(lk)) { linksSet.add(lk); links.push({ source: src, target: tgt, rel }); }
+      }
+    }
+  }
+
+  return { nodes: [...nodesMap.values()], links };
+}
 
 const WC = "http://example.org/wc2026/ontology#";
 const Q_PREFIX =
@@ -524,5 +608,22 @@ const Q_PREFIX =
       alpha = Math.max(alpha, 0.3);
     }, 200);
   });
+
+  // Eksponér metoder slik at kg.js kan oppdatere grafen etter SPARQL-søk
+  window.KGGraph = {
+    updateFromSparql: function (data) {
+      const graph = buildGraphFromSparql(data);
+      if (graph.nodes.length > 0) {
+        resetView();
+        setData(graph);
+        statusEl.textContent =
+          graph.nodes.length + " noder · " + graph.links.length + " kanter (fra spørring)";
+      } else {
+        statusEl.textContent = "Ingen graf tilgjengelig for denne spørringen";
+      }
+    },
+    loadFromApi: load,
+  };
+
   init();
 })();
