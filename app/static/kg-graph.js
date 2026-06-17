@@ -11,6 +11,7 @@ const KG_TYPES = {
   confederation: { color: "#fb923c", r: 12, label: "Konfederasjon" },
   position: { color: "#2dd4bf", r: 9, label: "Posisjon" },
   tournament: { color: "#e879f9", r: 14, label: "Turnering" },
+  literal: { color: "#e2e8f0", r: 6, label: "Tekst/verdi" },
   other: { color: "#9ca3af", r: 7, label: "Annet" },
 };
 const KG_LEGEND_ORDER = [
@@ -23,6 +24,7 @@ const KG_LEGEND_ORDER = [
   "country",
   "position",
   "player",
+  "literal",
   "other",
 ];
 
@@ -33,13 +35,18 @@ const Q_PREFIX =
   "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n";
 
 // ── Bygg en nodegraf fra et SPARQL SELECT-resultat ──────────────────────────
-// Konvensjon (kolonne for kolonne, venstre→høyre i hver rad): en URI-binding blir
-// en node (typen utledes av ressurs-prefikset i URIen). En literal rett etter en
-// URI «hører til» den noden: tall → nodens størrelse (value), tekst → etikett
-// (første treff vinner). Hver URI kobles til forrige URI i raden, og relasjonen
-// utledes av typeparet, slik at den eksisterende layouten kjenner igjen
-// gruppe↔lag (inGroup) og lag↔spiller (calledUp). Spørringer som bare gir tall/
-// tekst (aggregater) har ingen URIer å koble → returnerer null (grafen beholdes).
+// Vi går kolonne for kolonne (venstre→høyre) i hver rad og bygger noder:
+//   • URI-binding → node (typen utledes av ressurs-prefikset i URIen).
+//   • Tall-literal → størrelse (value) på nærmeste node foran (ikke egen node).
+//   • Tekst-literal → etikett for forrige URI-node hvis den mangler en (slik at
+//     f.eks. ?lag ?lagnavn gir ett pent merket lag), ellers en egen tekst-node
+//     (så ?navn ?fot blir spiller-noder klynget rundt «left»/«right»).
+// Påfølgende noder i raden kobles, og relasjonen utledes av typeparet, så den
+// eksisterende layouten kjenner igjen gruppe↔lag (inGroup) og lag↔spiller
+// (calledUp). Tekst-noder dedupliseres på verdi, så like verdier (lag, fot, …)
+// blir delte knutepunkt. Vi tegner bare hvis resultatet gir minst én kant eller
+// minst én ressurs-node (URI); rene literal-lister uten kobling (aggregater som
+// «klubb + antall») gir ingenting å tegne → null, og forrige graf beholdes.
 function kgTypeFromUri(uri) {
   const m = /\/resource\/([^/]+)\//.exec(uri);
   return m && KG_TYPES[m[1]] ? m[1] : "other";
@@ -76,44 +83,55 @@ function kgBuildGraphFromResults(data) {
   const nodes = new Map();
   const seen = new Set();
   const links = [];
-  const ensure = (uri) => {
-    let n = nodes.get(uri);
+  const ensure = (id, type, label) => {
+    let n = nodes.get(id);
     if (!n) {
-      n = { id: uri, type: kgTypeFromUri(uri), label: null, value: null };
-      nodes.set(uri, n);
+      n = { id, type, label: label != null ? label : null, value: null };
+      nodes.set(id, n);
     }
     return n;
   };
+  const linkUp = (a, b) => {
+    if (!a || !b || a.id === b.id) return;
+    const key = a.id + "\t" + b.id;
+    if (seen.has(key)) return;
+    seen.add(key);
+    links.push({ source: a.id, target: b.id, rel: kgRelFor(a.type, b.type) });
+  };
   for (const row of rows) {
-    let prev = null; // forrige URI-node i raden (for kjede-kobling + literal-feste)
+    let prev = null; // forrige node i raden (for kobling)
+    let afterUri = false; // forrige kolonne var en URI → neste tekst er dens etikett
     for (const v of vars) {
       const b = row[v];
       if (!b) continue;
       if (b.type === "uri") {
-        const n = ensure(b.value);
-        if (prev && prev.id !== n.id) {
-          const key = prev.id + "\t" + n.id;
-          if (!seen.has(key)) {
-            seen.add(key);
-            links.push({
-              source: prev.id,
-              target: n.id,
-              rel: kgRelFor(prev.type, n.type),
-            });
-          }
-        }
+        const n = ensure(b.value, kgTypeFromUri(b.value));
+        linkUp(prev, n);
         prev = n;
-      } else if (prev) {
-        const num = kgNumericLiteral(b);
-        if (num != null) {
-          if (prev.value == null) prev.value = num;
-        } else if (prev.label == null) {
-          prev.label = b.value;
-        }
+        afterUri = true;
+        continue;
+      }
+      const num = kgNumericLiteral(b);
+      if (num != null) {
+        // tall → størrelse på nærmeste node foran, ikke egen node
+        if (prev && prev.value == null) prev.value = num;
+        afterUri = false;
+        continue;
+      }
+      // tekst rett etter en URI = dens etikett (settes om den mangler, ellers
+      // ignoreres — slik at gjentatte rader ikke lager dubletter); ellers tekst-node
+      if (afterUri) {
+        if (prev && prev.label == null) prev.label = b.value;
+        afterUri = false;
+      } else {
+        const n = ensure("lit:" + b.value, "literal", b.value);
+        linkUp(prev, n);
+        prev = n;
       }
     }
   }
-  if (!links.length && nodes.size < 2) return null;
+  const hasResource = [...nodes.values()].some((n) => n.type !== "literal");
+  if (!links.length && !hasResource) return null;
   for (const n of nodes.values()) {
     if (!n.label) n.label = kgPrettyLocal(n.id);
     if (n.value == null) delete n.value;
