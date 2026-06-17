@@ -5,14 +5,121 @@ const KG_TYPES = {
   team: { color: "#fbbf24", r: 16, label: "Landslag" },
   group: { color: "#60a5fa", r: 13, label: "Gruppe" },
   player: { color: "#4ade80", r: 6, label: "Spiller" },
+  club: { color: "#f472b6", r: 10, label: "Klubb" },
+  league: { color: "#a78bfa", r: 12, label: "Liga" },
+  country: { color: "#38bdf8", r: 10, label: "Land" },
+  confederation: { color: "#fb923c", r: 12, label: "Konfederasjon" },
+  position: { color: "#2dd4bf", r: 9, label: "Posisjon" },
+  tournament: { color: "#e879f9", r: 14, label: "Turnering" },
+  other: { color: "#9ca3af", r: 7, label: "Annet" },
 };
-const KG_LEGEND_ORDER = ["team", "group", "player"];
+const KG_LEGEND_ORDER = [
+  "tournament",
+  "confederation",
+  "group",
+  "team",
+  "league",
+  "club",
+  "country",
+  "position",
+  "player",
+  "other",
+];
 
 const WC = "http://example.org/wc2026/ontology#";
 const Q_PREFIX =
   "PREFIX wc: <http://example.org/wc2026/ontology#>\n" +
   "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
   "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n";
+
+// ── Bygg en nodegraf fra et SPARQL SELECT-resultat ──────────────────────────
+// Konvensjon (kolonne for kolonne, venstre→høyre i hver rad): en URI-binding blir
+// en node (typen utledes av ressurs-prefikset i URIen). En literal rett etter en
+// URI «hører til» den noden: tall → nodens størrelse (value), tekst → etikett
+// (første treff vinner). Hver URI kobles til forrige URI i raden, og relasjonen
+// utledes av typeparet, slik at den eksisterende layouten kjenner igjen
+// gruppe↔lag (inGroup) og lag↔spiller (calledUp). Spørringer som bare gir tall/
+// tekst (aggregater) har ingen URIer å koble → returnerer null (grafen beholdes).
+function kgTypeFromUri(uri) {
+  const m = /\/resource\/([^/]+)\//.exec(uri);
+  return m && KG_TYPES[m[1]] ? m[1] : "other";
+}
+function kgRelFor(a, b) {
+  const pair = a + ">" + b;
+  if (pair === "group>team" || pair === "team>group") return "inGroup";
+  if (pair === "team>player" || pair === "player>team") return "calledUp";
+  return "rel";
+}
+function kgNumericLiteral(b) {
+  if (b.type !== "literal" && b.type !== "typed-literal") return null;
+  const dt = b.datatype || "";
+  const looksNum = /^-?\d+(\.\d+)?$/.test(b.value);
+  const numType = /(integer|decimal|float|double|int|long)/i.test(dt);
+  if ((numType || (!dt && looksNum)) && isFinite(parseFloat(b.value)))
+    return parseFloat(b.value);
+  return null;
+}
+function kgPrettyLocal(uri) {
+  const m = /\/resource\/[^/]+\/(.+)$/.exec(uri) || /[#/]([^#/]+)$/.exec(uri);
+  let s = m ? m[1] : uri;
+  try {
+    s = decodeURIComponent(s);
+  } catch (e) {
+    /* behold rå streng */
+  }
+  return s.replace(/_/g, " ");
+}
+function kgBuildGraphFromResults(data) {
+  if (!data || !data.head || !data.results) return null;
+  const vars = data.head.vars || [];
+  const rows = data.results.bindings || [];
+  const nodes = new Map();
+  const seen = new Set();
+  const links = [];
+  const ensure = (uri) => {
+    let n = nodes.get(uri);
+    if (!n) {
+      n = { id: uri, type: kgTypeFromUri(uri), label: null, value: null };
+      nodes.set(uri, n);
+    }
+    return n;
+  };
+  for (const row of rows) {
+    let prev = null; // forrige URI-node i raden (for kjede-kobling + literal-feste)
+    for (const v of vars) {
+      const b = row[v];
+      if (!b) continue;
+      if (b.type === "uri") {
+        const n = ensure(b.value);
+        if (prev && prev.id !== n.id) {
+          const key = prev.id + "\t" + n.id;
+          if (!seen.has(key)) {
+            seen.add(key);
+            links.push({
+              source: prev.id,
+              target: n.id,
+              rel: kgRelFor(prev.type, n.type),
+            });
+          }
+        }
+        prev = n;
+      } else if (prev) {
+        const num = kgNumericLiteral(b);
+        if (num != null) {
+          if (prev.value == null) prev.value = num;
+        } else if (prev.label == null) {
+          prev.label = b.value;
+        }
+      }
+    }
+  }
+  if (!links.length && nodes.size < 2) return null;
+  for (const n of nodes.values()) {
+    if (!n.label) n.label = kgPrettyLocal(n.id);
+    if (n.value == null) delete n.value;
+  }
+  return { nodes: [...nodes.values()], links };
+}
 
 (function () {
   const canvas = document.getElementById("kg-canvas");
@@ -409,7 +516,9 @@ const Q_PREFIX =
   function exploreNode(n) {
     const ta = document.getElementById("kg-query");
     if (ta) ta.value = queryForNode(n);
-    if (typeof window.runQuery === "function") window.runQuery();
+    // "keep": vis nodens fakta i tabellen uten å tegne grafen på nytt — du
+    // navigerer jo i grafen, da skal den ikke hoppe.
+    if (typeof window.runQuery === "function") window.runQuery("keep");
     if (ta) ta.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
@@ -494,10 +603,10 @@ const Q_PREFIX =
   );
   canvas.addEventListener("dblclick", resetView);
 
-  async function load() {
+  async function load(view) {
     statusEl.textContent = "Laster …";
     try {
-      const r = await fetch("/api/kg/graph?view=all");
+      const r = await fetch("/api/kg/graph?view=" + encodeURIComponent(view || "all"));
       const d = await r.json();
       if (!r.ok) throw new Error(d.error || r.statusText);
       resize();
@@ -509,9 +618,28 @@ const Q_PREFIX =
     }
   }
 
+  // Tegn grafen på nytt fra et SPARQL-resultat. Gir resultatet ingen koblede
+  // ressurser, beholdes den forrige grafen (og en merknad vises).
+  function renderResults(data) {
+    const g = kgBuildGraphFromResults(data);
+    if (!g) {
+      statusEl.textContent =
+        "Resultatet har ingen ressurser å tegne — se tabellen under.";
+      return;
+    }
+    resize();
+    resetView();
+    setData(g);
+    statusEl.textContent = `${g.nodes.length} noder · ${g.links.length} kanter (fra spørringen)`;
+  }
+
+  // Lar SPARQL-siden (kg.js) styre grafen: redraw fra resultat, eller last en
+  // ferdig server-visning (view=all = hele turneringen, verdivektet).
+  window.kgGraph = { renderResults, loadView: load };
+
   async function init() {
     resize();
-    await load();
+    await load("all");
     loop();
   }
 

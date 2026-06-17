@@ -24,6 +24,21 @@ const PREFIXES = {
 
 const EXAMPLES = [
   {
+    label: "Spiller–lag–gruppe",
+    // Default-visningen: hele turneringen som gruppe → landslag → spillere.
+    // graphView:"all" lar nodegrafen vise den ferdige, verdivektede server-
+    // visningen mens tabellen viser dette SPARQL-resultatet.
+    graphView: "all",
+    q: `PREFIX wc: <http://example.org/wc2026/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?gruppe ?gruppenavn ?lag ?lagnavn ?spiller ?spillernavn WHERE {
+  ?lag a wc:NationalTeam ; rdfs:label ?lagnavn ; wc:inGroup ?gruppe .
+  ?gruppe rdfs:label ?gruppenavn .
+  ?lag wc:calledUp ?spiller . ?spiller foaf:name ?spillernavn .
+} ORDER BY ?gruppenavn ?lagnavn ?spillernavn`,
+  },
+  {
     label: "Klubber med flest spillere",
     q: `PREFIX wc: <http://example.org/wc2026/ontology#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -150,9 +165,20 @@ function renderExamples() {
     const b = document.createElement("button");
     b.className = "kg-chip";
     b.textContent = ex.label;
-    b.onclick = () => { $("kg-query").value = ex.q; runQuery(); };
+    b.onclick = () => { $("kg-query").value = ex.q; runQuery(ex.graphView); };
     box.appendChild(b);
   });
+}
+
+// Oppdater nodegrafen etter en spørring. graphView:
+//   "keep"      → ikke rør grafen (f.eks. ved klikk på en node)
+//   en streng   → last ferdig server-visning (f.eks. "all")
+//   ellers      → bygg grafen fra SELECT-resultatet
+function updateGraph(data, graphView) {
+  if (!window.kgGraph) return;
+  if (graphView === "keep") return;
+  if (graphView) { window.kgGraph.loadView(graphView); return; }
+  if (data && !("boolean" in data) && data.results) window.kgGraph.renderResults(data);
 }
 
 function renderSelect(data) {
@@ -167,7 +193,7 @@ function renderSelect(data) {
       <thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
 }
 
-async function runQuery() {
+async function runQuery(graphView) {
   const query = $("kg-query").value;
   const limit = $("kg-limit").value || 200;
   const status = $("kg-status");
@@ -197,6 +223,7 @@ async function runQuery() {
         const trunc = r.headers.get("X-Truncated") === "1";
         out.innerHTML = renderSelect(data);
         status.textContent = `${n} rad(er)${trunc ? " (avkortet)" : ""} · ${ms} ms`;
+        updateGraph(data, graphView);
         return;
       }
     } else {
@@ -241,6 +268,7 @@ async function askQuestion() {
       const n = (d.results.results.bindings || []).length;
       out.innerHTML = renderSelect(d.results);
       $("kg-status").textContent = `${n} rad(er)${d.truncated ? " (avkortet)" : ""} · ${d.ms} ms`;
+      updateGraph(d.results);
     } else if (d.turtle != null) {
       out.innerHTML = `<pre class="kg-turtle">${escapeHtml(d.turtle)}</pre>`;
       $("kg-status").textContent = `Ferdig · ${d.ms} ms`;
@@ -263,8 +291,10 @@ $("kg-ask-btn").onclick = askQuestion;
 $("kg-ask-input").addEventListener("keydown", (e) => {
   if (e.key === "Enter") { e.preventDefault(); askQuestion(); }
 });
-$("kg-run").onclick = runQuery;
+$("kg-run").onclick = () => runQuery(); // ikke send click-event som graphView
 renderExamples();
 $("kg-query").value = EXAMPLES[0].q;
 loadInfo();
-runQuery();
+// Nodegrafen laster sin egen default-visning (view=all) i init, så den første
+// kjøringen henter bare tabellen ("keep") og lar grafen stå.
+runQuery("keep");

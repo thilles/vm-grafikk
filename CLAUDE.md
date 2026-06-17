@@ -179,6 +179,19 @@ loaded lazily and read-only.
   (one squad: team→group + team→players), `GET|POST /api/kg/sparql`, and
   `POST /api/kg/ask` (natural-language question → SPARQL via Claude; see
   `app/kg_nlq.py` and `ANTHROPIC_API_KEY` above).
+- **The node graph follows the SPARQL query.** `kg-graph.js` is the force-directed
+  canvas; it loads the whole tournament (`view=all`) on startup and exposes
+  `window.kgGraph = { renderResults, loadView }`. After any SELECT query, `kg.js`
+  calls `kgGraph.renderResults(data)`, which client-side builds nodes/links from
+  the result: each row's URI bindings become nodes (type from the `/resource/<type>/`
+  segment), an adjacent literal sets that node's label (text) or size (number), and
+  consecutive URIs are linked (type-pair → `inGroup`/`calledUp` so the existing
+  layout applies). Aggregate/literal-only results yield no nodes → the previous
+  graph is kept. The default "Spiller–lag–gruppe" example chip carries
+  `graphView:"all"` so it (and page load) shows the full server `view=all` graph
+  rather than a client-built one; node clicks pass `"keep"` to leave the graph
+  untouched. All gestures (drag, pan, pinch/wheel zoom, dblclick-reset) are
+  data-agnostic and unchanged.
 - **SPARQL is read-only**: queries run through rdflib `Graph.query()`, which only
   executes SELECT/ASK/CONSTRUCT/DESCRIBE — UPDATE/INSERT raise and return 400.
   Results are capped by row count, query length, and a timeout.
