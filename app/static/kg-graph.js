@@ -66,6 +66,14 @@ function kgNumericLiteral(b) {
     return parseFloat(b.value);
   return null;
 }
+// Ren tekst egnet som node/etikett: ingen datatype (vanlig/språktagget literal)
+// eller xsd:string. Datoer, bool osv. blir verken node eller etikett (de vises
+// bare i tabellen), så f.eks. en fødselsdato-kolonne lager ikke søppelnoder.
+function kgIsTextLiteral(b) {
+  if (b.type !== "literal" && b.type !== "typed-literal") return false;
+  const dt = b.datatype || "";
+  return !dt || /string/i.test(dt);
+}
 function kgPrettyLocal(uri) {
   const m = /\/resource\/[^/]+\/(.+)$/.exec(uri) || /[#/]([^#/]+)$/.exec(uri);
   let s = m ? m[1] : uri;
@@ -118,6 +126,9 @@ function kgBuildGraphFromResults(data) {
         afterUri = false;
         continue;
       }
+      // dato/bool/annen typet verdi: verken node eller etikett (kun i tabellen).
+      // afterUri beholdes, så en etterfølgende tekst fortsatt kan merke URIen.
+      if (!kgIsTextLiteral(b)) continue;
       // tekst rett etter en URI = dens etikett (settes om den mangler, ellers
       // ignoreres — slik at gjentatte rader ikke lager dubletter); ellers tekst-node
       if (afterUri) {

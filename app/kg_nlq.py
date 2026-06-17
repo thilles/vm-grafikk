@@ -85,6 +85,20 @@ Regler:
   - Kun SELECT (eller ASK ved ja/nei). Aldri INSERT/DELETE/LOAD.
   - Ta alltid med en fornuftig LIMIT (f.eks. 200), unntatt ved COUNT/aggregat.
   - SELECT lesbare verdier: spillernavn via foaf:name, lag/land/klubb via rdfs:label.
+
+Graf-vennlig utvelging (resultatet tegnes også som en nodegraf):
+  - Grafen lager noder av ressurs-URIer (fargelagt etter type) og av ren tekst, og
+    skalerer en node etter en TALL-kolonne som står RETT ETTER den. Nabo-kolonner i
+    hver rad kobles med en kant.
+  - Gjelder spørsmålet konkrete ressurser (spillere, lag, grupper, klubber, ligaer …),
+    ta MED ressurs-URIen i SELECT, ikke bare navnet. Rekkefølge per ressurs:
+    ?uri ?navn [?tallverdi] – f.eks. SELECT ?spiller ?spillernavn ?verdi.
+  - Ved en relasjon: ta med begge URIene i forelder→barn-rekkefølge så kanten tegnes,
+    f.eks. lag→spiller: ?lag ?lagnavn ?spiller ?spillernavn.
+  - Finnes en naturlig tallverdi (markedsverdi, caps, mål, høyde, antall), legg den
+    rett etter ressursen den beskriver, så blir noden skalert. Datoer skalerer ikke.
+  - Rene aggregater/COUNT, ja/nei (ASK), eller spørsmål uten konkrete ressurser:
+    velg som før (etiketter/tall), uten URIer.
   - Tallintervaller med FILTER, f.eks. FILTER(?v >= 150000000 && ?v <= 200000000).
   - «verdi/markedsverdi» = wc:marketValueEUR i euro (150 millioner = 150000000).
   - «spiller i <land>» betyr klubb i landet: ?p wc:playsAtClub ?c . ?c wc:clubInCountry ?co . ?co rdfs:label "<Land>"@en .
@@ -108,9 +122,22 @@ Spørsmål: Vis spillere med verdi mellom 150 og 200 millioner euro
 SPARQL:
 PREFIX wc: <http://example.org/wc2026/ontology#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT ?navn ?verdi WHERE {
+SELECT ?p ?navn ?verdi WHERE {
   ?p a wc:Player ; foaf:name ?navn ; wc:marketValueEUR ?verdi .
   FILTER(?verdi >= 150000000 && ?verdi <= 200000000)
+} ORDER BY DESC(?verdi) LIMIT 200
+
+Spørsmål: Hvem er den mest verdifulle spilleren per lag?
+SPARQL:
+PREFIX wc: <http://example.org/wc2026/ontology#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?lag ?lagnavn ?lagverdi ?spiller ?spillernavn ?verdi WHERE {
+  { SELECT ?lag (MAX(?v) AS ?verdi) WHERE {
+      ?lag a wc:NationalTeam ; wc:calledUp ?pp . ?pp wc:marketValueEUR ?v .
+    } GROUP BY ?lag }
+  ?lag rdfs:label ?lagnavn ; wc:totalMarketValueEUR ?lagverdi ; wc:calledUp ?spiller .
+  ?spiller wc:marketValueEUR ?verdi ; foaf:name ?spillernavn .
 } ORDER BY DESC(?verdi) LIMIT 200
 
 Spørsmål: Hvem er yngste spiller på hvert lag?
@@ -118,7 +145,7 @@ SPARQL:
 PREFIX wc: <http://example.org/wc2026/ontology#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-SELECT ?lag ?navn ?født WHERE {
+SELECT ?t ?lag ?p ?navn ?født WHERE {
   { SELECT ?t (MAX(?d) AS ?født) WHERE {
       ?t wc:calledUp ?pp . ?pp wc:dateOfBirth ?d .
     } GROUP BY ?t }
