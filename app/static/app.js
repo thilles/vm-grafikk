@@ -440,9 +440,6 @@ function bracketNode(m) {
 function renderBracket(bracket) {
   const sec = $("bracket-section");
   const el = $("bracket-view");
-  const STAGES = ["R32", "R16", "QF", "SF", "FINAL", "THIRD"];
-  const hasAny = STAGES.some((s) => (bracket[s] || []).length > 0);
-  if (!hasAny) { sec.hidden = true; return; }
   sec.hidden = false;
   _bracketData = bracket;
 
