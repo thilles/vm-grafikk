@@ -70,18 +70,16 @@ _R32_SLOTS = [
 
 
 def _resolve_r32_teams(matches, tables, thirds):
-    """Oppdater R32-kamper med ekte lag fra gruppetabeller der API-et returnerer TBD.
+    """Bygg R32-visning med ekte/projiserte lag fra gruppetabeller + beste treere.
 
-    Sorterer R32-kampene etter dato og matcher dem mot _R32_SLOTS for å hente
-    riktig gruppe-posisjon for hvert lag. Bare lag som faktisk er klare (komplett
-    gruppe) erstattes; ellers beholdes TBD.
+    Returnerer alle ikke-R32-kamper uendret, samt en R32-liste som følger
+    _R32_SLOTS. Der API-et mangler kamp eller har TBD-felt, brukes dagens
+    gruppetabell som projeksjon.
     """
     r32 = sorted(
         [m for m in matches if m["stage"] == "R32"],
         key=lambda m: m["utc_date"] or "",
     )
-    if not r32:
-        return matches
 
     # Gruppertabeller: winner = indeks 0, runner-up = indeks 1
     def _group_team(pos_idx, group):
@@ -108,6 +106,14 @@ def _resolve_r32_teams(matches, tables, thirds):
         idx = 0 if pos == "1st" else 1
         return _group_team(idx, group_or_pool)
 
+    def _resolve_with_existing(slot, existing_team):
+        pos, _ = slot
+        if existing_team in TEAMS:
+            if pos == "3rd":
+                used_thirds.add(existing_team)
+            return existing_team
+        return _resolve_slot(slot)
+
     # Grupper slots etter dato-prefiks for å matche rekkefølge innen dagen
     slots_by_date = {}
     for date_pfx, h_slot, a_slot in _R32_SLOTS:
@@ -118,25 +124,43 @@ def _resolve_r32_teams(matches, tables, thirds):
         pfx = (m["utc_date"] or "")[:10]
         r32_by_date.setdefault(pfx, []).append(m)
 
-    # Oppdater TBD-lag i API-kampene
-    updated = {id(m): m for m in matches}
+    # Oppdater/fyll R32-kamper i slot-rekkefølge
+    r32_filled = []
     for date_pfx, slots in slots_by_date.items():
         api_day = r32_by_date.get(date_pfx, [])
         for i, (h_slot, a_slot) in enumerate(slots):
-            if i >= len(api_day):
-                break
-            m = api_day[i]
-            if m["home"] not in TEAMS:
-                resolved = _resolve_slot(h_slot)
-                if resolved:
-                    m = {**m, "home": resolved}
-            if m["away"] not in TEAMS:
-                resolved = _resolve_slot(a_slot)
-                if resolved:
-                    m = {**m, "away": resolved}
-            updated[id(api_day[i])] = m
+            m = api_day[i] if i < len(api_day) else None
 
-    return list(updated.values())
+            home = _resolve_with_existing(h_slot, m.get("home") if m else None)
+            away = _resolve_with_existing(a_slot, m.get("away") if m else None)
+
+            if m is None:
+                m = {
+                    "id": f"proj-r32-{date_pfx}-{i + 1}",
+                    "utc_date": f"{date_pfx}T00:00:00Z",
+                    "status": "SCHEDULED",
+                    "stage": "R32",
+                    "group": None,
+                    "home": home or "TBD",
+                    "away": away or "TBD",
+                    "goals_home": None,
+                    "goals_away": None,
+                    "pens_home": None,
+                    "pens_away": None,
+                    "winner": None,
+                    "duration": "REGULAR",
+                }
+            else:
+                m = {
+                    **m,
+                    "home": home or "TBD",
+                    "away": away or "TBD",
+                }
+
+            r32_filled.append(m)
+
+    non_r32 = [m for m in matches if m["stage"] != "R32"]
+    return non_r32 + r32_filled
 
 
 def _match_view(m, highlights=None, nrk=None, duell_index=None):
@@ -196,8 +220,8 @@ def rebuild_state():
     tables = compute_group_tables(matches)
     thirds = compute_thirds_ranking(tables)
 
-    # Fyll inn TBD-lag i R32 fra gruppetabeller der API-et ikke har lagene ennå.
-    matches = _resolve_r32_teams(matches, tables, thirds)
+    # R32 til visualisering: fyll inn/projiser lag der API-et mangler oppsett.
+    bracket_matches = _resolve_r32_teams(matches, tables, thirds)
 
     # Transfermarkt-lagsverdier for sunburst-vekting av uspilte kamper.
     squad_mv = kg.squad_market_values()
@@ -265,7 +289,7 @@ def rebuild_state():
                 stage: [
                     _bracket_match_view(m, squad_mv)
                     for m in sorted(
-                        [mx for mx in matches if mx["stage"] == stage],
+                        [mx for mx in bracket_matches if mx["stage"] == stage],
                         key=lambda mx: mx["utc_date"] or "",
                     )
                 ]
