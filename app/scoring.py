@@ -108,6 +108,44 @@ def compute_group_tables(matches):
     return tables
 
 
+def compute_thirds_ranking(tables):
+    """
+    Rangerer de 12 gruppetreerne etter FIFAs kriterier:
+    1. Poeng (høyest best)
+    2. Målforskjell (høyest best)
+    3. Scorede mål (flest best)
+    4. Fair-play er ikke implementert (kortdata mangler i free-tier API)
+    5. Alfabetisk lagnavn som siste tiebreaker
+       (loddtrekning er ikke mulig å simulere)
+
+    De 8 beste treerne av 12 går videre til 16-delsfinalen (R32).
+
+    Merk: FIFA 2026 har ikke offentliggjort matrisen for nøyaktig hvilken
+    bracket-plass de viderekommende treerne havner i basert på gruppekombi-
+    nasjon. Koblingen er stubbet og kan implementeres når matrisen publiseres.
+
+    Returnerer liste med alle 12 treerne; 'advances' er True for rank 1–8.
+    """
+    thirds = []
+    for letter in sorted(tables.keys()):
+        table = tables[letter]
+        if len(table) >= 3:
+            r = dict(table[2])  # 3. plass (0-indeksert: indeks 2)
+            r["group"] = letter
+            thirds.append(r)
+
+    # Sortering: poeng → målforskjell → scorede mål → lagnavn (alfabetisk tiebreaker)
+    thirds.sort(
+        key=lambda r: (-r["pts"], -(r["gf"] - r["ga"]), -r["gf"], r["team"])
+    )
+
+    for i, r in enumerate(thirds):
+        r["rank"] = i + 1
+        r["advances"] = i < 8  # De 8 beste treerne går videre til R32
+
+    return thirds
+
+
 def _group_complete(matches, letter):
     finished = [
         m

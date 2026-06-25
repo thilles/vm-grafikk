@@ -75,6 +75,31 @@
       <div id="facts" class="fact-grid"></div>
     </section>
 
+    <section id="thirds-section" hidden>
+      <h2>🔢 Beste treere</h2>
+      <p id="thirds-note" class="hint"></p>
+      <div id="thirds-table"></div>
+    </section>
+
+    <section id="bracket-section" hidden>
+      <h2>🏆 Sluttspill</h2>
+      <div class="brac-bar">
+        <button id="btn-bracket" class="brac-btn brac-active" onclick="setBracketView('bracket')">🌲 Bracket</button>
+        <button id="btn-sunburst" class="brac-btn" onclick="setBracketView('sunburst')">🌀 Solstripe</button>
+      </div>
+      <div id="bracket-view"></div>
+      <div id="sunburst-view" hidden>
+        <div class="sunburst-wrap">
+          <svg id="sunburst-svg" class="sunburst-svg" viewBox="0 0 600 600"
+               role="img" aria-label="Sluttspill-solstripe"></svg>
+        </div>
+        <div id="sunburst-legend" class="sunburst-legend"></div>
+        <p class="hint sunburst-formula">Vektformel: <code>w = base + k × |målforskjell|</code>
+          (base&nbsp;=&nbsp;1, k&nbsp;=&nbsp;0,5). Vinnerens sektor vokser proporsjonalt med
+          seiersmargin; normalisert per runde slik at ringen alltid fyller 360°.</p>
+      </div>
+    </section>
+
     <section>
       <h2>🗂️ Gruppespillet</h2>
       <div class="group-grid" id="groups"></div>

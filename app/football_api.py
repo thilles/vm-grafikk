@@ -119,32 +119,51 @@ class DemoProvider:
     """Innebygd eksempeldata – brukes når ingen API-nøkkel er satt."""
 
     def fetch(self):
-        def m(date, group, home, away, gh=None, ga=None):
+        def m(date, stage, group, home, away, gh=None, ga=None):
             status = "FINISHED" if gh is not None else "TIMED"
             winner = None
             if gh is not None:
                 winner = "HOME_TEAM" if gh > ga else "AWAY_TEAM" if ga > gh else "DRAW"
             return {
                 "id": f"demo-{home}-{away}", "utc_date": date, "status": status,
-                "stage": "GROUP", "group": group, "home": home, "away": away,
+                "stage": stage, "group": group, "home": home, "away": away,
                 "goals_home": gh, "goals_away": ga, "pens_home": None, "pens_away": None,
                 "winner": winner, "duration": "REGULAR",
             }
 
+        def grp(date, group, home, away, gh=None, ga=None):
+            return m(date, "GROUP", group, home, away, gh, ga)
+
+        def ko(date, stage, home, away, gh=None, ga=None):
+            return m(date, stage, None, home, away, gh, ga)
+
         matches = [
-            m("2026-06-11T19:00:00Z", "A", "Mexico", "South Africa", 2, 1),
-            m("2026-06-11T22:00:00Z", "A", "South Korea", "Czechia", 1, 1),
-            m("2026-06-12T18:00:00Z", "B", "Canada", "Qatar", 3, 0),
-            m("2026-06-12T21:00:00Z", "C", "Morocco", "Brazil", 1, 2),
-            m("2026-06-12T23:00:00Z", "B", "Switzerland", "Bosnia and Herzegovina", 2, 0),
-            m("2026-06-13T16:00:00Z", "C", "Haiti", "Scotland", 1, 0),
-            m("2026-06-13T19:00:00Z", "I", "Norway", "Iraq"),
-            m("2026-06-13T22:00:00Z", "I", "France", "Senegal"),
-            m("2026-06-14T18:00:00Z", "D", "USA", "Paraguay"),
-            m("2026-06-14T21:00:00Z", "E", "Germany", "Curaçao"),
+            # Gruppekamper
+            grp("2026-06-11T19:00:00Z", "A", "Mexico", "South Africa", 2, 1),
+            grp("2026-06-11T22:00:00Z", "A", "South Korea", "Czechia", 1, 1),
+            grp("2026-06-12T18:00:00Z", "B", "Canada", "Qatar", 3, 0),
+            grp("2026-06-12T21:00:00Z", "C", "Morocco", "Brazil", 1, 2),
+            grp("2026-06-12T23:00:00Z", "B", "Switzerland", "Bosnia and Herzegovina", 2, 0),
+            grp("2026-06-13T16:00:00Z", "C", "Haiti", "Scotland", 1, 0),
+            grp("2026-06-13T19:00:00Z", "I", "Norway", "Iraq"),
+            grp("2026-06-13T22:00:00Z", "I", "France", "Senegal"),
+            grp("2026-06-14T18:00:00Z", "D", "USA", "Paraguay"),
+            grp("2026-06-14T21:00:00Z", "E", "Germany", "Curaçao"),
+            # Demo-sluttspillkamper for bracket/sunburst-testing
+            ko("2026-06-28T18:00:00Z", "R32", "Mexico", "Argentina", 2, 0),
+            ko("2026-06-28T21:00:00Z", "R32", "France", "Canada", 3, 1),
+            ko("2026-06-29T18:00:00Z", "R32", "Brazil", "Germany", 1, 2),
+            ko("2026-06-29T21:00:00Z", "R32", "Spain", "Portugal"),
+            ko("2026-06-30T18:00:00Z", "R32", "Norway", "Netherlands"),
+            ko("2026-06-30T21:00:00Z", "R32", "England", "USA"),
+            ko("2026-07-01T18:00:00Z", "R32", "Uruguay", "Japan"),
+            ko("2026-07-01T21:00:00Z", "R32", "Colombia", "Morocco"),
+            ko("2026-07-04T18:00:00Z", "R16", "Mexico", "France", 0, 2),
+            ko("2026-07-04T21:00:00Z", "R16", "Germany", "Spain"),
+            ko("2026-07-05T18:00:00Z", "QF", "France", "Germany"),
         ]
         scorers = [
-            {"player": "Kylian Mbappé", "team": "France", "goals": 0},
+            {"player": "Kylian Mbappé", "team": "France", "goals": 4},
         ]
         # Demo-høydepunkter (mål/kort) keyet som highlights.match_key: "dato|lagA|lagB"
         highlights = {

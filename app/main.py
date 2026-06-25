@@ -28,10 +28,11 @@ from .predictions import load_predictions
 from .scoring import (
     compute_group_tables,
     compute_leaderboard,
+    compute_thirds_ranking,
     load_fasit,
     resolve_outcomes,
 )
-from .teams import display, flag, no_name
+from .teams import confederation_of, display, flag, no_name
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s"
@@ -67,6 +68,25 @@ def _match_view(m, highlights=None, nrk=None, duell_index=None):
     }
 
 
+def _bracket_match_view(m):
+    """Minimavisning for sluttspillkamp – brukes av bracket-tre og sunburst."""
+    return {
+        "id": match_key(m),
+        "date": m["utc_date"],
+        "status": m["status"],
+        "stage": m["stage"],
+        "home": no_name(m["home"]),
+        "away": no_name(m["away"]),
+        "home_flag": flag(m["home"]),
+        "away_flag": flag(m["away"]),
+        "home_conf": confederation_of(m["home"]),
+        "away_conf": confederation_of(m["away"]),
+        "goals_home": m["goals_home"],
+        "goals_away": m["goals_away"],
+        "winner": m.get("winner"),
+    }
+
+
 def rebuild_state():
     provider = get_provider()
     data = provider.fetch()
@@ -76,6 +96,7 @@ def rebuild_state():
     outcomes = resolve_outcomes(data, fasit)
     leaderboard = compute_leaderboard(people, outcomes)
     tables = compute_group_tables(matches)
+    thirds = compute_thirds_ranking(tables)
 
     finished = [m for m in matches if m["status"] == "FINISHED"]
     live = [m for m in matches if m["status"] in ("IN_PLAY", "PAUSED")]
@@ -122,6 +143,25 @@ def rebuild_state():
             "facts": build_facts(matches, people, data["demo"]),
             "consensus": build_consensus(people),
             "news": news,
+            "thirds": [
+                {
+                    **{k: v for k, v in r.items() if k != "team"},
+                    "team": no_name(r["team"]),
+                    "flag": flag(r["team"]),
+                    "conf": confederation_of(r["team"]),
+                }
+                for r in thirds
+            ],
+            "bracket": {
+                stage: [
+                    _bracket_match_view(m)
+                    for m in sorted(
+                        [mx for mx in matches if mx["stage"] == stage],
+                        key=lambda mx: mx["utc_date"] or "",
+                    )
+                ]
+                for stage in ["R32", "R16", "QF", "SF", "THIRD", "FINAL"]
+            },
         }
     )
     log.info("State oppdatert: %d kamper, %d deltakere", len(matches), len(people))

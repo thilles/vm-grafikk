@@ -86,6 +86,12 @@ def teams_in_group(letter):
 def is_african(canon):
     return canon in TEAMS and TEAMS[canon][3] == "CAF"
 
+def confederation_of(name):
+    """Returner konføderasjon for laget (UEFA, CONMEBOL, CONCACAF, AFC, CAF, OFC), eller tom streng."""
+    c = canonical(name)
+    t = TEAMS.get(c)
+    return t[3] if t else ""
+
 def display(canon):
     """Flagg + norsk navn for visning."""
     return f"{flag(canon)} {no_name(canon)}"
