@@ -214,6 +214,41 @@ def team_labels():
         return [str(r[0]) for r in g.query(q)]
 
 
+_squad_mv_cache = None  # memoisert: {kanonisk lagnavn → totalMarketValueEUR}
+
+
+def squad_market_values():
+    """Returnerer dict {kanonisk_lagnavn: totalMarketValueEUR} for alle lag.
+
+    Memoisert – KG er statisk, så SPARQL kjøres kun én gang per prosess.
+    Returnerer tom dict om KG ikke er tilgjengelig.
+    """
+    global _squad_mv_cache
+    if _squad_mv_cache is not None:
+        return _squad_mv_cache
+    if not available():
+        return {}
+    from .teams import canonical as _canonical
+    g = _load()
+    q = _PREFIXES + """
+    SELECT ?label ?tv WHERE {
+      ?t a wc:NationalTeam ; rdfs:label ?label ; wc:totalMarketValueEUR ?tv .
+    }
+    """
+    with _lock:
+        if _squad_mv_cache is None:
+            rows = list(g.query(q))
+            result = {}
+            for r in rows:
+                label = str(r.label)
+                mv = _num(r.tv)
+                canon = _canonical(label)
+                if canon and mv is not None:
+                    result[canon] = mv
+            _squad_mv_cache = result
+    return _squad_mv_cache
+
+
 _PREFIXES = """
     PREFIX wc: <http://example.org/wc2026/ontology#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
