@@ -352,26 +352,6 @@ function renderNews(news) {
     : '<p style="color:var(--muted)">Ingen nyheter akkurat nå.</p>';
 }
 
-function renderNews(news) {
-  const link = $("news-link");
-  if (link && news && news.url) link.href = news.url;
-  const items = (news && news.items) || [];
-  $("news").innerHTML = items.length
-    ? items.map((n) => {
-        const hasSummary = !!n.summary;
-        const caret = hasSummary ? '<span class="news-caret">▾</span>' : "";
-        const cls = hasSummary ? "news-item has-summary" : "news-item";
-        const toggle = hasSummary ? ' onclick="this.classList.toggle(\'open\')"' : "";
-        return `
-        <article class="${cls}"${toggle}>
-          <div class="news-time">${fmtDate(n.published)}</div>
-          <div class="news-title"><span>${esc(n.title)}</span>${caret}</div>
-          ${hasSummary ? `<div class="news-summary">${esc(n.summary)}</div>` : ""}
-        </article>`;
-      }).join("")
-    : '<p style="color:var(--muted)">Ingen nyheter akkurat nå.</p>';
-}
-
 /* ── Treertabell ──────────────────────────────────────────────────────────── */
 function renderThirds(thirds) {
   const sec = $("thirds-section");
@@ -475,6 +455,8 @@ function renderBracket(bracket) {
     return side === "L" ? ms.slice(0, n) : ms.slice(n);
   }
 
+  const TBD_NODE = bracketNode(null);
+
   function col(stage, side, label) {
     const ms = side ? half(stage, side) : (bracket[stage] || []);
     if (!ms.length && side) {
@@ -482,7 +464,7 @@ function renderBracket(bracket) {
       const expected = { R32: 8, R16: 4, QF: 2, SF: 1 }[stage] || 1;
       return `<div class="brac-col" data-stage="${stage}">
         <div class="brac-lbl">${label}</div>
-        <div class="brac-ms">${"<div class=\"bn bn-tbd\"><div class=\"bn-t\"><span class=\"bn-f\">?</span><span class=\"bn-n\">TBD</span></div><div class=\"bn-t\"><span class=\"bn-f\">?</span><span class=\"bn-n\">TBD</span></div></div>".repeat(expected)}</div>
+        <div class="brac-ms">${TBD_NODE.repeat(expected)}</div>
       </div>`;
     }
     return `<div class="brac-col" data-stage="${stage}">
