@@ -512,8 +512,9 @@ function renderBracket(bracket) {
 }
 
 /* ── Sunburst-visning ─────────────────────────────────────────────────────── */
-// Vektformel: w = SUNBURST_BASE + SUNBURST_K × |hjemmemål − bortemål|
+// Vektformel etter spilt kamp:  w = SUNBURST_BASE + SUNBURST_K × |hjemmemål − bortemål|
 // Vinnersektoren vektes opp relativt til basevekten.
+// Vektformel før spilt kamp:    w = lagts totale Transfermarkt-verdi (home_mv / away_mv)
 // Innen hver runde normaliseres vektene til 360° slik at ringen alltid er hel.
 const SUNBURST_BASE = 1;
 const SUNBURST_K = 0.5; // Konfigurerbar: sett høyere for mer dramatisk effekt
@@ -570,14 +571,29 @@ function renderSunburst(bracket) {
       const homeWon = played && m.winner === "HOME_TEAM";
       const awayWon = played && m.winner === "AWAY_TEAM";
       const margin = played ? Math.abs((m.goals_home || 0) - (m.goals_away || 0)) : 0;
+      // Etter kamp: vinner vektes opp etter målforskjell; taper beholder basevekt.
+      // Før kamp: vektingen baseres på lagets totale Transfermarkt-verdi.
+      let homeWeight, awayWeight;
+      if (played) {
+        homeWeight = homeWon ? SUNBURST_BASE + SUNBURST_K * margin : SUNBURST_BASE;
+        awayWeight = awayWon ? SUNBURST_BASE + SUNBURST_K * margin : SUNBURST_BASE;
+      } else {
+        // Bruk markedsverdi normalisert til enheter rundt SUNBURST_BASE (1).
+        // Fallback til SUNBURST_BASE om verdien mangler.
+        // Referansenivå 300 M € ≈ turneringsmedian, slik at en «gjennomsnittlig»
+        // tropp gir vekt ≈ 1 og gir omtrent lik bogstørrelse som basevekten.
+        const avgMV = 300_000_000;
+        homeWeight = m.home_mv ? m.home_mv / avgMV : SUNBURST_BASE;
+        awayWeight = m.away_mv ? m.away_mv / avgMV : SUNBURST_BASE;
+      }
       segs.push({
         name: m.home, flag: m.home_flag, conf: m.home_conf || "",
-        weight: homeWon ? SUNBURST_BASE + SUNBURST_K * margin : SUNBURST_BASE,
+        weight: homeWeight,
         winner: homeWon,
       });
       segs.push({
         name: m.away, flag: m.away_flag, conf: m.away_conf || "",
-        weight: awayWon ? SUNBURST_BASE + SUNBURST_K * margin : SUNBURST_BASE,
+        weight: awayWeight,
         winner: awayWon,
       });
     }
