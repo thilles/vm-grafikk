@@ -233,6 +233,7 @@ def squad_market_values():
     q = _PREFIXES + """
     SELECT ?label ?tv WHERE {
       ?t a wc:NationalTeam ; rdfs:label ?label ; wc:totalMarketValueEUR ?tv .
+      FILTER(bound(?tv))
     }
     """
     with _lock:

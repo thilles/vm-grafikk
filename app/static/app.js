@@ -580,7 +580,9 @@ function renderSunburst(bracket) {
       } else {
         // Bruk markedsverdi normalisert til enheter rundt SUNBURST_BASE (1).
         // Fallback til SUNBURST_BASE om verdien mangler.
-        const avgMV = 300_000_000; // referansenivå ~300 M € ≈ 1 enhet
+        // Referansenivå 300 M € ≈ turneringsmedian, slik at en «gjennomsnittlig»
+        // tropp gir vekt ≈ 1 og gir omtrent lik bogstørrelse som basevekten.
+        const avgMV = 300_000_000;
         homeWeight = m.home_mv ? m.home_mv / avgMV : SUNBURST_BASE;
         awayWeight = m.away_mv ? m.away_mv / avgMV : SUNBURST_BASE;
       }
