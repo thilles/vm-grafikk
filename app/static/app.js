@@ -352,6 +352,297 @@ function renderNews(news) {
     : '<p style="color:var(--muted)">Ingen nyheter akkurat nå.</p>';
 }
 
+/* ── Treertabell ──────────────────────────────────────────────────────────── */
+function renderThirds(thirds) {
+  const sec = $("thirds-section");
+  const el = $("thirds-table");
+  if (!thirds || !thirds.length) { sec.hidden = true; return; }
+  sec.hidden = false;
+
+  const hasAnyPlayed = thirds.some((t) => t.played > 0);
+  $("thirds-note").textContent = hasAnyPlayed
+    ? "Topp 8 (grønt) går videre til 16-delsfinalen. Rangering etter FIFAs kriterier: poeng → målforskjell → scorede mål."
+    : "Treertabellen fylles etter hvert som grupper fullføres. De 8 beste av 12 går videre til 16-delsfinalen.";
+
+  const rows = thirds.map((t) => `
+    <tr class="${t.advances ? "third-adv" : "third-out"}">
+      <td class="td-rank">${t.rank}</td>
+      <td class="td-team">${t.flag}&nbsp;${t.team}</td>
+      <td class="td-center">${t.group}</td>
+      <td class="td-center">${t.played}</td>
+      <td class="td-center td-wdl">${t.w}–${t.d}–${t.l}</td>
+      <td class="td-center">${t.gf}:${t.ga}</td>
+      <td class="td-center">${t.gd > 0 ? "+" + t.gd : t.gd}</td>
+      <td class="td-center pts">${t.pts}</td>
+    </tr>`).join("");
+
+  el.innerHTML = `
+    <div class="table-scroll">
+      <table class="thirds-tbl">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="th-left">Lag</th>
+            <th>Gr</th>
+            <th>K</th>
+            <th>S–U–T</th>
+            <th>Mål</th>
+            <th>+/−</th>
+            <th>P</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+/* ── Bracket-tre ──────────────────────────────────────────────────────────── */
+
+// Holder bracket-data for sunburst (fylles av renderBracket, leses av setBracketView)
+let _bracketData = null;
+
+function setBracketView(mode) {
+  $("bracket-view").hidden = mode !== "bracket";
+  $("sunburst-view").hidden = mode !== "sunburst";
+  $("btn-bracket").classList.toggle("brac-active", mode === "bracket");
+  $("btn-sunburst").classList.toggle("brac-active", mode === "sunburst");
+  if (mode === "sunburst" && _bracketData) renderSunburst(_bracketData);
+}
+window.setBracketView = setBracketView;
+
+const ROUND_LABELS = {
+  R32: "16-delsfinale", R16: "8-delsfinale", QF: "Kvartfinale",
+  SF: "Semifinale", THIRD: "Bronsefinale", FINAL: "FINALE",
+};
+
+function bracketNode(m) {
+  if (!m) return `<div class="bn bn-tbd"><div class="bn-t"><span class="bn-f">?</span><span class="bn-n">TBD</span></div><div class="bn-t"><span class="bn-f">?</span><span class="bn-n">TBD</span></div></div>`;
+  const played = m.status === "FINISHED";
+  const homeWon = played && m.winner === "HOME_TEAM";
+  const awayWon = played && m.winner === "AWAY_TEAM";
+  const dt = m.date
+    ? new Date(m.date).toLocaleDateString("no-NO", { day: "numeric", month: "short" })
+    : "";
+  return `
+    <div class="bn${played ? " bn-done" : ""}">
+      <div class="bn-t${homeWon ? " bn-win" : awayWon ? " bn-lose" : ""}">
+        <span class="bn-f">${m.home_flag}</span><span class="bn-n">${m.home}</span>
+        ${played ? `<span class="bn-sc">${m.goals_home}</span>` : ""}
+      </div>
+      <div class="bn-t${awayWon ? " bn-win" : homeWon ? " bn-lose" : ""}">
+        <span class="bn-f">${m.away_flag}</span><span class="bn-n">${m.away}</span>
+        ${played ? `<span class="bn-sc">${m.goals_away}</span>` : ""}
+      </div>
+      ${dt ? `<div class="bn-meta">${dt}</div>` : ""}
+    </div>`;
+}
+
+function renderBracket(bracket) {
+  const sec = $("bracket-section");
+  const el = $("bracket-view");
+  const STAGES = ["R32", "R16", "QF", "SF", "FINAL", "THIRD"];
+  const hasAny = STAGES.some((s) => (bracket[s] || []).length > 0);
+  if (!hasAny) { sec.hidden = true; return; }
+  sec.hidden = false;
+  _bracketData = bracket;
+
+  // ── Web-layout: venstre halvdel → finale → høyre halvdel (møtes i midten)
+  // Runder fra venstre til høyre: R32-L | R16-L | QF-L | SF-L | FINAL | SF-R | QF-R | R16-R | R32-R
+  // «Halvdel» er de første / siste halvdelene av hvert rundes match-liste (sortert etter dato).
+  function half(stage, side) {
+    const ms = bracket[stage] || [];
+    const n = Math.ceil(ms.length / 2);
+    return side === "L" ? ms.slice(0, n) : ms.slice(n);
+  }
+
+  const TBD_NODE = bracketNode(null);
+
+  function col(stage, side, label) {
+    const ms = side ? half(stage, side) : (bracket[stage] || []);
+    if (!ms.length && side) {
+      // Fyll opp med TBD-noder for å beholde høydestrukturen
+      const expected = { R32: 8, R16: 4, QF: 2, SF: 1 }[stage] || 1;
+      return `<div class="brac-col" data-stage="${stage}">
+        <div class="brac-lbl">${label}</div>
+        <div class="brac-ms">${TBD_NODE.repeat(expected)}</div>
+      </div>`;
+    }
+    return `<div class="brac-col" data-stage="${stage}">
+      <div class="brac-lbl">${label}</div>
+      <div class="brac-ms">${ms.map(bracketNode).join("")}</div>
+    </div>`;
+  }
+
+  const finalMs = bracket["FINAL"] || [];
+  const thirdMs = bracket["THIRD"] || [];
+  const finalNode = finalMs.length ? bracketNode(finalMs[0]) : bracketNode(null);
+  const thirdNode = thirdMs.length ? bracketNode(thirdMs[0]) : bracketNode(null);
+  const centerCol = `<div class="brac-col brac-center">
+    <div class="brac-lbl">⚽ FINALE</div>
+    <div class="brac-ms brac-ms-final">${finalNode}</div>
+    <div class="brac-lbl brac-lbl-bronze">🥉 Bronse</div>
+    <div class="brac-ms">${thirdNode}</div>
+  </div>`;
+
+  // ── Mobilvisning: runde-for-runde seksjoner (stables vertikalt)
+  const mobileRounds = ["R32", "R16", "QF", "SF", "FINAL", "THIRD"].map((stage) => {
+    const ms = bracket[stage] || [];
+    if (!ms.length) return "";
+    return `<div class="brac-mobile-round">
+      <div class="brac-mobile-lbl">${ROUND_LABELS[stage]}</div>
+      <div class="brac-mobile-ms">${ms.map(bracketNode).join("")}</div>
+    </div>`;
+  }).join("");
+
+  el.innerHTML = `
+    <div class="brac-web">
+      <div class="brac-grid">
+        ${col("R32", "L", "16-df")}
+        ${col("R16", "L", "8-df")}
+        ${col("QF", "L", "KF")}
+        ${col("SF", "L", "SF")}
+        ${centerCol}
+        ${col("SF", "R", "SF")}
+        ${col("QF", "R", "KF")}
+        ${col("R16", "R", "8-df")}
+        ${col("R32", "R", "16-df")}
+      </div>
+    </div>
+    <div class="brac-mobile">${mobileRounds}</div>`;
+}
+
+/* ── Sunburst-visning ─────────────────────────────────────────────────────── */
+// Vektformel: w = SUNBURST_BASE + SUNBURST_K × |hjemmemål − bortemål|
+// Vinnersektoren vektes opp relativt til basevekten.
+// Innen hver runde normaliseres vektene til 360° slik at ringen alltid er hel.
+const SUNBURST_BASE = 1;
+const SUNBURST_K = 0.5; // Konfigurerbar: sett høyere for mer dramatisk effekt
+
+const CONF_COLORS = {
+  UEFA: "#4ade80",
+  CONMEBOL: "#fbbf24",
+  CONCACAF: "#5ec8c0",
+  AFC: "#f97316",
+  CAF: "#a855f7",
+  OFC: "#ec4899",
+  "": "#9ca3af",
+};
+
+function arcPath(cx, cy, r1, r2, startDeg, endDeg) {
+  // SVG-bue: r1 = indre radius, r2 = ytre; 0° = topp, medsols
+  const rad = (d) => ((d - 90) * Math.PI) / 180;
+  const px = (r, d) => cx + r * Math.cos(rad(d));
+  const py = (r, d) => cy + r * Math.sin(rad(d));
+  const large = endDeg - startDeg > 180 ? 1 : 0;
+  return [
+    `M ${px(r2, startDeg).toFixed(2)} ${py(r2, startDeg).toFixed(2)}`,
+    `A ${r2} ${r2} 0 ${large} 1 ${px(r2, endDeg).toFixed(2)} ${py(r2, endDeg).toFixed(2)}`,
+    `L ${px(r1, endDeg).toFixed(2)} ${py(r1, endDeg).toFixed(2)}`,
+    `A ${r1} ${r1} 0 ${large} 0 ${px(r1, startDeg).toFixed(2)} ${py(r1, startDeg).toFixed(2)}`,
+    "Z",
+  ].join(" ");
+}
+
+function renderSunburst(bracket) {
+  const svg = $("sunburst-svg");
+  if (!svg) return;
+  const cx = 300, cy = 300;
+
+  // Ringer fra ytterst til innerst: R32 → R16 → QF → SF → senterprikk (FINAL-vinner)
+  const RING_DEFS = [
+    { stage: "R32",   r1: 246, r2: 292 },
+    { stage: "R16",   r1: 186, r2: 240 },
+    { stage: "QF",    r1: 131, r2: 180 },
+    { stage: "SF",    r1: 76,  r2: 125 },
+  ];
+
+  const parts = [];
+  const confSeen = {};
+
+  for (const ring of RING_DEFS) {
+    const ms = bracket[ring.stage] || [];
+    if (!ms.length) continue;
+
+    // Bygg segmentliste: hvert lag i runden = ett segment
+    const segs = [];
+    for (const m of ms) {
+      const played = m.status === "FINISHED";
+      const homeWon = played && m.winner === "HOME_TEAM";
+      const awayWon = played && m.winner === "AWAY_TEAM";
+      const margin = played ? Math.abs((m.goals_home || 0) - (m.goals_away || 0)) : 0;
+      segs.push({
+        name: m.home, flag: m.home_flag, conf: m.home_conf || "",
+        weight: homeWon ? SUNBURST_BASE + SUNBURST_K * margin : SUNBURST_BASE,
+        winner: homeWon,
+      });
+      segs.push({
+        name: m.away, flag: m.away_flag, conf: m.away_conf || "",
+        weight: awayWon ? SUNBURST_BASE + SUNBURST_K * margin : SUNBURST_BASE,
+        winner: awayWon,
+      });
+    }
+
+    // Normaliser til 360°
+    const total = segs.reduce((s, g) => s + g.weight, 0);
+    const degPerW = 360 / total;
+    let angle = 0;
+
+    for (const seg of segs) {
+      const span = seg.weight * degPerW;
+      const color = CONF_COLORS[seg.conf] || CONF_COLORS[""];
+      const opac = seg.winner ? "0.88" : "0.42";
+      confSeen[seg.conf] = color;
+
+      // Litt mellomrom mellom segmenter (0.6°)
+      const path = arcPath(cx, cy, ring.r1, ring.r2, angle, angle + span - 0.6);
+      parts.push(`<path d="${path}" fill="${color}" opacity="${opac}" stroke="var(--bg)" stroke-width="1">
+        <title>${seg.flag} ${seg.name}${seg.winner ? " ✓" : ""}</title>
+      </path>`);
+
+      // Flagg-label der det er plass (> 12°)
+      if (span > 12) {
+        const mid = angle + span / 2;
+        const rm = (ring.r1 + ring.r2) / 2;
+        const rad = ((mid - 90) * Math.PI) / 180;
+        const lx = (cx + rm * Math.cos(rad)).toFixed(1);
+        const ly = (cy + rm * Math.sin(rad)).toFixed(1);
+        parts.push(`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle"
+          font-size="${span > 22 ? 11 : 8}" pointer-events="none">${seg.flag}</text>`);
+      }
+      angle += span;
+    }
+  }
+
+  // Senterprikk: vinner av finalen (eller 🏆 om ukjent)
+  const finalMs = bracket["FINAL"] || [];
+  const finalPlayed = finalMs.length && finalMs[0].status === "FINISHED";
+  if (finalPlayed) {
+    const wConf = finalMs[0].winner === "HOME_TEAM" ? finalMs[0].home_conf : finalMs[0].away_conf;
+    const wFlag = finalMs[0].winner === "HOME_TEAM" ? finalMs[0].home_flag : finalMs[0].away_flag;
+    const wName = (finalMs[0].winner === "HOME_TEAM" ? finalMs[0].home : finalMs[0].away).split(" ")[0].slice(0, 10);
+    parts.push(`<circle cx="${cx}" cy="${cy}" r="70" fill="${CONF_COLORS[wConf] || "#9ca3af"}" opacity="0.9">
+      <title>🏆 ${wName}</title>
+    </circle>`);
+    parts.push(`<text x="${cx}" y="${cy - 10}" text-anchor="middle" dominant-baseline="middle" font-size="26">${wFlag}</text>`);
+    parts.push(`<text x="${cx}" y="${cy + 18}" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="var(--bg2)" font-weight="700">${wName}</text>`);
+  } else {
+    parts.push(`<circle cx="${cx}" cy="${cy}" r="70" fill="var(--panel2)" stroke="var(--line)" stroke-width="2"/>`);
+    parts.push(`<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="middle" font-size="30">🏆</text>`);
+  }
+
+  svg.innerHTML = parts.join("");
+
+  // Konføderasjons-legende
+  const legendEl = $("sunburst-legend");
+  if (legendEl) {
+    const confLabel = { UEFA: "UEFA", CONMEBOL: "CONMEBOL", CONCACAF: "CONCACAF", AFC: "AFC", CAF: "CAF", OFC: "OFC" };
+    legendEl.innerHTML = Object.entries(confSeen)
+      .filter(([k]) => k)
+      .map(([k, c]) => `<span class="sl-item"><span class="sl-dot" style="background:${c}"></span>${confLabel[k] || k}</span>`)
+      .join("");
+  }
+}
+
 async function refresh() {
   try {
     const res = await fetch("/api/state");
@@ -384,6 +675,8 @@ async function refresh() {
     renderPodium(s.leaderboard);
     renderLeaderboard(s.leaderboard);
     renderConsensus(s.consensus);
+    renderThirds(s.thirds || []);
+    renderBracket(s.bracket || {});
     renderGroups(s.groups);
     renderFacts(s.facts);
     renderScorers(s.scorers);

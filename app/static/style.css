@@ -834,6 +834,222 @@ h2 {
     }
 }
 
+}
+@media (max-width: 700px) {
+    .rules-table td:nth-child(2) {
+        white-space: normal;
+    }
+}
+
+/* ── Treertabell ─────────────────────────────────────────────────────────── */
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.thirds-tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    min-width: 480px;
+}
+.thirds-tbl th {
+    padding: 5px 8px;
+    border-bottom: 2px solid var(--line);
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.7rem;
+    text-align: center;
+    white-space: nowrap;
+}
+.thirds-tbl th.th-left { text-align: left; }
+.thirds-tbl td {
+    padding: 6px 8px;
+    border-top: 1px solid var(--line);
+}
+.td-rank { text-align: center; color: var(--muted); font-size: 0.8rem; width: 28px; }
+.td-team { white-space: nowrap; }
+.td-center { text-align: center; }
+.td-wdl { white-space: nowrap; }
+.thirds-tbl td.pts { font-weight: 700; color: var(--accent); text-align: center; }
+/* De 8 viderekommende: svak grønn bakgrunn */
+.third-adv td { background: rgba(74, 222, 128, 0.07); }
+/* De 4 som ryker ut: enda svakere, tekst litt nedtonet */
+.third-out td { opacity: 0.62; }
+/* Skille-rad mellom rank 8 og 9 */
+.third-out:first-of-type td {
+    border-top: 2px dashed var(--line);
+}
+
+/* ── Bracket-tre ──────────────────────────────────────────────────────────── */
+.brac-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.brac-btn {
+    background: var(--panel2);
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.brac-btn:hover { border-color: var(--accent); color: var(--text); }
+.brac-btn.brac-active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 700;
+}
+
+/* ── Web-bracket (skjult på mobil) */
+.brac-web { display: none; }
+@media (min-width: 900px) {
+    .brac-web { display: block; overflow-x: auto; }
+    .brac-mobile { display: none; }
+}
+
+.brac-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 4px;
+    min-width: 860px;
+}
+.brac-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+}
+.brac-center {
+    flex: 0 0 130px;
+}
+.brac-lbl {
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    padding: 4px 2px 8px;
+}
+.brac-lbl-bronze {
+    margin-top: 16px;
+    color: var(--bronze);
+}
+.brac-ms {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 4px;
+}
+.brac-ms-final {
+    justify-content: flex-start;
+    padding-top: 20%;
+}
+
+/* ── Kampnode (bracket) */
+.bn {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.75rem;
+    min-width: 90px;
+}
+.bn-tbd { opacity: 0.4; }
+.bn-done { border-color: var(--accent2); }
+.bn-t {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 6px;
+    min-width: 0;
+    border-top: 1px solid var(--line);
+}
+.bn-t:first-child { border-top: none; }
+.bn-f { flex: none; font-size: 1rem; line-height: 1; }
+.bn-n {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+}
+.bn-sc {
+    margin-left: auto;
+    font-weight: 800;
+    color: var(--accent);
+    min-width: 14px;
+    text-align: right;
+}
+.bn-win { background: rgba(74, 222, 128, 0.1); }
+.bn-lose { opacity: 0.55; }
+.bn-meta {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: center;
+    padding: 2px 4px;
+    border-top: 1px solid var(--line);
+}
+
+/* ── Mobilvisning (stables vertikalt) */
+.brac-mobile-round {
+    margin-bottom: 20px;
+}
+.brac-mobile-lbl {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+.brac-mobile-ms {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+}
+
+/* ── Sunburst ─────────────────────────────────────────────────────────────── */
+.sunburst-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+}
+.sunburst-svg {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
+}
+.sunburst-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 8px 0 4px;
+    font-size: 0.8rem;
+}
+.sl-item { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.sl-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex: none;
+}
+.sunburst-formula { font-size: 0.8rem; text-align: center; }
+.sunburst-formula code {
+    background: var(--panel2);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
 footer {
     text-align: center;
     color: var(--muted);
