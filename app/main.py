@@ -202,9 +202,14 @@ def rebuild_state():
     # Transfermarkt-lagsverdier for sunburst-vekting av uspilte kamper.
     squad_mv = kg.squad_market_values()
 
+    live_statuses = {"IN_PLAY", "PAUSED", "LIVE"}
+    upcoming_statuses = {"SCHEDULED", "TIMED"}
+
     finished = [m for m in matches if m["status"] == "FINISHED"]
-    live = [m for m in matches if m["status"] in ("IN_PLAY", "PAUSED")]
-    upcoming = [m for m in matches if m["status"] in ("SCHEDULED", "TIMED")][:8]
+    live = [m for m in matches if (m.get("status") or "").upper() in live_statuses]
+    upcoming = [
+        m for m in matches if (m.get("status") or "").upper() in upcoming_statuses
+    ][:8]
 
     # Lenke til NRKs kampside pr kamp + NIFS kamp-id-er (åpent API, ingen nøkkel).
     nrk_links = build_links(finished)
