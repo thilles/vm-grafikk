@@ -509,11 +509,10 @@ function renderBracket(bracket) {
 }
 
 /* ── Sunburst-visning ─────────────────────────────────────────────────────── */
-// Hver kamp opptar en fast andel av ringen: 1/16 (R32), 1/8 (R16), 1/4 (QF), 1/2 (SF).
-// Innenfor kampens andel skaleres de to lagene etter vektregelen:
-//   Etter spilt kamp:  w = SUNBURST_BASE + SUNBURST_K × |hjemmemål − bortemål|
-//                       (vinner får den forhøyede vekten, taper beholder basevekt)
-//   Før spilt kamp:    w = lagets totale Transfermarkt-verdi (home_mv / away_mv)
+// Vektformel etter spilt kamp:  w = SUNBURST_BASE + SUNBURST_K × |hjemmemål − bortemål|
+// Vinnersektoren vektes opp relativt til basevekten.
+// Vektformel før spilt kamp:    w = lagts totale Transfermarkt-verdi (home_mv / away_mv)
+// Innen hver runde normaliseres vektene til 360° slik at ringen alltid er hel.
 const SUNBURST_BASE = 1;
 const SUNBURST_K = 0.5; // Konfigurerbar: sett høyere for mer dramatisk effekt
 
@@ -562,11 +561,8 @@ function renderSunburst(bracket) {
     const ms = bracket[ring.stage] || [];
     if (!ms.length) continue;
 
-    // Bygg kampliste: hver kamp får en fast andel av ringen (360°/antall kamper).
-    // Innenfor kampens andel skaleres de to lagene etter vektregelen.
-    const degPerMatch = 360 / ms.length;
-    let angle = 0;
-
+    // Bygg segmentliste: hvert lag i runden = ett segment
+    const segs = [];
     for (const m of ms) {
       const played = m.status === "FINISHED";
       const homeWon = played && m.winner === "HOME_TEAM";
@@ -587,39 +583,46 @@ function renderSunburst(bracket) {
         homeWeight = m.home_mv ? m.home_mv / avgMV : SUNBURST_BASE;
         awayWeight = m.away_mv ? m.away_mv / avgMV : SUNBURST_BASE;
       }
-      const segs = [
-        { name: m.home, flag: m.home_flag, conf: m.home_conf || "",
-          weight: homeWeight, winner: homeWon },
-        { name: m.away, flag: m.away_flag, conf: m.away_conf || "",
-          weight: awayWeight, winner: awayWon },
-      ];
+      segs.push({
+        name: m.home, flag: m.home_flag, conf: m.home_conf || "",
+        weight: homeWeight,
+        winner: homeWon,
+      });
+      segs.push({
+        name: m.away, flag: m.away_flag, conf: m.away_conf || "",
+        weight: awayWeight,
+        winner: awayWon,
+      });
+    }
 
-      // Fordel kampens faste andel mellom de to lagene etter vektregelen.
-      const wSum = segs[0].weight + segs[1].weight || 1;
-      for (const seg of segs) {
-        const span = (seg.weight / wSum) * degPerMatch;
-        const color = CONF_COLORS[seg.conf] || CONF_COLORS[""];
-        const opac = seg.winner ? "0.88" : "0.42";
-        confSeen[seg.conf] = color;
+    // Normaliser til 360°
+    const total = segs.reduce((s, g) => s + g.weight, 0);
+    const degPerW = 360 / total;
+    let angle = 0;
 
-        // Litt mellomrom mellom segmenter (0.6°)
-        const path = arcPath(cx, cy, ring.r1, ring.r2, angle, angle + span - 0.6);
-        parts.push(`<path d="${path}" fill="${color}" opacity="${opac}" stroke="var(--bg)" stroke-width="1">
-          <title>${seg.flag} ${seg.name}${seg.winner ? " ✓" : ""}</title>
-        </path>`);
+    for (const seg of segs) {
+      const span = seg.weight * degPerW;
+      const color = CONF_COLORS[seg.conf] || CONF_COLORS[""];
+      const opac = seg.winner ? "0.88" : "0.42";
+      confSeen[seg.conf] = color;
 
-        // Flagg-label der det er plass (> 12°)
-        if (span > 12) {
-          const mid = angle + span / 2;
-          const rm = (ring.r1 + ring.r2) / 2;
-          const rad = ((mid - 90) * Math.PI) / 180;
-          const lx = (cx + rm * Math.cos(rad)).toFixed(1);
-          const ly = (cy + rm * Math.sin(rad)).toFixed(1);
-          parts.push(`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle"
-            font-size="${span > 22 ? 11 : 8}" pointer-events="none">${seg.flag}</text>`);
-        }
-        angle += span;
+      // Litt mellomrom mellom segmenter (0.6°)
+      const path = arcPath(cx, cy, ring.r1, ring.r2, angle, angle + span - 0.6);
+      parts.push(`<path d="${path}" fill="${color}" opacity="${opac}" stroke="var(--bg)" stroke-width="1">
+        <title>${seg.flag} ${seg.name}${seg.winner ? " ✓" : ""}</title>
+      </path>`);
+
+      // Flagg-label der det er plass (> 12°)
+      if (span > 12) {
+        const mid = angle + span / 2;
+        const rm = (ring.r1 + ring.r2) / 2;
+        const rad = ((mid - 90) * Math.PI) / 180;
+        const lx = (cx + rm * Math.cos(rad)).toFixed(1);
+        const ly = (cy + rm * Math.sin(rad)).toFixed(1);
+        parts.push(`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle"
+          font-size="${span > 22 ? 11 : 8}" pointer-events="none">${seg.flag}</text>`);
       }
+      angle += span;
     }
   }
 
@@ -653,10 +656,6 @@ function renderSunburst(bracket) {
   }
 }
 
-// Rask polling mens serveren varmer opp (state.ready === false).
-// Avbrytes automatisk når innholdet er klart.
-let _loadingPoll = null;
-
 async function refresh() {
   try {
     const res = await fetch("/api/state");
@@ -665,12 +664,8 @@ async function refresh() {
       $("loading").textContent = s.error
         ? "Klarte ikke hente data: " + s.error
         : "Laster scoreboard …";
-      // Prøv igjen raskt så siden reagerer fort når staten er klar.
-      if (!_loadingPoll) _loadingPoll = setInterval(refresh, 3_000);
       return;
     }
-    // Staten er klar – stopp hurtig-pollinga.
-    if (_loadingPoll) { clearInterval(_loadingPoll); _loadingPoll = null; }
     $("loading").hidden = true;
     $("content").hidden = false;
 
