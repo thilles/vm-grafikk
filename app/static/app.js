@@ -653,6 +653,10 @@ function renderSunburst(bracket) {
   }
 }
 
+// Rask polling mens serveren varmer opp (state.ready === false).
+// Avbrytes automatisk når innholdet er klart.
+let _loadingPoll = null;
+
 async function refresh() {
   try {
     const res = await fetch("/api/state");
@@ -661,8 +665,12 @@ async function refresh() {
       $("loading").textContent = s.error
         ? "Klarte ikke hente data: " + s.error
         : "Laster scoreboard …";
+      // Prøv igjen raskt så siden reagerer fort når staten er klar.
+      if (!_loadingPoll) _loadingPoll = setInterval(refresh, 3_000);
       return;
     }
+    // Staten er klar – stopp hurtig-pollinga.
+    if (_loadingPoll) { clearInterval(_loadingPoll); _loadingPoll = null; }
     $("loading").hidden = true;
     $("content").hidden = false;
 
