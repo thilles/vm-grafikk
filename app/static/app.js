@@ -509,22 +509,16 @@ function renderBracket(bracket) {
 }
 
 /* ── Sunburst-visning ─────────────────────────────────────────────────────── */
-// Vektformel etter spilt kamp:  w = SUNBURST_BASE + SUNBURST_K × |hjemmemål − bortemål|
-// Vinnersektoren vektes opp relativt til basevekten.
-// Vektformel før spilt kamp:    w = lagts totale Transfermarkt-verdi (home_mv / away_mv)
-// Innen hver runde normaliseres vektene til 360° slik at ringen alltid er hel.
+// Hvert oppgjør opptar en fast, lik andel av ringen: R32 = 1/16, R16 = 1/8,
+// QF = 1/4, SF = 1/2 av 360°. Innenfor hvert oppgjørs slice deles vinkelen
+// mellom de to lagene etter lagets totale Transfermarkt-verdi (home_mv / away_mv).
+// Resultatet påvirker ikke skaleringen. Ringene nøstes etter bracket-treet:
+// den innerste ringen setter rekkefølgen, og hver ring utenfor legger et oppgjørs
+// to «barn» (kampene laga kom fra) rett under det – så oppgjørene flukter radialt
+// og et lag kan følges innover. Alle segmenter har samme farge (konføderasjons-
+// fargene ble for mye visuell støy).
 const SUNBURST_BASE = 1;
-const SUNBURST_K = 0.5; // Konfigurerbar: sett høyere for mer dramatisk effekt
-
-const CONF_COLORS = {
-  UEFA: "#4ade80",
-  CONMEBOL: "#fbbf24",
-  CONCACAF: "#5ec8c0",
-  AFC: "#f97316",
-  CAF: "#a855f7",
-  OFC: "#ec4899",
-  "": "#9ca3af",
-};
+const SUNBURST_FILL = "var(--accent)";
 
 function arcPath(cx, cy, r1, r2, startDeg, endDeg) {
   // SVG-bue: r1 = indre radius, r2 = ytre; 0° = topp, medsols
@@ -555,74 +549,97 @@ function renderSunburst(bracket) {
   ];
 
   const parts = [];
-  const confSeen = {};
+
+  // Bygg rekkefølgen ring for ring ut fra bracket-treet, fra innerst til ytterst.
+  // Den innerste ringen beholder gitt rekkefølge; hver ring utenfor ekspanderer
+  // hvert oppgjør til sine to «barn» – kampene de to laga vant i ringen utenfor,
+  // funnet via lagnavn. Da flukter et oppgjør nøyaktig med sine to barnekamper.
+  const stageOrder = {};
+  const inToOut = RING_DEFS.filter((r) => (bracket[r.stage] || []).length).reverse();
+  inToOut.forEach((ring, idx) => {
+    const ms = bracket[ring.stage] || [];
+    if (idx === 0) {
+      stageOrder[ring.stage] = ms.slice();
+      return;
+    }
+    // Koble hvert lag til kampen det kom fra i denne (ytre) ringen.
+    const byTeam = {};
+    for (const m of ms) {
+      if (byTeam[m.home] == null) byTeam[m.home] = m;
+      if (byTeam[m.away] == null) byTeam[m.away] = m;
+    }
+    const used = new Set();
+    const order = [];
+    const take = (team) => {
+      const m = byTeam[team];
+      if (m && !used.has(m)) { used.add(m); order.push(m); }
+    };
+    // For hvert oppgjør i ringen innenfor: legg hjemmelagets barn, så bortelagets.
+    for (const parent of stageOrder[inToOut[idx - 1].stage]) {
+      take(parent.home);
+      take(parent.away);
+    }
+    // Ta med kamper som ikke ble koblet (ukjente/TBD-lag) til slutt.
+    for (const m of ms) if (!used.has(m)) order.push(m);
+    stageOrder[ring.stage] = order;
+  });
 
   for (const ring of RING_DEFS) {
-    const ms = bracket[ring.stage] || [];
-    if (!ms.length) continue;
+    const ms = stageOrder[ring.stage];
+    if (!ms || !ms.length) continue;
 
-    // Bygg segmentliste: hvert lag i runden = ett segment
-    const segs = [];
+    // Hvert oppgjør opptar en fast, lik andel av ringen (1/antall kamper). Siden
+    // rekkefølgen følger bracket-treet og alle ringer starter på 0°, flukter et
+    // oppgjørs slice nøyaktig med de to barnekampene i ringen utenfor.
+    const matchSpan = 360 / ms.length;
+    let angle = 0;
+
     for (const m of ms) {
       const played = m.status === "FINISHED";
       const homeWon = played && m.winner === "HOME_TEAM";
       const awayWon = played && m.winner === "AWAY_TEAM";
-      const margin = played ? Math.abs((m.goals_home || 0) - (m.goals_away || 0)) : 0;
-      // Etter kamp: vinner vektes opp etter målforskjell; taper beholder basevekt.
-      // Før kamp: vektingen baseres på lagets totale Transfermarkt-verdi.
-      let homeWeight, awayWeight;
-      if (played) {
-        homeWeight = homeWon ? SUNBURST_BASE + SUNBURST_K * margin : SUNBURST_BASE;
-        awayWeight = awayWon ? SUNBURST_BASE + SUNBURST_K * margin : SUNBURST_BASE;
-      } else {
-        // Bruk markedsverdi normalisert til enheter rundt SUNBURST_BASE (1).
-        // Fallback til SUNBURST_BASE om verdien mangler.
-        // Referansenivå 300 M € ≈ turneringsmedian, slik at en «gjennomsnittlig»
-        // tropp gir vekt ≈ 1 og gir omtrent lik bogstørrelse som basevekten.
-        const avgMV = 300_000_000;
-        homeWeight = m.home_mv ? m.home_mv / avgMV : SUNBURST_BASE;
-        awayWeight = m.away_mv ? m.away_mv / avgMV : SUNBURST_BASE;
+      // Vektingen baseres alltid på lagets totale Transfermarkt-verdi – resultatet
+      // påvirker ikke skaleringen. Fallback til SUNBURST_BASE om verdien mangler.
+      const homeWeight = m.home_mv ? m.home_mv : SUNBURST_BASE;
+      const awayWeight = m.away_mv ? m.away_mv : SUNBURST_BASE;
+
+      // Del oppgjørets faste slice mellom hjemme og borte etter vektforhold.
+      // Hjemme først, borte sist – samme rekkefølge som barnekampene legges i.
+      const wSum = homeWeight + awayWeight || 1;
+      const segs = [
+        {
+          name: m.home, flag: m.home_flag,
+          span: matchSpan * (homeWeight / wSum),
+          winner: homeWon,
+        },
+        {
+          name: m.away, flag: m.away_flag,
+          span: matchSpan * (awayWeight / wSum),
+          winner: awayWon,
+        },
+      ];
+
+      for (const seg of segs) {
+        const opac = seg.winner ? "0.9" : "0.4";
+
+        // Litt mellomrom mellom segmenter (0.6°)
+        const path = arcPath(cx, cy, ring.r1, ring.r2, angle, angle + seg.span - 0.6);
+        parts.push(`<path d="${path}" fill="${SUNBURST_FILL}" opacity="${opac}" stroke="var(--bg)" stroke-width="1">
+          <title>${seg.flag} ${seg.name}${seg.winner ? " ✓" : ""}</title>
+        </path>`);
+
+        // Flagg-label der det er plass (> 12°)
+        if (seg.span > 12) {
+          const mid = angle + seg.span / 2;
+          const rm = (ring.r1 + ring.r2) / 2;
+          const rad = ((mid - 90) * Math.PI) / 180;
+          const lx = (cx + rm * Math.cos(rad)).toFixed(1);
+          const ly = (cy + rm * Math.sin(rad)).toFixed(1);
+          parts.push(`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle"
+            font-size="${seg.span > 22 ? 11 : 8}" pointer-events="none">${seg.flag}</text>`);
+        }
+        angle += seg.span;
       }
-      segs.push({
-        name: m.home, flag: m.home_flag, conf: m.home_conf || "",
-        weight: homeWeight,
-        winner: homeWon,
-      });
-      segs.push({
-        name: m.away, flag: m.away_flag, conf: m.away_conf || "",
-        weight: awayWeight,
-        winner: awayWon,
-      });
-    }
-
-    // Normaliser til 360°
-    const total = segs.reduce((s, g) => s + g.weight, 0);
-    const degPerW = 360 / total;
-    let angle = 0;
-
-    for (const seg of segs) {
-      const span = seg.weight * degPerW;
-      const color = CONF_COLORS[seg.conf] || CONF_COLORS[""];
-      const opac = seg.winner ? "0.88" : "0.42";
-      confSeen[seg.conf] = color;
-
-      // Litt mellomrom mellom segmenter (0.6°)
-      const path = arcPath(cx, cy, ring.r1, ring.r2, angle, angle + span - 0.6);
-      parts.push(`<path d="${path}" fill="${color}" opacity="${opac}" stroke="var(--bg)" stroke-width="1">
-        <title>${seg.flag} ${seg.name}${seg.winner ? " ✓" : ""}</title>
-      </path>`);
-
-      // Flagg-label der det er plass (> 12°)
-      if (span > 12) {
-        const mid = angle + span / 2;
-        const rm = (ring.r1 + ring.r2) / 2;
-        const rad = ((mid - 90) * Math.PI) / 180;
-        const lx = (cx + rm * Math.cos(rad)).toFixed(1);
-        const ly = (cy + rm * Math.sin(rad)).toFixed(1);
-        parts.push(`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle"
-          font-size="${span > 22 ? 11 : 8}" pointer-events="none">${seg.flag}</text>`);
-      }
-      angle += span;
     }
   }
 
@@ -630,10 +647,9 @@ function renderSunburst(bracket) {
   const finalMs = bracket["FINAL"] || [];
   const finalPlayed = finalMs.length && finalMs[0].status === "FINISHED";
   if (finalPlayed) {
-    const wConf = finalMs[0].winner === "HOME_TEAM" ? finalMs[0].home_conf : finalMs[0].away_conf;
     const wFlag = finalMs[0].winner === "HOME_TEAM" ? finalMs[0].home_flag : finalMs[0].away_flag;
     const wName = (finalMs[0].winner === "HOME_TEAM" ? finalMs[0].home : finalMs[0].away).split(" ")[0].slice(0, 10);
-    parts.push(`<circle cx="${cx}" cy="${cy}" r="70" fill="${CONF_COLORS[wConf] || "#9ca3af"}" opacity="0.9">
+    parts.push(`<circle cx="${cx}" cy="${cy}" r="70" fill="${SUNBURST_FILL}" opacity="0.9">
       <title>🏆 ${wName}</title>
     </circle>`);
     parts.push(`<text x="${cx}" y="${cy - 10}" text-anchor="middle" dominant-baseline="middle" font-size="26">${wFlag}</text>`);
@@ -645,15 +661,9 @@ function renderSunburst(bracket) {
 
   svg.innerHTML = parts.join("");
 
-  // Konføderasjons-legende
+  // Konføderasjons-legenden er fjernet – segmentene er nå ensfargede.
   const legendEl = $("sunburst-legend");
-  if (legendEl) {
-    const confLabel = { UEFA: "UEFA", CONMEBOL: "CONMEBOL", CONCACAF: "CONCACAF", AFC: "AFC", CAF: "CAF", OFC: "OFC" };
-    legendEl.innerHTML = Object.entries(confSeen)
-      .filter(([k]) => k)
-      .map(([k, c]) => `<span class="sl-item"><span class="sl-dot" style="background:${c}"></span>${confLabel[k] || k}</span>`)
-      .join("");
-  }
+  if (legendEl) legendEl.innerHTML = "";
 }
 
 async function refresh() {
